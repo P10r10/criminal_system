@@ -16,7 +16,7 @@ function Persons() {
     const [date_of_birth, setDate_of_birth] = useState("");
 
     const handleInputData = () => {
-        if (name.trim() !== "" && alias.trim() !== "" && date_of_birth.trim() !== "") {
+        if (name.trim() !== "" && date_of_birth.trim() !== "") {
             axios.post(PERSONS_URL, {name, alias, date_of_birth}).then(response => {
                 setPersons([...persons, response.data]);
                 setName("");
@@ -24,7 +24,7 @@ function Persons() {
                 setDate_of_birth("");
             });
         } else {
-            alert("Fill all data!")
+            alert("Name and dob are mandatory!")
         }
     }
 
@@ -36,11 +36,12 @@ function Persons() {
                     <li key={index}>
                         {person.name} - {person.alias} - {format(new Date(person.date_of_birth), "dd/MM/yyyy")}</li>)}
             </ul>
-            <input type="text" value={name} placeholder="name" onChange={(e) => setName(e.target.value)}/>
-            <input type="text" value={alias} placeholder="alias" onChange={(e) => setAlias(e.target.value)}/>
-            <input type="date" value={date_of_birth} placeholder="dob"
-                   onChange={(e) => setDate_of_birth(e.target.value)}/>
-            <button onClick={handleInputData}>Save</button>
+            <div>
+                <input type="text" value={name} placeholder="name" onChange={(e) => setName(e.target.value)} />
+                <input type="text" value={alias} placeholder="alias" onChange={(e) => setAlias(e.target.value)}/>
+                <input type="date" value={date_of_birth} onChange={(e) => setDate_of_birth(e.target.value)}/>
+                <button onClick={handleInputData}>Save</button>
+            </div>
         </div>
     );
 }
