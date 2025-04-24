@@ -1,31 +1,42 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {format} from "date-fns";
+import {useNavigate} from "react-router-dom";
 
 function Persons() {
 
     const [persons, setPersons] = useState([]);
+    const [inputs, setInputs] = useState({name: "", alias: "", date_of_birth: ""})
     const PERSONS_URL = "http://127.0.0.1:8000/records/api/persons/";
-
+    const navigate = useNavigate();
     useEffect(() => {
         axios.get(PERSONS_URL).then(response => setPersons(response.data));
     }, []);
 
-    const [name, setName] = useState("");
-    const [alias, setAlias] = useState("");
-    const [date_of_birth, setDate_of_birth] = useState("");
+    // const [name, setName] = useState("");
+    // const [alias, setAlias] = useState("");
+    // const [date_of_birth, setDate_of_birth] = useState("");
 
-    const handleInputData = () => {
-        if (name.trim() !== "" && date_of_birth.trim() !== "") {
-            axios.post(PERSONS_URL, {name, alias, date_of_birth}).then(response => {
-                setPersons([...persons, response.data]);
-                setName("");
-                setAlias("");
-                setDate_of_birth("");
-            });
-        } else {
-            alert("Name and dob are mandatory!")
-        }
+    // const handleInputData = () => {
+    //     if (name.trim() !== "" && date_of_birth.trim() !== "") {
+    //         axios.post(PERSONS_URL, {name, alias, date_of_birth}).then(response => {
+    //             setPersons([...persons, response.data]);
+    //             setName("");
+    //             setAlias("");
+    //             setDate_of_birth("");
+    //         });
+    //     } else {
+    //         alert("Name and dob are mandatory!")
+    //     }
+    // }
+    const submitHandler = (e) => {
+        e.preventDefault();
+        alert(`Nome: ${inputs.name} Alcunha: ${inputs.alias} DN: ${inputs.date_of_birth}`);
+        setInputs({ name: "", alias: "", date_of_birth: "" });
+    }
+
+    const changeHandler = (e) => {
+        setInputs(i => ({...i, [e.target.name]: e.target.value}));
     }
 
     return (
@@ -33,14 +44,17 @@ function Persons() {
             <h1>Persons</h1>
             <ul>
                 {persons.map((person, index) =>
-                    <li key={index}>
-                        {person.name} - {person.alias} - {format(new Date(person.date_of_birth), "dd/MM/yyyy")}</li>)}
+                    <li key={index} onClick={() => navigate("/persondetail", {state: {person}})}>
+                        {person.name} - {person.alias} - {format(new Date(person.date_of_birth), "dd/MM/yyyy")}
+                    </li>)}
             </ul>
             <div>
-                <input type="text" value={name} placeholder="name" onChange={(e) => setName(e.target.value)} />
-                <input type="text" value={alias} placeholder="alias" onChange={(e) => setAlias(e.target.value)}/>
-                <input type="date" value={date_of_birth} onChange={(e) => setDate_of_birth(e.target.value)}/>
-                <button onClick={handleInputData}>Save</button>
+                <form onSubmit={submitHandler}>
+                    Nome:<input type="text" name="name" value={inputs.name} onChange={changeHandler}/><br/>
+                    Alcunha:<input type="text" name="alias" value={inputs.alias} onChange={changeHandler}/><br/>
+                    DN:<input type="date" name="date_of_birth" value={inputs.date_of_birth} onChange={changeHandler}/><br/>
+                    <input type="submit" value="Submeter"/>
+                </form>
             </div>
         </div>
     );
