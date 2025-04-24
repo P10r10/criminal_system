@@ -1,0 +1,5 @@
+[
+    { "value": "pendente", "label": "Pendente" },
+    { "value": "arquivado", "label": "Arquivado" },
+    { "value": "acusado", "label": "Acusado" }
+]

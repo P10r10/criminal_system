@@ -1,0 +1,19 @@
+[
+    { "value": "agressão", "label": "Agressão" },
+    { "value": "furto", "label": "Furto" },
+    { "value": "roubo", "label": "Roubo" },
+    { "value": "vandalismo", "label": "Vandalismo" },
+    { "value": "incêndio", "label": "Incêndio" },
+    { "value": "peculato", "label": "Peculato" },
+    { "value": "falsificação", "label": "Falsificação" },
+    { "value": "branqueamento", "label": "Branqueamento" },
+    { "value": "tráfico", "label": "Tráfico" },
+    { "value": "homicídio", "label": "Homicídio" },
+    { "value": "sequestro", "label": "Sequestro" },
+    { "value": "rapto", "label": "Rapto" },
+    { "value": "extorsão", "label": "Extorsão" },
+    { "value": "cibercrime", "label": "Cibercrime" },
+    { "value": "violação", "label": "Violação" },
+    { "value": "terrorismo", "label": "Terrorismo" },
+    { "value": "discriminação", "label": "Discriminação" }
+]

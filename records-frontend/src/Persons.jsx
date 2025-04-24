@@ -15,18 +15,14 @@ function Persons() {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        if (inputs.name.trim() !== "" && inputs.date_of_birth.trim() !== "") {
-            axios.post(PERSONS_URL, {
-                name: inputs.name,
-                alias: inputs.alias,
-                date_of_birth: inputs.date_of_birth
-            }).then(response => {
-                setPersons([...persons, response.data]);
-            });
-        } else {
-            alert("Name and dob are mandatory!")
-        }
-        setInputs({name: "", alias: "", date_of_birth: ""});
+        axios.post(PERSONS_URL, {
+            name: inputs.name,
+            alias: inputs.alias,
+            date_of_birth: inputs.date_of_birth
+        }).then(response => {
+            setPersons([...persons, response.data]);
+            setInputs({name: "", alias: "", date_of_birth: ""});
+        });
     }
 
     const changeHandler = (e) => {
@@ -44,10 +40,10 @@ function Persons() {
             </ul>
             <div>
                 <form onSubmit={submitHandler}>
-                    Nome:<input type="text" name="name" value={inputs.name} onChange={changeHandler}/><br/>
+                    Nome:<input type="text" name="name" value={inputs.name} onChange={changeHandler} required/><br/>
                     Alcunha:<input type="text" name="alias" value={inputs.alias} onChange={changeHandler}/><br/>
                     DN:<input type="date" name="date_of_birth" value={inputs.date_of_birth}
-                              onChange={changeHandler}/><br/>
+                              onChange={changeHandler} required/><br/>
                     <input type="submit" value="Submeter"/>
                 </form>
             </div>
