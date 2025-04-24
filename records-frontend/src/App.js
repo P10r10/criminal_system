@@ -18,3 +18,10 @@ function App() {
 }
 
 export default App;
+
+
+// TODO
+// criar mais fields Person
+// criar object Casefile
+// Associar fotos pessoas
+// Estabelecer Relação muitos para muitos

@@ -13,26 +13,20 @@ function Persons() {
         axios.get(PERSONS_URL).then(response => setPersons(response.data));
     }, []);
 
-    // const [name, setName] = useState("");
-    // const [alias, setAlias] = useState("");
-    // const [date_of_birth, setDate_of_birth] = useState("");
-
-    // const handleInputData = () => {
-    //     if (name.trim() !== "" && date_of_birth.trim() !== "") {
-    //         axios.post(PERSONS_URL, {name, alias, date_of_birth}).then(response => {
-    //             setPersons([...persons, response.data]);
-    //             setName("");
-    //             setAlias("");
-    //             setDate_of_birth("");
-    //         });
-    //     } else {
-    //         alert("Name and dob are mandatory!")
-    //     }
-    // }
     const submitHandler = (e) => {
         e.preventDefault();
-        alert(`Nome: ${inputs.name} Alcunha: ${inputs.alias} DN: ${inputs.date_of_birth}`);
-        setInputs({ name: "", alias: "", date_of_birth: "" });
+        if (inputs.name.trim() !== "" && inputs.date_of_birth.trim() !== "") {
+            axios.post(PERSONS_URL, {
+                name: inputs.name,
+                alias: inputs.alias,
+                date_of_birth: inputs.date_of_birth
+            }).then(response => {
+                setPersons([...persons, response.data]);
+            });
+        } else {
+            alert("Name and dob are mandatory!")
+        }
+        setInputs({name: "", alias: "", date_of_birth: ""});
     }
 
     const changeHandler = (e) => {
@@ -52,7 +46,8 @@ function Persons() {
                 <form onSubmit={submitHandler}>
                     Nome:<input type="text" name="name" value={inputs.name} onChange={changeHandler}/><br/>
                     Alcunha:<input type="text" name="alias" value={inputs.alias} onChange={changeHandler}/><br/>
-                    DN:<input type="date" name="date_of_birth" value={inputs.date_of_birth} onChange={changeHandler}/><br/>
+                    DN:<input type="date" name="date_of_birth" value={inputs.date_of_birth}
+                              onChange={changeHandler}/><br/>
                     <input type="submit" value="Submeter"/>
                 </form>
             </div>

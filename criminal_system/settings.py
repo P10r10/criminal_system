@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'criminal_system.apps.CriminalSystemConfig',
     'rest_framework',
     'corsheaders',
 ]
