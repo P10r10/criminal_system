@@ -7,6 +7,7 @@ class PersonSerializer(serializers.ModelSerializer):
         model = Person
         fields = ('id', 'name', 'alias', 'date_of_birth')
 
+
 class CasefileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Casefile
