@@ -7,9 +7,9 @@ function Casefile() {
 
     return (
         <div>
-            <h1>{casefile.number}</h1>
-            <h2>{casefile.crime}</h2>
-            <h3>{casefile.status}</h3>
+            <h1>Processo: {casefile.number}</h1>
+            <h2>Crime: {casefile.crime}</h2>
+            <h3>Estado: {casefile.status}</h3>
         </div>
     );
 }

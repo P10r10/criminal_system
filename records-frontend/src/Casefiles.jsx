@@ -6,7 +6,8 @@ import status from "./data/status.json";
 
 function Casefiles() {
     const [casefiles, setCasefiles] = useState([]);
-    const [inputs, setInputs] = useState({number: "", crime: "", status: ""})
+    // const [inputs, setInputs] = useState({number: "", crime: "", status: ""})
+    const [inputs, setInputs] = useState({crime: "", status: "pendente"})
     const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
     const navigate = useNavigate();
     useEffect(() => {
@@ -16,12 +17,12 @@ function Casefiles() {
     const submitHandler = (e) => {
         e.preventDefault();
         axios.post(CASEFILES_URL, {
-            number: inputs.number,
+            // number: inputs.number,
             crime: inputs.crime,
             status: inputs.status
         }).then(response => {
             setCasefiles([...casefiles, response.data]);
-            setInputs({number: "", crime: "", status: ""});
+            // setInputs({number: "", crime: "", status: ""});
         });
     }
 
@@ -31,7 +32,7 @@ function Casefiles() {
 
     return (
         <div>
-            <h1>Casefiles</h1>
+            <h1>Processos</h1>
             <ul>
                 {casefiles.map((casefile, index) =>
                     <li key={index} onClick={() => navigate("/casefiledetail", {state: {casefile}})}>
@@ -40,15 +41,15 @@ function Casefiles() {
             </ul>
             <div>
                 <form onSubmit={submitHandler}>
-                    Número:<input type="text" name="number" value={inputs.number} onChange={changeHandler} required /><br/>
+                    {/*Número:<input type="text" name="number" value={inputs.number} onChange={changeHandler} required /><br/>*/}
                     Crime:
                     <select name="crime" value={inputs.crime} onChange={changeHandler}>
                         {crimes.map((crime, index) => (<option key={index} value={crime.value}>{crime.label}</option>))}
                     </select><br/>
-                    Estado:
-                    <select name="status" value={inputs.status} onChange={changeHandler}>
-                        {status.map((stat, index) => (<option key={index} value={stat.value}>{stat.label}</option>))}
-                    </select>
+                    {/*Estado:*/}
+                    {/*<select name="status" value={inputs.status} onChange={changeHandler}>*/}
+                    {/*    {status.map((stat, index) => (<option key={index} value={stat.value}>{stat.label}</option>))}*/}
+                    {/*</select>*/}
                     <input type="submit" value="Submeter"/>
                 </form>
             </div>
