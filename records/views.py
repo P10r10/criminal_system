@@ -5,8 +5,6 @@ from records.models import Person, Casefile
 from records.serializers import PersonSerializer, CasefileSerializer
 
 
-# Create your views here.
-
 @api_view(['GET', 'POST'])
 def persons(request):
     if request.method == 'GET':

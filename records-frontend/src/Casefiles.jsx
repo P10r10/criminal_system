@@ -2,12 +2,10 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import crimes from "./data/crimes.json";
-import status from "./data/status.json";
 
 function Casefiles() {
     const [casefiles, setCasefiles] = useState([]);
-    // const [inputs, setInputs] = useState({number: "", crime: "", status: ""})
-    const [inputs, setInputs] = useState({crime: "", status: "pendente"})
+    const [inputs, setInputs] = useState({crime: "agressão", status: "pendente"})
     const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
     const navigate = useNavigate();
     useEffect(() => {
@@ -17,12 +15,10 @@ function Casefiles() {
     const submitHandler = (e) => {
         e.preventDefault();
         axios.post(CASEFILES_URL, {
-            // number: inputs.number,
             crime: inputs.crime,
             status: inputs.status
         }).then(response => {
             setCasefiles([...casefiles, response.data]);
-            // setInputs({number: "", crime: "", status: ""});
         });
     }
 
@@ -43,7 +39,7 @@ function Casefiles() {
                 <form onSubmit={submitHandler}>
                     {/*Número:<input type="text" name="number" value={inputs.number} onChange={changeHandler} required /><br/>*/}
                     Crime:
-                    <select name="crime" value={inputs.crime} onChange={changeHandler}>
+                    <select name="crime" value={inputs.crime} onChange={changeHandler} >
                         {crimes.map((crime, index) => (<option key={index} value={crime.value}>{crime.label}</option>))}
                     </select><br/>
                     {/*Estado:*/}

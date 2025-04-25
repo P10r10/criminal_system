@@ -1,4 +1,4 @@
-from django.db import models
+from django.db import models, transaction
 from datetime import datetime
 
 
@@ -17,11 +17,13 @@ class Casefile(models.Model):
     status = models.CharField(max_length=20)
 
     def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)  # gravar para obter a pk
-        if not self.number:  # se number não existir, criar como <pk>/<current-year>
-            current_year = datetime.now().year
-            self.number = f"{self.pk}/{current_year}"
-            super().save(update_fields=["number"]) # gravar outra vez para actualizar number
+        with transaction.atomic():
+            is_new = self.pk is None
+            super().save(*args, **kwargs)  # gravar para obter a pk
+            if is_new and not self.number:  # se number não existir e for pk for nova
+                current_year = datetime.now().year
+                self.number = f"{self.pk}/{current_year}"  # ex. 15/2026
+                super().save()  # gravar outra vez para actualizar number
 
     def __str__(self):
         return self.number

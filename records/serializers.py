@@ -5,10 +5,10 @@ from .models import Person, Casefile
 class PersonSerializer(serializers.ModelSerializer):
     class Meta:
         model = Person
-        fields = ('name', 'alias', 'date_of_birth')
+        fields = ('id', 'name', 'alias', 'date_of_birth')
 
 class CasefileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Casefile
-        fields = ['number', 'crime', 'status']
+        fields = ['id', 'number', 'crime', 'status']
         read_only_fields = ('number',)
