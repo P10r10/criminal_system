@@ -10,6 +10,13 @@ function Casefile() {
             <h1>Processo: {casefile.number}</h1>
             <h2>Crime: {casefile.crime}</h2>
             <h3>Estado: {casefile.status}</h3>
+            {/*<select onChange={(e) => setSelectedPerson(e.target.value)}>*/}
+            {/*    {persons.map((p) => (*/}
+            {/*        <option key={p.id} value={p.id}>{p.name}</option>*/}
+            {/*    ))}*/}
+            {/*</select>*/}
+            {/*<button onClick={linkPerson}>Add to Casefile</button>*/}
+
         </div>
     );
 }

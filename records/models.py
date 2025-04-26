@@ -27,3 +27,7 @@ class Casefile(models.Model):
 
     def __str__(self):
         return self.number
+
+class Personcasefile(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    casefile = models.ForeignKey(Casefile, on_delete=models.CASCADE)

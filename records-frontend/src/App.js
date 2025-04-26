@@ -23,9 +23,17 @@ export default App;
 
 
 // TODO
+// ver pessoas no detalhe do processo
+// criar pessoas no detalhe do processo
+// apagar pessoas no detalhe do processo
+
+// criar processos no detalhe das pessoas
+// apagar processos no detalhe das pessoas
+
+//CLEAN UP THE CODE WITH USECONTEXT
+
 // criar mais fields Person
 // Associar fotos pessoas
-// Estabelecer Relação muitos para muitos
 // NO FIM - embelezar com primereact ou assim
 
 //como conseguir Person.date_of_birth ser opcional???

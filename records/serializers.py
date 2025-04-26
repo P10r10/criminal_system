@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Person, Casefile
+from .models import Person, Casefile, Personcasefile
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -13,3 +13,8 @@ class CasefileSerializer(serializers.ModelSerializer):
         model = Casefile
         fields = ['id', 'number', 'crime', 'status']
         read_only_fields = ('number',)
+
+class PersoncasefileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Personcasefile
+        fields = ['id', 'person', 'casefile']

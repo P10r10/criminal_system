@@ -5,4 +5,5 @@ app_name = 'records'
 urlpatterns = [
     path('api/persons/', views.persons),
     path('api/casefiles/', views.casefiles),
+    path('api/personcasefiles/', views.personcasefiles),
 ]
