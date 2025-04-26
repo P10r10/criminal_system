@@ -31,3 +31,6 @@ class Casefile(models.Model):
 class Personcasefile(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
     casefile = models.ForeignKey(Casefile, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ("person", "casefile")  # previne duplicados - 1 pessoa 1 processo apenas

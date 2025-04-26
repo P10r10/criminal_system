@@ -7,30 +7,82 @@ function PersonDetail() {
     const {state} = useLocation();
     const person = state.person;
     const PERSONCASEFILES_URL = "http://127.0.0.1:8000/records/api/personcasefiles/";
+    const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
     const [personCaseFiles, setPersonCaseFiles] = useState([]);
     const [casefiles, setCasefiles] = useState([]);
-    const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
+    const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
 
     useEffect(() => {
         axios.get(PERSONCASEFILES_URL).then(response => setPersonCaseFiles(response.data));
         axios.get(CASEFILES_URL).then(response => setCasefiles(response.data));
-    }, []);
+    }, [person]);
 
-    const personCasefilesIds = personCaseFiles
+    const personCasefileIds = personCaseFiles // ids de casefiles já associados à pessoa
         .filter(person_file => person_file.person === person.id)
         .map(person_file => person_file.casefile)
 
-    const matchingCaseFiles = casefiles.filter(casefile =>
-        personCasefilesIds.includes(casefile.id)
+    const matchingCaseFiles = casefiles.filter(casefile => // filtra casefiles por ids
+        personCasefileIds.includes(casefile.id)
     );
+
+    const availableCaseFiles = casefiles.filter( // casefiles ainda não associados à pessoa
+        casefile => !personCasefileIds.includes(casefile.id)
+    );
+
+    const handleCaseFileSelection = (casefileId) => {
+        setSelectedCaseFiles(prev =>
+            prev.includes(casefileId)
+                ? prev.filter(id => id !== casefileId)
+                : [...prev, casefileId]
+        );
+    };
+
+    const associateCaseFiles = async () => {
+        await Promise.all(
+            selectedCaseFiles.map(casefileId =>
+                axios.post(PERSONCASEFILES_URL, {
+                    person: person.id,
+                    casefile: casefileId,
+                })
+            )
+        );
+
+        const response = await axios.get(PERSONCASEFILES_URL); // Refresh personCaseFiles
+        setPersonCaseFiles(response.data);
+        setSelectedCaseFiles([]);
+    };
 
     return (
         <div>
             <h1>Nome: {person.name}</h1>
             <h2>Alcunha: {person.alias}</h2>
             <h3>DN: {person.date_of_birth}</h3>
-            <ul>Processos: {matchingCaseFiles.map(cf => <li>{cf.number} - {cf.crime}</li>)}
+            <ul>Processos: {matchingCaseFiles.length > 0 ?
+                (matchingCaseFiles.map(mcf => <li key={mcf.number}>{mcf.number} - {mcf.crime}</li>)) :
+                (<li>Esta pessoa não tem processos associados</li>)}
             </ul>
+            <h4>Associar Novos Processos:</h4>
+            {availableCaseFiles.length > 0 ? (
+                <div>
+                    {availableCaseFiles.map(casefile => (
+                        <div key={casefile.id}>
+                            <input
+                                type="checkbox"
+                                checked={selectedCaseFiles.includes(casefile.id)}
+                                onChange={() => handleCaseFileSelection(casefile.id)}
+                            />
+                            <label>
+                                {casefile.number} - {casefile.crime}
+                            </label>
+                        </div>
+                    ))}
+                    <button onClick={associateCaseFiles} disabled={selectedCaseFiles.length === 0}>
+                        Associar processos à pessoa
+                    </button>
+                </div>
+            ) : (
+                <p>Não há processos disponíveis para associar.</p>
+            )}
         </div>
     );
 }

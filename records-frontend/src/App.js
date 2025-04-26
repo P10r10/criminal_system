@@ -27,7 +27,6 @@ export default App;
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
 
-// criar processos no detalhe das pessoas
 // apagar processos no detalhe das pessoas
 
 //CLEAN UP THE CODE WITH USECONTEXT
