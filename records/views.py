@@ -51,3 +51,16 @@ def personcasefiles(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT', 'DELETE'])
+def personcasefile(request, personcasefile_id):
+    try:
+        person_casefile = Personcasefile.objects.get(pk=personcasefile_id)
+    except Personcasefile.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'DELETE':
+        person_casefile.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    return Response(status=status.HTTP_400_BAD_REQUEST)

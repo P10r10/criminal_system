@@ -47,10 +47,18 @@ function PersonDetail() {
             )
         );
 
-        const response = await axios.get(PERSONCASEFILES_URL); // Refresh personCaseFiles
+        const response = await axios.get(PERSONCASEFILES_URL); // refresh personCaseFiles
         setPersonCaseFiles(response.data);
-        setSelectedCaseFiles([]);
+        setSelectedCaseFiles([]); // limpar checkboxes
     };
+
+    const handleDeletion = async (casefileId) => {
+        const personCaseFile = personCaseFiles.find(
+            pcf => pcf.person === person.id && casefileId === pcf.casefile
+        );
+        await axios.delete(PERSONCASEFILES_URL + personCaseFile.id + "/");
+        setPersonCaseFiles(prev => prev.filter(pcf => pcf.id !== personCaseFile.id));
+    }
 
     return (
         <div>
@@ -58,7 +66,8 @@ function PersonDetail() {
             <h2>Alcunha: {person.alias}</h2>
             <h3>DN: {person.date_of_birth}</h3>
             <ul>Processos: {matchingCaseFiles.length > 0 ?
-                (matchingCaseFiles.map(mcf => <li key={mcf.number}>{mcf.number} - {mcf.crime}</li>)) :
+                (matchingCaseFiles.map(mcf => <li key={mcf.id} onClick={() => handleDeletion(mcf.id)}
+                >{mcf.number} - {mcf.crime}</li>)) :
                 (<li>Esta pessoa não tem processos associados</li>)}
             </ul>
             <h4>Associar Novos Processos:</h4>

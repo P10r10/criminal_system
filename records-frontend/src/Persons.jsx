@@ -31,7 +31,7 @@ function Persons() {
 
     return (
         <div>
-            <h1>Persons</h1>
+            <h1>Pessoas</h1>
             <ul>
                 {persons.map((person, index) =>
                     <li key={index} onClick={() => navigate("/persondetail", {state: {person}})}>

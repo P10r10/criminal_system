@@ -6,4 +6,5 @@ urlpatterns = [
     path('api/persons/', views.persons),
     path('api/casefiles/', views.casefiles),
     path('api/personcasefiles/', views.personcasefiles),
+    path('api/personcasefiles/<int:personcasefile_id>/', views.personcasefile),
 ]

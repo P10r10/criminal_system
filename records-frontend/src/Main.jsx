@@ -7,8 +7,8 @@ function Main() {
     return(
         <div>
             <h1>Sistema de Informação Criminal</h1>
-            <p onClick={() => navigate("/persons")}>Lista de pessoas</p>
-            <p onClick={() => navigate("/casefiles")}>Lista de processos</p>
+            <h3 onClick={() => navigate("/persons")}>Gestão de pessoas</h3>
+            <h3 onClick={() => navigate("/casefiles")}>Gestão de processos</h3>
         </div>
     );
 }

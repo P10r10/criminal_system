@@ -27,7 +27,6 @@ export default App;
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
 
-// apagar processos no detalhe das pessoas
 
 //CLEAN UP THE CODE WITH USECONTEXT
 
@@ -36,3 +35,5 @@ export default App;
 // NO FIM - embelezar com primereact ou assim
 
 //como conseguir Person.date_of_birth ser opcional???
+
+//no processo acrescentar data de ocorrência FACULTATIVO?
