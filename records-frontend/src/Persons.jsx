@@ -17,8 +17,8 @@ function Persons() {
         e.preventDefault();
         axios.post(PERSONS_URL, {
             name: inputs.name,
-            alias: inputs.alias,
-            date_of_birth: inputs.date_of_birth
+            alias: inputs.alias || null,
+            date_of_birth: inputs.date_of_birth || null
         }).then(response => {
             setPersons([...persons, response.data]);
             setInputs({name: "", alias: "", date_of_birth: ""});
@@ -35,7 +35,8 @@ function Persons() {
             <ul>
                 {persons.map((person, index) =>
                     <li key={index} onClick={() => navigate("/persondetail", {state: {person}})}>
-                        {person.name} - {person.alias} - {format(new Date(person.date_of_birth), "dd/MM/yyyy")}
+                        {person.name} - {person.alias} -
+                        {person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}
                     </li>)}
             </ul>
             <div>
@@ -43,7 +44,7 @@ function Persons() {
                     Nome:<input type="text" name="name" value={inputs.name} onChange={changeHandler} required/><br/>
                     Alcunha:<input type="text" name="alias" value={inputs.alias} onChange={changeHandler}/><br/>
                     DN:<input type="date" name="date_of_birth" value={inputs.date_of_birth}
-                              onChange={changeHandler} required/><br/>
+                              onChange={changeHandler}/><br/>
                     <input type="submit" value="Submeter"/>
                 </form>
             </div>

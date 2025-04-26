@@ -5,7 +5,7 @@ from datetime import datetime
 class Person(models.Model):
     name = models.CharField(max_length=100)
     alias = models.CharField(max_length=50, null=True, blank=True)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.name
@@ -27,6 +27,7 @@ class Casefile(models.Model):
 
     def __str__(self):
         return self.number
+
 
 class Personcasefile(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)

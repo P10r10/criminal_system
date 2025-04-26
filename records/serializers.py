@@ -3,6 +3,8 @@ from .models import Person, Casefile, Personcasefile
 
 
 class PersonSerializer(serializers.ModelSerializer):
+    date_of_birth = serializers.DateField(required=False, allow_null=True)
+
     class Meta:
         model = Person
         fields = ('id', 'name', 'alias', 'date_of_birth')
@@ -13,6 +15,7 @@ class CasefileSerializer(serializers.ModelSerializer):
         model = Casefile
         fields = ['id', 'number', 'crime', 'status']
         read_only_fields = ('number',)
+
 
 class PersoncasefileSerializer(serializers.ModelSerializer):
     class Meta:
