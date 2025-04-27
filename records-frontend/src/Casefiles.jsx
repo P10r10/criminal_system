@@ -37,16 +37,11 @@ function Casefiles() {
             </ul>
             <div>
                 <form onSubmit={submitHandler}>
-                    {/*Número:<input type="text" name="number" value={inputs.number} onChange={changeHandler} required /><br/>*/}
                     Crime:
                     <select name="crime" value={inputs.crime} onChange={changeHandler} >
                         {crimes.map((crime, index) => (<option key={index} value={crime.value}>{crime.label}</option>))}
                     </select><br/>
-                    {/*Estado:*/}
-                    {/*<select name="status" value={inputs.status} onChange={changeHandler}>*/}
-                    {/*    {status.map((stat, index) => (<option key={index} value={stat.value}>{stat.label}</option>))}*/}
-                    {/*</select>*/}
-                    <input type="submit" value="Submeter"/>
+                    <input type="submit" value="Criar processo"/>
                 </form>
             </div>
         </div>

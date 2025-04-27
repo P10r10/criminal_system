@@ -1,17 +1,14 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 import {format} from "date-fns";
 import {useNavigate} from "react-router-dom";
+import {useData} from "./DataContext";
 
 function Persons() {
 
-    const [persons, setPersons] = useState([]);
+    const {persons, refreshPersons, PERSONS_URL} = useData();
     const [inputs, setInputs] = useState({name: "", alias: "", date_of_birth: ""})
-    const PERSONS_URL = "http://127.0.0.1:8000/records/api/persons/";
     const navigate = useNavigate();
-    useEffect(() => {
-        axios.get(PERSONS_URL).then(response => setPersons(response.data));
-    }, []);
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -19,8 +16,8 @@ function Persons() {
             name: inputs.name,
             alias: inputs.alias || null,
             date_of_birth: inputs.date_of_birth || null
-        }).then(response => {
-            setPersons([...persons, response.data]);
+        }).then(() => {
+            refreshPersons();
             setInputs({name: "", alias: "", date_of_birth: ""});
         });
     }
@@ -33,8 +30,10 @@ function Persons() {
         <div>
             <h1>Pessoas</h1>
             <ul>
-                {persons.map((person, index) =>
-                    <li key={index} onClick={() => navigate("/persondetail", {state: {person}})}>
+                {persons.map(person =>
+                    <li key={person.id} onClick={() => navigate("/persondetail", { state: { person_id: person.id } }
+
+)}>
                         {person.name} - {person.alias} -
                         {person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}
                     </li>)}

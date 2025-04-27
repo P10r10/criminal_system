@@ -1,9 +1,12 @@
 import {useLocation} from "react-router-dom";
+import stat from "./data/status.json";
 
 function Casefile() {
 
     const {state} = useLocation();
     const casefile = state.casefile;
+
+    const changeHandler = () => {}
 
     return (
         <div>
@@ -16,6 +19,11 @@ function Casefile() {
             {/*    ))}*/}
             {/*</select>*/}
             {/*<button onClick={linkPerson}>Add to Casefile</button>*/}
+            Estado:
+            <select name="status" value={casefile.status} onChange={changeHandler}>
+                {stat.map((stat, index) => (<option key={index} value={stat.value}>{stat.label}</option>))}
+            </select>
+            <button>Alterar estado</button>
 
         </div>
     );
