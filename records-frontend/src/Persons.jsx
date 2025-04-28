@@ -31,11 +31,9 @@ function Persons() {
             <h1>Pessoas</h1>
             <ul>
                 {persons.map(person =>
-                    <li key={person.id} onClick={() => navigate("/persondetail", { state: { person_id: person.id } }
-
-)}>
-                        {person.name} - {person.alias} -
-                        {person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}
+                    <li key={person.id} onClick={() => navigate("/persondetail", {state: {person}})}>
+                        {person.name} - {person.alias} - {person.date_of_birth ?
+                        format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}
                     </li>)}
             </ul>
             <div>

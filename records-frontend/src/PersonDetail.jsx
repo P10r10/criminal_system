@@ -1,16 +1,13 @@
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {useData} from "./DataContext";
 
 function PersonDetail() {
 
-    const {persons, refreshPersons, CASEFILES_URL} = useData();
     const {state} = useLocation();
-    const person_id = state.person_id;
-    const person = persons.find(p => p.id === person_id);
+    const person = state.person;
     const PERSONCASEFILES_URL = "http://127.0.0.1:8000/records/api/personcasefiles/";
-    // const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
+    const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
     const [personCaseFiles, setPersonCaseFiles] = useState([]);
     const [casefiles, setCasefiles] = useState([]);
     const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
@@ -18,10 +15,10 @@ function PersonDetail() {
     useEffect(() => {
         axios.get(PERSONCASEFILES_URL).then(response => setPersonCaseFiles(response.data));
         axios.get(CASEFILES_URL).then(response => setCasefiles(response.data));
-    }, []);
+    }, [person]);
 
     const personCasefileIds = personCaseFiles // ids de casefiles já associados à pessoa
-        .filter(person_file => person_file.person === person_id)
+        .filter(person_file => person_file.person === person.id)
         .map(person_file => person_file.casefile)
 
     const matchingCaseFiles = casefiles.filter(casefile => // filtra casefiles por ids
@@ -44,7 +41,7 @@ function PersonDetail() {
         await Promise.all(
             selectedCaseFiles.map(casefileId =>
                 axios.post(PERSONCASEFILES_URL, {
-                    person: person_id,
+                    person: person.id,
                     casefile: casefileId,
                 })
             )
@@ -57,7 +54,7 @@ function PersonDetail() {
 
     const handleDeletion = async (casefileId) => {
         const personCaseFile = personCaseFiles.find(
-            pcf => pcf.person === person_id && casefileId === pcf.casefile
+            pcf => pcf.person === person.id && casefileId === pcf.casefile
         );
         await axios.delete(PERSONCASEFILES_URL + personCaseFile.id + "/");
         setPersonCaseFiles(prev => prev.filter(pcf => pcf.id !== personCaseFile.id));
