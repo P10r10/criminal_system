@@ -6,6 +6,7 @@ import Casefiles from "./Casefiles";
 import PersonDetail from "./PersonDetail";
 import CasefileDetail from "./CasefileDetail";
 import Signup from "./Signup";
+import Login from "./Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
                   <Route path="/casefiles" element={<Casefiles/>}/>
                   <Route path="/casefiledetail" element={<CasefileDetail/>}/>
                   <Route path="/signup" element={<Signup/>}/>
+                  <Route path="/login" element={<Login/>}/>
               </Routes>
           </BrowserRouter>
       </DataProvider>
