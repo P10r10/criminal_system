@@ -1,10 +1,11 @@
+import {DataProvider} from "./DataContext";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Main from "./Main";
 import Persons from "./Persons";
 import Casefiles from "./Casefiles";
 import PersonDetail from "./PersonDetail";
 import CasefileDetail from "./CasefileDetail";
-import {DataProvider} from "./DataContext";
+import Signup from "./Signup";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
                   <Route path="/persondetail" element={<PersonDetail/>}/>
                   <Route path="/casefiles" element={<Casefiles/>}/>
                   <Route path="/casefiledetail" element={<CasefileDetail/>}/>
+                  <Route path="/signup" element={<Signup/>}/>
               </Routes>
           </BrowserRouter>
       </DataProvider>
@@ -25,7 +27,6 @@ function App() {
 export default App;
 
 
-// TODO
 // Alterar estado no detalhe do processo
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
@@ -46,6 +47,11 @@ export default App;
 
 //Perguntar Prof. lista json com crimes VS backend Django
 
-//GET /records/api/persons/:id/ to fetch a single person. HERE***
+//GET /records/api/persons/:id/ to fetch a single person. ???
 //onClick={() => navigate(`/persondetail/${person.id}`)}
 //axios.get(`${PERSONS_URL}${person_id}/`), // Fetch person by ID
+
+//many_to_many
+//crimes numa tabela da bd
+//estados num enumerate
+//USERS signup done criar header com user logado*** TODO
