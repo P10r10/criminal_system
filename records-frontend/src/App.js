@@ -52,6 +52,8 @@ export default App;
 //axios.get(`${PERSONS_URL}${person_id}/`), // Fetch person by ID
 
 //many_to_many
+//tratar dados no backend
+//alterar geração ano
 //crimes numa tabela da bd
 //estados num enumerate
 //USERS signup done criar header com user logado*** TODO

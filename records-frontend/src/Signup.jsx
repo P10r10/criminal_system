@@ -9,11 +9,11 @@ function Signup() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://127.0.0.1:8000/records/api/signup/', {username, password});
-            alert('Signup successful!');
+            const response = await axios.post('http://127.0.0.1:8000/records/api/signup/', {username, password});
+            alert(`Signup successful! ${response.data.message}`);
             navigate('/');
         } catch (error) {
-            alert('Signup failed');
+            alert(`Signup failed: ${error.response.data.error}`);
         }
     };
 
