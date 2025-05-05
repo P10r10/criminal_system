@@ -12,21 +12,22 @@ class Person(models.Model):
 
 
 class Casefile(models.Model):
-    number = models.CharField(max_length=20, unique=True, blank=True)
+    # number = models.CharField(max_length=20, unique=True, blank=True)
+    year = models.IntegerField(default=datetime.today().year)
     crime = models.CharField(max_length=50)
     status = models.CharField(max_length=20)
 
-    def save(self, *args, **kwargs):
-        with transaction.atomic():
-            is_new = self.pk is None
-            super().save(*args, **kwargs)  # gravar para obter a pk
-            if is_new and not self.number:  # se number não existir e for pk for nova
-                current_year = datetime.now().year
-                self.number = f"{self.pk}/{current_year}"  # ex. 15/2026
-                super().save()  # gravar outra vez para actualizar number
+    # def save(self, *args, **kwargs):
+    #     with transaction.atomic():
+    #         is_new = self.pk is None
+    #         super().save(*args, **kwargs)  # gravar para obter a pk
+    #         if is_new and not self.number:  # se number não existir e for pk for nova
+    #             current_year = datetime.now().year
+    #             self.number = f"{self.pk}/{current_year}"  # ex. 15/2026
+    #             super().save()  # gravar outra vez para actualizar number
 
     def __str__(self):
-        return self.number
+        return f"{self.id}/{self.year}"
 
 
 class Personcasefile(models.Model):

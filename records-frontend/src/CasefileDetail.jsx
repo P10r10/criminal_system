@@ -1,5 +1,6 @@
 import {useLocation} from "react-router-dom";
 import stat from "./data/status.json";
+import SimpleLoginManager from "./SimpleLoginManager";
 
 function Casefile() {
 
@@ -10,7 +11,8 @@ function Casefile() {
 
     return (
         <div>
-            <h1>Processo: {casefile.number}</h1>
+            <SimpleLoginManager />
+            <h1>Processo: {casefile.id}/{casefile.year}</h1>
             <h2>Crime: {casefile.crime}</h2>
             <h3>Estado: {casefile.status}</h3>
             {/*<select onChange={(e) => setSelectedPerson(e.target.value)}>*/}

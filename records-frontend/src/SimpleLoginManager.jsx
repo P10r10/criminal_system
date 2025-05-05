@@ -23,10 +23,10 @@ const SimpleLoginManager = () => {
     return (
         <div>
             {username ?
-                <><p>Olá {username}!</p>
+                <><p>Utilizador: <strong>{username}</strong></p>
                     <button onClick={handleLogout}>Logout</button>
                 </> :
-                <><p>Olá, não estás logado(a)!</p>
+                <><p>Utilizador: <strong>anónimo</strong></p>
                     <button onClick={() => navigate("/login")}>Login</button>
                     <button onClick={() => navigate("/signup")}>SignUp</button>
                 </>

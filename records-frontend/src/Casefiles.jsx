@@ -2,10 +2,11 @@ import {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import crimes from "./data/crimes.json";
+import SimpleLoginManager from "./SimpleLoginManager";
 
 function Casefiles() {
     const [casefiles, setCasefiles] = useState([]);
-    const [inputs, setInputs] = useState({crime: "agressão", status: "pendente"})
+    const [inputs, setInputs] = useState({id: null, crime: "agressão", status: "pendente", year: null})
     const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
     const navigate = useNavigate();
     useEffect(() => {
@@ -28,11 +29,12 @@ function Casefiles() {
 
     return (
         <div>
+            <SimpleLoginManager />
             <h1>Processos</h1>
             <ul>
                 {casefiles.map((casefile, index) =>
                     <li key={index} onClick={() => navigate("/casefiledetail", {state: {casefile}})}>
-                        {casefile.number} - {casefile.crime} - {casefile.status}
+                        {casefile.id}/{casefile.year} - {casefile.crime} - {casefile.status}
                     </li>)}
             </ul>
             <div>

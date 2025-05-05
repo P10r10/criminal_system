@@ -1,6 +1,7 @@
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import SimpleLoginManager from "./SimpleLoginManager";
 
 function PersonDetail() {
 
@@ -62,6 +63,7 @@ function PersonDetail() {
 
     return (
         <div>
+            <SimpleLoginManager />
             <h1>Nome: {person.name}</h1>
             <h2>Alcunha: {person.alias}</h2>
             <h3>DN: {person.date_of_birth}</h3>
