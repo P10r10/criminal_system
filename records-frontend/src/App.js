@@ -30,6 +30,7 @@ export default App;
 
 
 // Alterar estado no detalhe do processo TODO ***
+// FALTA ACTUALIZAR UI - CENTRALIZAR??? TODO ***
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
