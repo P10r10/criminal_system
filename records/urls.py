@@ -6,6 +6,7 @@ app_name = 'records'
 urlpatterns = [
     path('api/persons/', views.persons),
     path('api/casefiles/', views.casefiles),
+    path('api/casefiles/<int:casefile_id>/', views.casefile),
     path('api/personcasefiles/', views.personcasefiles),
     path('api/personcasefiles/<int:personcasefile_id>/', views.personcasefile),
     path('api/signup/', views.signup),

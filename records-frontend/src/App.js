@@ -29,7 +29,7 @@ function App() {
 export default App;
 
 
-// Alterar estado no detalhe do processo
+// Alterar estado no detalhe do processo TODO ***
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
@@ -55,4 +55,3 @@ export default App;
 //many_to_many
 //tratar dados no backend
 //crimes podem ser editados pelo operador e admin
-//estados num enumerate TODO HERE ***
