@@ -47,7 +47,6 @@ export default App;
 //apagar pessoas
 //apagar processos
 
-//Perguntar Prof. lista json com crimes VS backend Django
 
 //GET /records/api/persons/:id/ to fetch a single person. ???
 //onClick={() => navigate(`/persondetail/${person.id}`)}
@@ -56,4 +55,4 @@ export default App;
 //many_to_many
 //tratar dados no backend
 //crimes podem ser editados pelo operador e admin
-//estados num enumerate
+//estados num enumerate TODO HERE ***
