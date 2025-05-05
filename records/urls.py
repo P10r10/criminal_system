@@ -12,4 +12,5 @@ urlpatterns = [
     path("api/login/", views.login_view),
     path("api/logout/", views.logout_view),
     path("api/user/", views.user_view),
+    path("api/crime-types/", views.crime_type_list),
 ]

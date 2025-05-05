@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Person, Casefile, Personcasefile
+from .models import Person, Casefile, Personcasefile, CrimeType
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -21,3 +21,9 @@ class PersoncasefileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Personcasefile
         fields = ['id', 'person', 'casefile']
+
+
+class CrimeTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CrimeType
+        fields = ['id', 'value', 'label']

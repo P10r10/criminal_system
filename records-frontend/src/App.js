@@ -55,6 +55,5 @@ export default App;
 
 //many_to_many
 //tratar dados no backend
-//crimes numa tabela da bd + que podem ser editados pelo operador e admin
+//crimes podem ser editados pelo operador e admin
 //estados num enumerate
-//USERS signup done criar header com user logado*** TODO
