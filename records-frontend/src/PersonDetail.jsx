@@ -69,7 +69,7 @@ function PersonDetail() {
             <h3>DN: {person.date_of_birth}</h3>
             <ul>Processos: {matchingCaseFiles.length > 0 ?
                 (matchingCaseFiles.map(mcf => <li key={mcf.id} onClick={() => handleDeletion(mcf.id)}
-                >{mcf.number} - {mcf.crime}</li>)) :
+                >{mcf.id}/{mcf.year} - {mcf.crime}</li>)) :
                 (<li>Esta pessoa não tem processos associados</li>)}
             </ul>
             <h4>Associar Novos Processos:</h4>

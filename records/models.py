@@ -1,4 +1,4 @@
-from django.db import models, transaction
+from django.db import models
 from datetime import datetime
 
 
@@ -10,11 +10,15 @@ class Person(models.Model):
     def __str__(self):
         return self.name
 
+class Status(models.TextChoices):
+    PENDENTE = 'pendente', 'Pendente'
+    ARQUIVADO = 'arquivado', 'Arquivado'
+    ACUSADO = 'acusado', 'Acusado'
 
 class Casefile(models.Model):
     year = models.IntegerField(default=datetime.today().year)
     crime = models.CharField(max_length=50)
-    status = models.CharField(max_length=20)
+    status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDENTE)
 
     def __str__(self):
         return f"{self.id}/{self.year}"

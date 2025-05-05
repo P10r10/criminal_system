@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from .views import StatusChoicesView
 
 app_name = 'records'
 urlpatterns = [
@@ -13,4 +14,5 @@ urlpatterns = [
     path("api/logout/", views.logout_view),
     path("api/user/", views.user_view),
     path("api/crime-types/", views.crime_type_list),
+    path("api/status-choices/", StatusChoicesView.as_view()),
 ]

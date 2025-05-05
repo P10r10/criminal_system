@@ -2,7 +2,9 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from records.models import Person, Casefile, Personcasefile, CrimeType
+from rest_framework.views import APIView
+
+from records.models import Person, Casefile, Personcasefile, CrimeType, Status
 from records.serializers import PersonSerializer, CasefileSerializer, PersoncasefileSerializer, CrimeTypeSerializer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
@@ -120,3 +122,11 @@ def crime_type_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     return Response(status=status.HTTP_400_BAD_REQUEST)
+
+class StatusChoicesView(APIView):
+    def get(self, request):
+        choices = [
+            {"value": choice[0], "label": choice[1]}
+            for choice in Status.choices
+        ]
+        return Response(choices)
