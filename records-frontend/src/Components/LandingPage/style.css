@@ -1,0 +1,26 @@
+body {
+    background-image: url("police.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+h1 {
+    font-size: 4em;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+    margin-top: 1em;
+    margin-bottom: 1.5em;
+    text-shadow: 3px 3px 5px #f3aaaa;
+}
+
+.login-signin {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /*min-height: 100vh; !* Ensure it takes full viewport height *!*/
+}
