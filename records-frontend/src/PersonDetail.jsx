@@ -7,8 +7,8 @@ import {useData} from "./DataContext";
 function PersonDetail() {
 
     const {state} = useLocation();
-    const {casefiles} = useData();
     const person = state.person;
+    const {casefiles} = useData();
     const PERSONCASEFILES_URL = "http://127.0.0.1:8000/records/api/personcasefiles/";
     const [personCaseFiles, setPersonCaseFiles] = useState([]);
     const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);

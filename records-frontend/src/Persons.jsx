@@ -11,7 +11,7 @@ function Persons() {
     const [inputs, setInputs] = useState({name: "", alias: "", date_of_birth: ""})
     const navigate = useNavigate();
 
-    const submitHandler = (e) => {
+    const handleCreatePerson = (e) => {
         e.preventDefault();
         axios.post(PERSONS_URL, {
             name: inputs.name,
@@ -44,12 +44,12 @@ function Persons() {
                     </li>)}
             </ul>
             <div>
-                <form onSubmit={submitHandler}>
+                <form onSubmit={handleCreatePerson}>
                     Nome:<input type="text" name="name" value={inputs.name} onChange={changeHandler} required/><br/>
                     Alcunha:<input type="text" name="alias" value={inputs.alias} onChange={changeHandler}/><br/>
                     DN:<input type="date" name="date_of_birth" value={inputs.date_of_birth}
                               onChange={changeHandler}/><br/>
-                    <input type="submit" value="Submeter"/>
+                    <input type="submit" value="Criar pessoa"/>
                 </form>
             </div>
         </div>

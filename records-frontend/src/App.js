@@ -29,7 +29,6 @@ function App() {
 export default App;
 
 
-//PersonDetail usar persons do DataContext? TODO *** 2
 
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
@@ -45,3 +44,6 @@ export default App;
 //many_to_many
 //tratar dados no backend
 //crimes podem ser editados pelo operador e admin
+
+//adicionar botões de navegação (menu, voltar, etc) usar estilos Bootstrap, primereact,etc.
+//PersonDetail usar persons do DataContext? PINCEL
