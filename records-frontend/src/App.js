@@ -30,7 +30,8 @@ export default App;
 
 
 // Alterar estado no detalhe do processo TODO ***
-// FALTA ACTUALIZAR UI - CENTRALIZAR??? TODO ***
+// FALTA ACTUALIZAR UI - CENTRALIZAR??? TODO *** 2
+
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
@@ -42,11 +43,7 @@ export default App;
 //no processo acrescentar data de ocorrência FACULTATIVO?
 //nas views falta PUT linha 56
 
-//apagar processos
-
-//GET /records/api/persons/:id/ to fetch a single person. ???
-//onClick={() => navigate(`/persondetail/${person.id}`)}
-//axios.get(`${PERSONS_URL}${person_id}/`), // Fetch person by ID
+//apagar processos TODO *** 1
 
 //many_to_many
 //tratar dados no backend
