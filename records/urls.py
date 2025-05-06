@@ -5,6 +5,7 @@ from .views import StatusChoicesView
 app_name = 'records'
 urlpatterns = [
     path('api/persons/', views.persons),
+    path('api/persons/<int:person_id>/', views.person),
     path('api/casefiles/', views.casefiles),
     path('api/casefiles/<int:casefile_id>/', views.casefile),
     path('api/personcasefiles/', views.personcasefiles),

@@ -27,15 +27,20 @@ function Persons() {
         setInputs(i => ({...i, [e.target.name]: e.target.value}));
     }
 
+    const handleRemovePerson = (idToRemove) => {
+        axios.delete(PERSONS_URL + idToRemove + "/").then(() => refreshPersons());
+    }
+
     return (
         <div>
-            <SimpleLoginManager />
+            <SimpleLoginManager/>
             <h1>Pessoas</h1>
             <ul>
                 {persons.map(person =>
-                    <li key={person.id} onClick={() => navigate("/persondetail", {state: {person}})}>
-                        {person.name} - {person.alias} - {person.date_of_birth ?
+                    <li key={person.id}>{person.name} - {person.alias} - {person.date_of_birth ?
                         format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}
+                        <button onClick={() => handleRemovePerson(person.id)}>Remover</button>
+                        <button onClick={() => navigate("/persondetail", {state: {person}})}>Ver detalhe</button>
                     </li>)}
             </ul>
             <div>

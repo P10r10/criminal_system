@@ -35,18 +35,14 @@ export default App;
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
 
-
 // criar mais fields Person
 // Associar fotos pessoas
 // NO FIM - embelezar com primereact ou assim
 
-
 //no processo acrescentar data de ocorrência FACULTATIVO?
 //nas views falta PUT linha 56
 
-//apagar pessoas
 //apagar processos
-
 
 //GET /records/api/persons/:id/ to fetch a single person. ???
 //onClick={() => navigate(`/persondetail/${person.id}`)}
