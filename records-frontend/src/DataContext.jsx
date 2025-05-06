@@ -8,11 +8,13 @@ export function DataProvider({children}) {
     const [casefiles, setCasefiles] = useState([]);
     const [links, setLinks] = useState([]); // personcasefiles
     const [crimetypes, setCrimetypes] = useState([]);
+    const [statusChoices, setStatusChoices] = useState([]);
 
     const PERSONS_URL = "http://127.0.0.1:8000/records/api/persons/";
     const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
     const LINKS_URL = "http://127.0.0.1:8000/records/api/personcasefiles/";
     const CRIMETYPES_URL = "http://127.0.0.1:8000/records/api/crime-types/";
+    const STATUS_CHOICES_URL = "http://127.0.0.1:8000/records/api/status-choices/";
 
     const refreshPersons = async () => {
         const res = await axios.get(PERSONS_URL);
@@ -29,9 +31,14 @@ export function DataProvider({children}) {
         setLinks(res.data);
     };
 
-     const refreshCrimeTypes = async () => {
+    const refreshCrimeTypes = async () => {
         const res = await axios.get(CRIMETYPES_URL);
         setCrimetypes(res.data);
+    };
+
+    const refreshStatusChoices = async () => {
+        const res = await axios.get(STATUS_CHOICES_URL);
+        setStatusChoices(res.data);
     };
 
     useEffect(() => {
@@ -40,7 +47,8 @@ export function DataProvider({children}) {
                 refreshPersons(),
                 refreshCasefiles(),
                 refreshLinks(),
-                refreshCrimeTypes()
+                refreshCrimeTypes(),
+                refreshStatusChoices()
             ]);
         })();
     }, []);
@@ -52,6 +60,7 @@ export function DataProvider({children}) {
             casefiles,
             links,
             crimetypes,
+            statusChoices,
             refreshPersons,
             refreshCasefiles,
             refreshLinks,

@@ -29,8 +29,7 @@ function App() {
 export default App;
 
 
-// Alterar estado no detalhe do processo TODO ***
-// FALTA ACTUALIZAR UI - CENTRALIZAR??? TODO *** 2
+//PersonDetail usar persons do DataContext? TODO *** 2
 
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo

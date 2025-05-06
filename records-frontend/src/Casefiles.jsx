@@ -31,7 +31,7 @@ function Casefiles() {
                     <li key={index}>
                         {casefile.id}/{casefile.year} - {casefile.crime} - {casefile.status}
                         <button onClick={() => handleRemoveCasefile(casefile.id)}>Remover</button>
-                        <button onClick={() => navigate("/casefiledetail", {state: {casefile}})}>Ver detalhe</button>
+                        <button onClick={() => navigate("/casefiledetail", {state: {id: casefile.id}})}>Ver detalhe</button>
                     </li>)}
             </ul>
             <div>

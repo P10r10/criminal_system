@@ -1,28 +1,24 @@
 import {useLocation} from "react-router-dom";
 import SimpleLoginManager from "./SimpleLoginManager";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
+import {useData} from "./DataContext";
 
 function Casefile() {
 
+    const {statusChoices, refreshCasefiles, CASEFILES_URL, casefiles} = useData();
     const {state} = useLocation();
-    const casefile = state.casefile;
-    const [statusChoices, setStatusChoices] = useState([]);
+    const casefileId = state.id;
+    const casefile = casefiles.find((c) => c.id === casefileId);
     const [statusSelected, setStatusSelected] = useState(casefile.status);
-
-    const STATUS_CHOICES_URL = "http://127.0.0.1:8000/records/api/status-choices/";
-    const CASEFILE_URL = `http://127.0.0.1:8000/records/api/casefiles/${casefile.id}/`;
-
-    useEffect(() => {
-        axios.get(STATUS_CHOICES_URL).then(response => setStatusChoices(response.data));
-    }, []);
 
     const changeHandler = (e) => {
         setStatusSelected(e.target.value);
     }
 
-    const handleClick = () => {
-        axios.put(CASEFILE_URL, {...casefile, status: statusSelected}).then();
+    const handleChangeState = () => {
+        axios.put(CASEFILES_URL + casefile.id + "/", {...casefile, status: statusSelected})
+            .then(() => refreshCasefiles());
     }
 
     return (
@@ -32,10 +28,9 @@ function Casefile() {
             <h2>Crime: {casefile.crime}</h2>
             <h3>Estado: {casefile.status}</h3>
             <select name="status" value={statusSelected} onChange={(e) => changeHandler(e)}>
-                {statusChoices.map((stat, index) => (<option key={index} value={stat.value}>{stat.label}</option>))}
+                {statusChoices.map((stat, idx) => (<option key={idx} value={stat.value}>{stat.label}</option>))}
             </select>
-            <button onClick={handleClick}>Alterar estado</button>
-
+            <button onClick={handleChangeState}>Alterar estado</button>
         </div>
     );
 }
