@@ -42,7 +42,6 @@ export default App;
 
 
 //no processo acrescentar data de ocorrência FACULTATIVO?
-//pedir confirmação antes de eliminar processo na Pessoa
 //nas views falta PUT linha 56
 
 //apagar pessoas

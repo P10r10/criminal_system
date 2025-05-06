@@ -63,13 +63,15 @@ function PersonDetail() {
 
     return (
         <div>
-            <SimpleLoginManager />
+            <SimpleLoginManager/>
             <h1>Nome: {person.name}</h1>
             <h2>Alcunha: {person.alias}</h2>
             <h3>DN: {person.date_of_birth}</h3>
             <ul>Processos: {matchingCaseFiles.length > 0 ?
-                (matchingCaseFiles.map(mcf => <li key={mcf.id} onClick={() => handleDeletion(mcf.id)}
-                >{mcf.id}/{mcf.year} - {mcf.crime}</li>)) :
+                (matchingCaseFiles.map(mcf =>
+                    <li key={mcf.id}>{mcf.id}/{mcf.year} - {mcf.crime}
+                        <button onClick={() => handleDeletion(mcf.id)}>Remover</button>
+                    </li>)) :
                 (<li>Esta pessoa não tem processos associados</li>)}
             </ul>
             <h4>Associar Novos Processos:</h4>
