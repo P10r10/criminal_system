@@ -1,25 +1,17 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import SimpleLoginManager from "./SimpleLoginManager";
 import {useData} from "./DataContext";
 
 function Casefiles() {
-    const {casefiles, refreshCasefiles, CASEFILES_URL} = useData();
-    const [crimetypes, setCrimetypes] = useState([]);
+    const {casefiles, refreshCasefiles, CASEFILES_URL, crimetypes} = useData();
     const [inputs, setInputs] = useState({id: null, crime: "agressão", status: "pendente", year: null})
-    const CRIMETYPES_URL = "http://127.0.0.1:8000/records/api/crime-types/";
     const navigate = useNavigate();
-    useEffect(() => {
-        axios.get(CRIMETYPES_URL).then(response => setCrimetypes(response.data));
-    }, []);
 
     const handleCreateCasefile = (e) => {
         e.preventDefault();
-        axios.post(CASEFILES_URL, {
-            crime: inputs.crime,
-            status: inputs.status
-        }).then(() => refreshCasefiles());
+        axios.post(CASEFILES_URL, {crime: inputs.crime}).then(() => refreshCasefiles());
     }
 
     const changeHandler = (e) => {
@@ -27,8 +19,7 @@ function Casefiles() {
     }
 
     const handleRemoveCasefile = (idToRemove) => {
-        alert(idToRemove);
-        // axios aqui
+        axios.delete(CASEFILES_URL + idToRemove + "/").then(() => refreshCasefiles());
     }
 
     return (
@@ -49,7 +40,7 @@ function Casefiles() {
                     <select name="crime" value={inputs.crime} onChange={changeHandler}>
                         {crimetypes.map((crime, index) => (
                             <option key={index} value={crime.value}>{crime.label}</option>))}
-                    </select><br/>
+                    </select>
                     <input type="submit" value="Criar processo"/>
                 </form>
             </div>

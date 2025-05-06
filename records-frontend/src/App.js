@@ -43,8 +43,6 @@ export default App;
 //no processo acrescentar data de ocorrência FACULTATIVO?
 //nas views falta PUT linha 56
 
-//apagar processos TODO *** 1
-
 //many_to_many
 //tratar dados no backend
 //crimes podem ser editados pelo operador e admin
