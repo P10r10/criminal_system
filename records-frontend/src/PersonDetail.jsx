@@ -2,20 +2,19 @@ import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import SimpleLoginManager from "./SimpleLoginManager";
+import {useData} from "./DataContext";
 
 function PersonDetail() {
 
     const {state} = useLocation();
+    const {casefiles} = useData();
     const person = state.person;
     const PERSONCASEFILES_URL = "http://127.0.0.1:8000/records/api/personcasefiles/";
-    const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
     const [personCaseFiles, setPersonCaseFiles] = useState([]);
-    const [casefiles, setCasefiles] = useState([]);
     const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
 
     useEffect(() => {
         axios.get(PERSONCASEFILES_URL).then(response => setPersonCaseFiles(response.data));
-        axios.get(CASEFILES_URL).then(response => setCasefiles(response.data));
     }, [person]);
 
     const personCasefileIds = personCaseFiles // ids de casefiles já associados à pessoa
@@ -74,7 +73,7 @@ function PersonDetail() {
                     </li>)) :
                 (<li>Esta pessoa não tem processos associados</li>)}
             </ul>
-            <h4>Associar Novos Processos:</h4>
+            <h4>Associar novos processos:</h4>
             {availableCaseFiles.length > 0 ? (
                 <div>
                     {availableCaseFiles.map(casefile => (
