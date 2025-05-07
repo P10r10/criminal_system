@@ -2,10 +2,13 @@ import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function Popup({message = "", styles = ""}) {
+function Popup({message = "", styles = "", onClose}) {
     const [show, setShow] = useState(true);
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        if (onClose) onClose(); // notifica pai que Popup fechou
+    }
 
     return (
         <Modal

@@ -15,8 +15,6 @@ function LandingPage() {
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
     const handleLogin = async (e) => {
-        console.log("D: " + username);
-        console.log("D: " + password);
         e.preventDefault();
         try {
             await axios.post("http://localhost:8000/records/api/login/", {username, password}, {withCredentials: true});
@@ -27,28 +25,36 @@ function LandingPage() {
         }
     };
 
+    const handlePopupClose = () => {
+        setShowPopup(false);
+    }
+
     const handleSignUp = () => {
     }
 
     return (
         <div className="landing-page">
             <h1>Sistema de Informação Criminal</h1>
-            {showPopup && <Popup message={errorMessage} styles="bg-danger text-white"/>}
+            {showPopup && <Popup
+                message={errorMessage}
+                styles="bg-danger text-white"
+                onClose={handlePopupClose}
+            />}
             <div className="login-signin">
                 <Form>
-                    <Form.Group
-                        className="mb-3"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}>
+                    <Form.Group className="mb-3">
                         <Form.Label>Utilizador</Form.Label>
-                        <Form.Control type="text"/>
+                        <Form.Control
+                            type="text"
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={username}/>
                     </Form.Group>
-                    <Form.Group
-                        className="mb-3"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}>
+                    <Form.Group className="mb-3">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password"/>
+                        <Form.Control
+                            type="password"
+                            onChange={(e) => setUsername(e.target.value)}
+                            value={password}/>
                     </Form.Group>
                     <div className="d-flex justify-content-between">
                         <Button variant="primary" onClick={handleLogin}>
