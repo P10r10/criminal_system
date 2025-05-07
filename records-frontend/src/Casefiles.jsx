@@ -1,8 +1,8 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import SimpleLoginManager from "./SimpleLoginManager";
 import {useData} from "./DataContext";
+import MyNavbar from "./Components/MyNavbar/MyNavbar";
 
 function Casefiles() {
     const {casefiles, refreshCasefiles, CASEFILES_URL, crimetypes} = useData();
@@ -24,7 +24,7 @@ function Casefiles() {
 
     return (
         <div>
-            <SimpleLoginManager/>
+            <MyNavbar/>
             <h1>Processos</h1>
             <ul>
                 {casefiles.map((casefile, index) =>

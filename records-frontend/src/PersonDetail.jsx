@@ -1,8 +1,8 @@
 import {useLocation} from "react-router-dom";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import SimpleLoginManager from "./SimpleLoginManager";
 import {useData} from "./DataContext";
+import MyNavbar from "./Components/MyNavbar/MyNavbar";
 
 function PersonDetail() {
 
@@ -62,7 +62,7 @@ function PersonDetail() {
 
     return (
         <div>
-            <SimpleLoginManager/>
+            <MyNavbar/>
             <h1>Nome: {person.name}</h1>
             <h2>Alcunha: {person.alias}</h2>
             <h3>DN: {person.date_of_birth}</h3>

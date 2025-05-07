@@ -26,7 +26,9 @@ function App() {
 
 export default App;
 
-
+// TODO 1 Landing page css
+// TODO 2 reconhecimento de users
+// TODO 3 gestão de users para superuser
 
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
@@ -34,14 +36,14 @@ export default App;
 
 // criar mais fields Person
 // Associar fotos pessoas
-// NO FIM - embelezar com primereact ou assim
 
 //no processo acrescentar data de ocorrência FACULTATIVO?
 //nas views falta PUT linha 56
 
-//many_to_many
-//tratar dados no backend
+//tratar dados no backend ?
 //crimes podem ser editados pelo operador e admin
 
 //adicionar botões de navegação (menu, voltar, etc) usar estilos Bootstrap, primereact,etc.
 //PersonDetail usar persons do DataContext? PINCEL
+
+//IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho

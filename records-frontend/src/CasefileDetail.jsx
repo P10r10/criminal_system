@@ -1,8 +1,8 @@
 import {useLocation} from "react-router-dom";
-import SimpleLoginManager from "./SimpleLoginManager";
 import {useState} from "react";
 import axios from "axios";
 import {useData} from "./DataContext";
+import MyNavbar from "./Components/MyNavbar/MyNavbar";
 
 function Casefile() {
 
@@ -23,7 +23,7 @@ function Casefile() {
 
     return (
         <div>
-            <SimpleLoginManager/>
+            <MyNavbar/>
             <h1>Processo: {casefile.id}/{casefile.year}</h1>
             <h2>Crime: {casefile.crime}</h2>
             <h3>Estado: {casefile.status}</h3>

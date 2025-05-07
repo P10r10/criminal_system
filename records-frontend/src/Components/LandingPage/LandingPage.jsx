@@ -40,13 +40,14 @@ function LandingPage() {
         try {
             const response = await axios.post('http://127.0.0.1:8000/records/api/signup/', {username, password});
             setMessageStyle("bg-success text-white")
-            setMessageTitle("Já pode fazer login com o novo utilizador.");
+            setMessageTitle("Sucesso. Pode fazer login.");
             setMessage(response.data.message);
             setUsername("");
             setPassword("");
             setShowPopup(true);
 
         } catch (error) {
+            setMessageStyle("bg-danger text-white")
             setMessageTitle("O sign up falhou");
             setMessage(error.response.data.error);
             setUsername("");

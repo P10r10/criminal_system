@@ -3,7 +3,7 @@ import axios from "axios";
 import {format} from "date-fns";
 import {useNavigate} from "react-router-dom";
 import {useData} from "./DataContext";
-import SimpleLoginManager from "./SimpleLoginManager";
+import MyNavbar from "./Components/MyNavbar/MyNavbar";
 
 function Persons() {
 
@@ -33,7 +33,7 @@ function Persons() {
 
     return (
         <div>
-            <SimpleLoginManager/>
+            <MyNavbar/>
             <h1>Pessoas</h1>
             <ul>
                 {persons.map(person =>
