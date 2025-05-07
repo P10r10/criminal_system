@@ -1,25 +1,25 @@
 import {DataProvider} from "./DataContext";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Main from "./Main";
+import Main from "./Components/Main/Main";
 import Persons from "./Persons";
 import Casefiles from "./Casefiles";
 import PersonDetail from "./PersonDetail";
 import CasefileDetail from "./CasefileDetail";
 import Signup from "./Signup";
-import Login from "./Login";
+import LandingPage from "./Components/LandingPage/LandingPage";
 
 function App() {
   return (
       <DataProvider>
           <BrowserRouter>
               <Routes>
-                  <Route path="/" element={<Main/>}/>
+                  <Route path="/" element={<LandingPage key="landing" />}/>
+                  <Route path="/main" element={<Main key="main" />}/>
                   <Route path="/persons" element={<Persons/>}/>
                   <Route path="/persondetail" element={<PersonDetail/>}/>
                   <Route path="/casefiles" element={<Casefiles/>}/>
                   <Route path="/casefiledetail" element={<CasefileDetail/>}/>
                   <Route path="/signup" element={<Signup/>}/>
-                  <Route path="/login" element={<Login/>}/>
               </Routes>
           </BrowserRouter>
       </DataProvider>

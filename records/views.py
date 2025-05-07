@@ -129,7 +129,7 @@ def login_view(request):
         login(request, user)  # Criação da sessão
         return Response({'message': 'Logged in successfully'})
     else:
-        return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
+        return Response({'error': 'Credenciais inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 
 
 @api_view(['GET'])

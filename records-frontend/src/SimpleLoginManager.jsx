@@ -15,6 +15,7 @@ const SimpleLoginManager = () => {
         try {
             await axios.get("http://localhost:8000/records/api/logout/", {withCredentials: true});
             setUsername(null);
+            navigate("/");
         } catch (error) {
             alert('Logout failed');
         }
