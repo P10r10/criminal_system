@@ -26,8 +26,8 @@ function App() {
 
 export default App;
 
-// TODO 1 Landing page css
-// TODO 2 reconhecimento de users
+// TODO 1 Main page css DONE ???
+// TODO 2 criar UserContext
 // TODO 3 gestão de users para superuser
 
 // ver pessoas no detalhe do processo

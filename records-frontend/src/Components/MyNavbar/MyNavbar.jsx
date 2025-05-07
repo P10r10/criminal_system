@@ -25,7 +25,7 @@ function MyNavbar() {
                     setUserType("Operador")
                 }
             })
-    }, [isStaff,isSuper]);
+    }, [isStaff, isSuper]);
 
     const handleLogout = async () => {
         try {
