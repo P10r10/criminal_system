@@ -5,7 +5,6 @@ import Persons from "./Persons";
 import Casefiles from "./Casefiles";
 import PersonDetail from "./PersonDetail";
 import CasefileDetail from "./CasefileDetail";
-import Signup from "./Signup";
 import LandingPage from "./Components/LandingPage/LandingPage";
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
                   <Route path="/persondetail" element={<PersonDetail/>}/>
                   <Route path="/casefiles" element={<Casefiles/>}/>
                   <Route path="/casefiledetail" element={<CasefileDetail/>}/>
-                  <Route path="/signup" element={<Signup/>}/>
               </Routes>
           </BrowserRouter>
       </DataProvider>

@@ -12,7 +12,9 @@ function LandingPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [showPopup, setShowPopup] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
+    const [message, setMessage] = useState("");
+    const [messageTitle, setMessageTitle] = useState("");
+    const [messageStyle, setMessageStyle] = useState("");
     const navigate = useNavigate();
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -20,7 +22,11 @@ function LandingPage() {
             await axios.post("http://localhost:8000/records/api/login/", {username, password}, {withCredentials: true});
             navigate('/main');
         } catch (error) {
-            setErrorMessage(error.response.data.error);
+            setMessageStyle("bg-danger text-white")
+            setMessageTitle("O login falhou");
+            setMessage(error.response.data.error);
+            setUsername("");
+            setPassword("");
             setShowPopup(true);
         }
     };
@@ -29,15 +35,33 @@ function LandingPage() {
         setShowPopup(false);
     }
 
-    const handleSignUp = () => {
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/records/api/signup/', {username, password});
+            setMessageStyle("bg-success text-white")
+            setMessageTitle("Já pode fazer login com o novo utilizador.");
+            setMessage(response.data.message);
+            setUsername("");
+            setPassword("");
+            setShowPopup(true);
+
+        } catch (error) {
+            setMessageTitle("O sign up falhou");
+            setMessage(error.response.data.error);
+            setUsername("");
+            setPassword("");
+            setShowPopup(true);
+        }
     }
 
     return (
         <div className="landing-page">
             <h1>Sistema de Informação Criminal</h1>
             {showPopup && <Popup
-                message={errorMessage}
-                styles="bg-danger text-white"
+                messageTitle={messageTitle}
+                message={message}
+                styles={messageStyle}
                 onClose={handlePopupClose}
             />}
             <div className="login-signin">
@@ -53,7 +77,7 @@ function LandingPage() {
                         <Form.Label>Password</Form.Label>
                         <Form.Control
                             type="password"
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                             value={password}/>
                     </Form.Group>
                     <div className="d-flex justify-content-between">

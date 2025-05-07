@@ -2,7 +2,7 @@ import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function Popup({message = "", styles = "", onClose}) {
+function Popup({messageTitle="", message = "", styles = "", onClose}) {
     const [show, setShow] = useState(true);
 
     const handleClose = () => {
@@ -21,7 +21,7 @@ function Popup({message = "", styles = "", onClose}) {
                 closeButton
                 className={styles}
             >
-                <Modal.Title>O login falhou</Modal.Title>
+                <Modal.Title>{messageTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>{message}</Modal.Body>
             <Modal.Footer className={styles}>
