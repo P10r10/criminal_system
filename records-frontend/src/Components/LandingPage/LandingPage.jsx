@@ -5,11 +5,14 @@ import "./landingStyle.css";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useState} from "react";
+import Popup from "../Popup";
 
 function LandingPage() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [showPopup, setShowPopup] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
     const handleLogin = async (e) => {
         console.log("D: " + username);
@@ -19,15 +22,18 @@ function LandingPage() {
             await axios.post("http://localhost:8000/records/api/login/", {username, password}, {withCredentials: true});
             navigate('/main');
         } catch (error) {
-            alert('Login falhou: ' + error.response.data.error);
+            setErrorMessage(error.response.data.error);
+            setShowPopup(true);
         }
     };
 
-    const handleSignUp = () => {}
+    const handleSignUp = () => {
+    }
 
     return (
         <div className="landing-page">
             <h1>Sistema de Informação Criminal</h1>
+            {showPopup && <Popup message={errorMessage} styles="bg-danger text-white"/>}
             <div className="login-signin">
                 <Form>
                     <Form.Group
