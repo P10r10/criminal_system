@@ -29,9 +29,6 @@ function App() {
 
 export default App;
 
-// TODO 2 criar UserContext
-// TODO 3 gestão de users para superuser
-
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo

@@ -3,9 +3,11 @@ import "./mainStyle.css";
 import MyNavbar from "../MyNavbar/MyNavbar";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
+import {useUserContext} from "../UserContext";
 
 function Main() {
 
+    const {userType} = useUserContext();
     const navigate = useNavigate();
 
     return (
@@ -25,17 +27,21 @@ function Main() {
                     </Container>
                 </Navbar>
                 <br/>
-                <Navbar className="bg-body-tertiary">
-                    <Container>
-                        <Navbar.Brand>Gerir de tipos de crime</Navbar.Brand>
-                    </Container>
-                </Navbar>
+                {(userType === "Admin" || userType === "Operador") && (
+                    <Navbar className="bg-body-tertiary">
+                        <Container>
+                            <Navbar.Brand>Gerir de tipos de crime</Navbar.Brand>
+                        </Container>
+                    </Navbar>
+                )}
                 <br/>
-                <Navbar className="bg-body-tertiary">
-                    <Container>
-                        <Navbar.Brand>Gerir utilizadores</Navbar.Brand>
-                    </Container>
-                </Navbar>
+                {userType === "Admin" && (
+                    <Navbar className="bg-body-tertiary">
+                        <Container>
+                            <Navbar.Brand>Gerir utilizadores</Navbar.Brand>
+                        </Container>
+                    </Navbar>
+                )}
             </div>
         </div>
     );
