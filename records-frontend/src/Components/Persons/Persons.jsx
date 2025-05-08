@@ -11,46 +11,33 @@ import Button from "react-bootstrap/Button";
 import ModalCreatePerson from "./ModalCreatePerson";
 
 function Persons() {
-
     const {userType} = useUserContext();
     const {persons, refreshPersons, PERSONS_URL} = useData();
-    const [inputs, setInputs] = useState({name: "", alias: "", date_of_birth: ""})
     const navigate = useNavigate();
+    const [show, setShow] = useState(false);
 
-    const handleCreatePerson = (e) => {
-        e.preventDefault();
-        axios.post(PERSONS_URL, {
-            name: inputs.name,
-            alias: inputs.alias || null,
-            date_of_birth: inputs.date_of_birth || null
-        }).then(() => {
-            refreshPersons();
-            setInputs({name: "", alias: "", date_of_birth: ""});
-        });
-    }
+    const handleClick = () => {
+        setShow(true);
+    };
 
-    const changeHandler = (e) => {
-        setInputs(i => ({...i, [e.target.name]: e.target.value}));
-    }
+    const handleClose = () => {
+        setShow(false);
+    };
 
     const handleRemovePerson = (idToRemove) => {
         axios.delete(PERSONS_URL + idToRemove + "/").then(() => refreshPersons());
-    }
-
-    const [show, setShow] = useState(false);
-    const handleClick = () => {
-        setShow(true);
-    }
-    const handleClose = () => {
-        setShow(false);
     };
 
     return (
         <div className="persons">
             <MyNavbar/>
-            <h1>Pessoas
+            <h1>
+                Pessoas
                 {(userType === "Admin" || userType === "Operador") && (
-                    <Button variant="warning" onClick={handleClick}>Criar pessoa</Button>)}
+                    <Button variant="warning" onClick={handleClick}>
+                        Criar pessoa
+                    </Button>
+                )}
             </h1>
             <ModalCreatePerson show={show} handleClose={handleClose}/>
             <Table striped>
@@ -63,32 +50,35 @@ function Persons() {
                 </tr>
                 </thead>
                 <tbody>
-                {persons.map(person => (
-                    <tr>
+                {persons.map((person) => (
+                    <tr key={person.id}>
                         <td>{person.name}</td>
                         <td>{person.alias}</td>
-                        <td>{person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}</td>
-                        <td><Button variant="primary"
-                                    onClick={() => navigate("/persondetail", {state: {person}})}>Detalhe</Button>
+                        <td>
+                            {person.date_of_birth
+                                ? format(new Date(person.date_of_birth), "dd/MM/yyyy")
+                                : ""}
+                        </td>
+                        <td>
+                            <Button
+                                variant="primary"
+                                onClick={() => navigate("/persondetail", {state: {person}})}
+                            >
+                                Detalhe
+                            </Button>
                             {userType === "Admin" && (
-                                <Button variant="danger"
-                                        onClick={() => handleRemovePerson(person.id)}>Remover</Button>)}
+                                <Button
+                                    variant="danger"
+                                    onClick={() => handleRemovePerson(person.id)}
+                                >
+                                    Remover
+                                </Button>
+                            )}
                         </td>
                     </tr>
                 ))}
                 </tbody>
             </Table>
-
-
-            <div className="create-person">
-                <form onSubmit={handleCreatePerson}>
-                    Nome:<input type="text" name="name" value={inputs.name} onChange={changeHandler} required/><br/>
-                    Alcunha:<input type="text" name="alias" value={inputs.alias} onChange={changeHandler}/><br/>
-                    DN:<input type="date" name="date_of_birth" value={inputs.date_of_birth}
-                              onChange={changeHandler}/><br/>
-                    <input type="submit" value="Criar pessoa"/>
-                </form>
-            </div>
         </div>
     );
 }
