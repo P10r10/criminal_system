@@ -40,45 +40,47 @@ function Persons() {
                 )}
             </h1>
             <ModalCreatePerson show={show} handleClose={handleClose}/>
-            <Table striped>
-                <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Alcunha</th>
-                    <th>Data de nascimento</th>
-                    <th>Acções</th>
-                </tr>
-                </thead>
-                <tbody>
-                {persons.map((person) => (
-                    <tr key={person.id}>
-                        <td>{person.name}</td>
-                        <td>{person.alias}</td>
-                        <td>
-                            {person.date_of_birth
-                                ? format(new Date(person.date_of_birth), "dd/MM/yyyy")
-                                : ""}
-                        </td>
-                        <td>
-                            <Button
-                                variant="primary"
-                                onClick={() => navigate("/persondetail", {state: {person}})}
-                            >
-                                Detalhe
-                            </Button>
-                            {userType === "Admin" && (
-                                <Button
-                                    variant="danger"
-                                    onClick={() => handleRemovePerson(person.id)}
-                                >
-                                    Remover
-                                </Button>
-                            )}
-                        </td>
+            <div className="table-container">
+                <Table striped>
+                    <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Alcunha</th>
+                        <th>Data de nascimento</th>
+                        <th>Acções</th>
                     </tr>
-                ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                    {persons.map((person) => (
+                        <tr key={person.id}>
+                            <td>{person.name}</td>
+                            <td>{person.alias}</td>
+                            <td>
+                                {person.date_of_birth
+                                    ? format(new Date(person.date_of_birth), "dd/MM/yyyy")
+                                    : ""}
+                            </td>
+                            <td>
+                                <Button
+                                    variant="primary"
+                                    onClick={() => navigate("/persondetail", {state: {person}})}
+                                >
+                                    Detalhe
+                                </Button>
+                                {userType === "Admin" && (
+                                    <Button
+                                        variant="danger"
+                                        onClick={() => handleRemovePerson(person.id)}
+                                    >
+                                        Remover
+                                    </Button>
+                                )}
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </Table>
+            </div>
         </div>
     );
 }

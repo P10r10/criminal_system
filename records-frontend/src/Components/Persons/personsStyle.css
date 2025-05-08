@@ -12,10 +12,8 @@
 }
 
 .persons .table {
-    border-radius: 8px;
-    overflow: hidden;
-    width: 65%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
 }
 
 td .btn {
@@ -26,38 +24,29 @@ h1 .btn {
     margin-left: 5px;
 }
 
-/*.create-person {*/
-/*    background: white;*/
-/*    width: 400px;*/
-/*    margin: 30px auto;*/
-/*    padding: 20px;*/
-/*    border-radius: 12px;*/
-/*    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);*/
-/*}*/
+.table-container {
+    max-height: 591px;
+    overflow-y: auto;
+    width: 75%;
+    margin: 0 auto;
+}
 
-/*.create-person form {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    gap: 10px;*/
-/*}*/
+.table-container thead th { /* header fica sempre visível*/
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+}
 
-/*.create-person input[type="text"],*/
-/*.create-person input[type="date"] {*/
-/*    padding: 8px;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 6px;*/
-/*}*/
+.table-container::-webkit-scrollbar {
+    width: 10px;
+}
 
-/*.create-person input[type="submit"] {*/
-/*    background: #0d6efd;*/
-/*    color: white;*/
-/*    border: none;*/
-/*    padding: 10px;*/
-/*    border-radius: 6px;*/
-/*    cursor: pointer;*/
-/*    transition: background 0.3s ease;*/
-/*}*/
+.table-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
 
-/*.create-person input[type="submit"]:hover {*/
-/*    background: #0b5ed7;*/
-/*}*/
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

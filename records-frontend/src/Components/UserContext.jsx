@@ -16,23 +16,15 @@ export const UserProvider = ({children}) => {
     const [userType, setUserType] = useState("Investigador");
     const navigate = useNavigate();
 
-    // Fetch user data on mount to persist session
-    useEffect(() => {
-        axios
-            .get("http://localhost:8000/records/api/user/", {
-                withCredentials: true,
-            })
+    useEffect(() => { // carrega dados do utilizador no mount para persistir a sessão
+        axios.get("http://localhost:8000/records/api/user/", {withCredentials: true})
             .then((response) => {
                 setUsername(response.data.username);
                 setIsStaff(response.data.isStaff);
                 setIsSuper(response.data.isSuper);
                 setUserType(response.data.isSuper ? "Admin" : response.data.isStaff ? "Operador" : "Investigador");
-            })
-            .catch((error) => {
-                // No user is logged in or session is invalid; keep default state
-                console.log("No user logged in or session expired:", error);
             });
-    }, []); // Empty dependency array to run once on mount
+    }, []);
 
     const handleLogin = async (e) => {
         e.preventDefault();

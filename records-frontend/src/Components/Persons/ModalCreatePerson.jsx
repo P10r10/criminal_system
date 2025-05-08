@@ -43,6 +43,7 @@ function ModalCreatePerson({show, handleClose}) {
                         <Form.Control
                             type="text"
                             name="name"
+                            maxLength="80"
                             value={inputs.name}
                             onChange={changeHandler}
                             required
@@ -53,6 +54,7 @@ function ModalCreatePerson({show, handleClose}) {
                         <Form.Control
                             type="text"
                             name="alias"
+                            maxLength="32"
                             value={inputs.alias}
                             onChange={changeHandler}
                         />
