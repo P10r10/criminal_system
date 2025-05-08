@@ -1,41 +1,12 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import {useEffect, useState} from "react";
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 import badgeImg from "./badge.jpg";
+import {useUserContext} from "../UserContext";
 
 function MyNavbar() {
-    const navigate = useNavigate();
-    const [username, setUsername] = useState(null);
-    const [isSuper, setIsSuper] = useState(false);
-    const [isStaff, setIsStaff] = useState(false);
-    const [userType, setUserType] = useState("Investigador");
 
-    useEffect(() => {
-        axios.get('http://localhost:8000/records/api/user/', {withCredentials: true})
-            .then(response => {
-                setUsername(response.data.username)
-                setIsStaff(response.data.isStaff);
-                setIsSuper(response.data.isSuper);
-                if (isSuper) {
-                    setUserType("Admin");
-                } else if (isStaff) {
-                    setUserType("Operador")
-                }
-            })
-    }, [isStaff, isSuper]);
-
-    const handleLogout = async () => {
-        try {
-            await axios.get("http://localhost:8000/records/api/logout/", {withCredentials: true});
-            setUsername(null);
-            navigate("/");
-        } catch (error) {
-            alert("Erro no logout");
-        }
-    }
+    const {username, userType, handleLogout} = useUserContext();
 
     return (
         <Navbar className="bg-body-tertiary">
@@ -47,7 +18,7 @@ function MyNavbar() {
                         width="30"
                         height="30"
                         className="d-inline-block align-top"
-                    />{' '}
+                    />{" "}
                     Força policial de investigação criminal</Navbar.Brand>
                 <Navbar.Toggle/>
                 <Navbar.Collapse className="justify-content-end">
