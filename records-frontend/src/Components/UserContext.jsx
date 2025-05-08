@@ -1,4 +1,4 @@
-import {createContext, useContext, useState} from "react";
+import {createContext, useContext, useEffect, useState} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
@@ -15,6 +15,24 @@ export const UserProvider = ({children}) => {
     const [isStaff, setIsStaff] = useState(false);
     const [userType, setUserType] = useState("Investigador");
     const navigate = useNavigate();
+
+    // Fetch user data on mount to persist session
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/records/api/user/", {
+                withCredentials: true,
+            })
+            .then((response) => {
+                setUsername(response.data.username);
+                setIsStaff(response.data.isStaff);
+                setIsSuper(response.data.isSuper);
+                setUserType(response.data.isSuper ? "Admin" : response.data.isStaff ? "Operador" : "Investigador");
+            })
+            .catch((error) => {
+                // No user is logged in or session is invalid; keep default state
+                console.log("No user logged in or session expired:", error);
+            });
+    }, []); // Empty dependency array to run once on mount
 
     const handleLogin = async (e) => {
         e.preventDefault();
