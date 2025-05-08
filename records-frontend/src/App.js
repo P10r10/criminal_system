@@ -1,7 +1,7 @@
 import {DataProvider} from "./DataContext";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Main from "./Components/Main/Main";
-import Persons from "./Persons";
+import Persons from "./Components/Persons/Persons";
 import Casefiles from "./Casefiles";
 import PersonDetail from "./PersonDetail";
 import CasefileDetail from "./CasefileDetail";
@@ -29,6 +29,9 @@ function App() {
 
 export default App;
 
+// TODO 1 *** css Persons FAZER MODAL PARA CRIAR PESSOA
+// TODO 2 *** implementar gestão de users
+// TODO 3 *** implementar gestão de crimes
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
@@ -42,7 +45,7 @@ export default App;
 //tratar dados no backend ?
 //crimes podem ser editados pelo operador e admin
 
-//adicionar botões de navegação (menu, voltar, etc) usar estilos Bootstrap, primereact,etc.
-//PersonDetail usar persons do DataContext? PINCEL
+//adicionar botões de navegação (menu, voltar, etc) usar React Bootstrap
+//PersonDetail usar persons do DataContext? PINCEL...
 
 //IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho
