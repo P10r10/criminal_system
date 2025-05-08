@@ -10,7 +10,7 @@ function MyNavbar() {
     const navigate = useNavigate();
     const [username, setUsername] = useState(null);
     const [isSuper, setIsSuper] = useState(false);
-    const [isStaff, setIsStaff] = useState(null);
+    const [isStaff, setIsStaff] = useState(false);
     const [userType, setUserType] = useState("Investigador");
 
     useEffect(() => {
@@ -58,7 +58,6 @@ function MyNavbar() {
                         onClick={handleLogout}>sair</Button>
                     </Navbar.Text>
                 </Navbar.Collapse>
-
             </Container>
         </Navbar>
     );

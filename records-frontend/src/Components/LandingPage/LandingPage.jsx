@@ -2,59 +2,24 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./landingStyle.css";
-import {useNavigate} from "react-router-dom";
-import axios from "axios";
-import {useState} from "react";
 import Popup from "../Popup";
+import {useUserContext} from "../UserContext";
 
 function LandingPage() {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const [showPopup, setShowPopup] = useState(false);
-    const [message, setMessage] = useState("");
-    const [messageTitle, setMessageTitle] = useState("");
-    const [messageStyle, setMessageStyle] = useState("");
-    const navigate = useNavigate();
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        try {
-            await axios.post("http://localhost:8000/records/api/login/", {username, password}, {withCredentials: true});
-            navigate('/main');
-        } catch (error) {
-            setMessageStyle("bg-danger text-white")
-            setMessageTitle("O login falhou");
-            setMessage(error.response.data.error);
-            setUsername("");
-            setPassword("");
-            setShowPopup(true);
-        }
-    };
-
-    const handlePopupClose = () => {
-        setShowPopup(false);
-    }
-
-    const handleSignUp = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/records/api/signup/', {username, password});
-            setMessageStyle("bg-success text-white")
-            setMessageTitle("Sucesso. Pode fazer login.");
-            setMessage(response.data.message);
-            setUsername("");
-            setPassword("");
-            setShowPopup(true);
-
-        } catch (error) {
-            setMessageStyle("bg-danger text-white")
-            setMessageTitle("O sign up falhou");
-            setMessage(error.response.data.error);
-            setUsername("");
-            setPassword("");
-            setShowPopup(true);
-        }
-    }
+    const {
+        username,
+        setUsername,
+        password,
+        setPassword,
+        showPopup,
+        message,
+        messageTitle,
+        messageStyle,
+        handleLogin,
+        handleSignUp,
+        handlePopupClose,
+    } = useUserContext();
 
     return (
         <div className="landing-page">

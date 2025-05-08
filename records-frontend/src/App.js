@@ -6,27 +6,29 @@ import Casefiles from "./Casefiles";
 import PersonDetail from "./PersonDetail";
 import CasefileDetail from "./CasefileDetail";
 import LandingPage from "./Components/LandingPage/LandingPage";
+import {UserProvider} from "./Components/UserContext";
 
 function App() {
-  return (
-      <DataProvider>
-          <BrowserRouter>
-              <Routes>
-                  <Route path="/" element={<LandingPage key="landing" />}/>
-                  <Route path="/main" element={<Main key="main" />}/>
-                  <Route path="/persons" element={<Persons/>}/>
-                  <Route path="/persondetail" element={<PersonDetail/>}/>
-                  <Route path="/casefiles" element={<Casefiles/>}/>
-                  <Route path="/casefiledetail" element={<CasefileDetail/>}/>
-              </Routes>
-          </BrowserRouter>
-      </DataProvider>
-  );
+    return (
+        <DataProvider>
+            <BrowserRouter>
+                <UserProvider>
+                    <Routes>
+                        <Route path="/" element={<LandingPage key="landing"/>}/>
+                        <Route path="/main" element={<Main key="main"/>}/>
+                        <Route path="/persons" element={<Persons/>}/>
+                        <Route path="/persondetail" element={<PersonDetail/>}/>
+                        <Route path="/casefiles" element={<Casefiles/>}/>
+                        <Route path="/casefiledetail" element={<CasefileDetail/>}/>
+                    </Routes>
+                </UserProvider>
+            </BrowserRouter>
+        </DataProvider>
+    );
 }
 
 export default App;
 
-// TODO 1 Main page css DONE ???
 // TODO 2 criar UserContext
 // TODO 3 gestão de users para superuser
 

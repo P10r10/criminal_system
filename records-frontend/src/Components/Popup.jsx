@@ -7,7 +7,7 @@ function Popup({messageTitle="", message = "", styles = "", onClose}) {
 
     const handleClose = () => {
         setShow(false);
-        if (onClose) onClose(); // notifica pai que Popup fechou
+        if (onClose) onClose(); // notifica componente pai que Popup fechou
     }
 
     return (

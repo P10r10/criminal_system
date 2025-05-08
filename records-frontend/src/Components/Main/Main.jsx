@@ -15,28 +15,27 @@ function Main() {
             <div className="menu-options">
                 <Navbar className="bg-body-tertiary">
                     <Container>
-                        <Navbar.Brand onClick={() => navigate("/persons")}>Gestão de pessoas</Navbar.Brand>
+                        <Navbar.Brand onClick={() => navigate("/persons")}>Aceder a pessoas</Navbar.Brand>
                     </Container>
                 </Navbar>
                 <br/>
                 <Navbar className="bg-body-tertiary">
                     <Container>
-                        <Navbar.Brand onClick={() => navigate("/casefiles")}>Gestão de processos</Navbar.Brand>
+                        <Navbar.Brand onClick={() => navigate("/casefiles")}>Aceder a processos</Navbar.Brand>
                     </Container>
                 </Navbar>
                 <br/>
                 <Navbar className="bg-body-tertiary">
                     <Container>
-                        <Navbar.Brand>Gestão de tipos de crime</Navbar.Brand>
+                        <Navbar.Brand>Gerir de tipos de crime</Navbar.Brand>
                     </Container>
                 </Navbar>
                 <br/>
                 <Navbar className="bg-body-tertiary">
                     <Container>
-                        <Navbar.Brand>Gestão de utilizadores</Navbar.Brand>
+                        <Navbar.Brand>Gerir utilizadores</Navbar.Brand>
                     </Container>
                 </Navbar>
-                {/*OPCAO EDITAR TIPOS DE CRIME cfr utilizador*/}
             </div>
         </div>
     );
