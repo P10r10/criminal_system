@@ -8,6 +8,7 @@ import {Table} from "react-bootstrap";
 import "./personsStyle.css";
 import {useUserContext} from "../UserContext";
 import Button from "react-bootstrap/Button";
+import ModalCreatePerson from "./ModalCreatePerson";
 
 function Persons() {
 
@@ -36,14 +37,22 @@ function Persons() {
         axios.delete(PERSONS_URL + idToRemove + "/").then(() => refreshPersons());
     }
 
+    const [show, setShow] = useState(false);
+    const handleClick = () => {
+        setShow(true);
+    }
+    const handleClose = () => {
+        setShow(false);
+    };
+
     return (
         <div className="persons">
             <MyNavbar/>
-            {/*TODO HERE CRIAR MODAL PARA CRIAR PESSOA*/}
             <h1>Pessoas
                 {(userType === "Admin" || userType === "Operador") && (
-                    <Button variant="warning" >Criar pessoa</Button>)}
+                    <Button variant="warning" onClick={handleClick}>Criar pessoa</Button>)}
             </h1>
+            <ModalCreatePerson show={show} handleClose={handleClose}/>
             <Table striped>
                 <thead>
                 <tr>
@@ -59,9 +68,11 @@ function Persons() {
                         <td>{person.name}</td>
                         <td>{person.alias}</td>
                         <td>{person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}</td>
-                        <td><Button variant="primary" onClick={() => navigate("/persondetail", {state: {person}})}>Detalhe</Button>
+                        <td><Button variant="primary"
+                                    onClick={() => navigate("/persondetail", {state: {person}})}>Detalhe</Button>
                             {userType === "Admin" && (
-                            <Button variant="danger" onClick={() => handleRemovePerson(person.id)}>Remover</Button>)}
+                                <Button variant="danger"
+                                        onClick={() => handleRemovePerson(person.id)}>Remover</Button>)}
                         </td>
                     </tr>
                 ))}

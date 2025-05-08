@@ -26,38 +26,38 @@ h1 .btn {
     margin-left: 5px;
 }
 
-.create-person {
-    background: white;
-    width: 400px;
-    margin: 30px auto;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
+/*.create-person {*/
+/*    background: white;*/
+/*    width: 400px;*/
+/*    margin: 30px auto;*/
+/*    padding: 20px;*/
+/*    border-radius: 12px;*/
+/*    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);*/
+/*}*/
 
-.create-person form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
+/*.create-person form {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 10px;*/
+/*}*/
 
-.create-person input[type="text"],
-.create-person input[type="date"] {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-}
+/*.create-person input[type="text"],*/
+/*.create-person input[type="date"] {*/
+/*    padding: 8px;*/
+/*    border: 1px solid #ccc;*/
+/*    border-radius: 6px;*/
+/*}*/
 
-.create-person input[type="submit"] {
-    background: #0d6efd;
-    color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
+/*.create-person input[type="submit"] {*/
+/*    background: #0d6efd;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    padding: 10px;*/
+/*    border-radius: 6px;*/
+/*    cursor: pointer;*/
+/*    transition: background 0.3s ease;*/
+/*}*/
 
-.create-person input[type="submit"]:hover {
-    background: #0b5ed7;
-}
+/*.create-person input[type="submit"]:hover {*/
+/*    background: #0b5ed7;*/
+/*}*/

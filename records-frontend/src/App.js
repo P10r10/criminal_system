@@ -30,6 +30,7 @@ function App() {
 export default App;
 
 // TODO 1 *** css Persons FAZER MODAL PARA CRIAR PESSOA
+// TODO Resover refresh não persiste user
 // TODO 2 *** implementar gestão de users
 // TODO 3 *** implementar gestão de crimes
 // ver pessoas no detalhe do processo
