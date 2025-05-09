@@ -93,7 +93,7 @@ def personcasefiles(request):
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['PUT', 'DELETE'])
+@api_view(['DELETE'])
 def personcasefile(request, personcasefile_id):
     try:
         person_casefile = Personcasefile.objects.get(pk=personcasefile_id)
@@ -147,16 +147,29 @@ def user_view(request):
 
 
 @api_view(['GET', 'POST'])
-def crime_type_list(request):
+def crime_types_list(request):
     if request.method == 'GET':
         crimes = CrimeType.objects.all()
         serializer = CrimeTypeSerializer(crimes, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = CasefileSerializer(data=request.data)
+        serializer = CrimeTypeSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['DELETE'])
+def crime_type_list(request, crimetype_id):
+    try:
+        crime_type = CrimeType.objects.get(pk=crimetype_id)
+    except CrimeType.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    if request.method == 'DELETE':
+        crime_type.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
     return Response(status=status.HTTP_400_BAD_REQUEST)
 

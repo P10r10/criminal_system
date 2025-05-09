@@ -64,8 +64,10 @@ export function DataProvider({children}) {
             refreshPersons,
             refreshCasefiles,
             refreshLinks,
+            refreshCrimeTypes,
             PERSONS_URL,
-            CASEFILES_URL
+            CASEFILES_URL,
+            CRIMETYPES_URL
         }}>
             {children}
         </DataContext.Provider>
