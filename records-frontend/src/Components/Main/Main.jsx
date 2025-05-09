@@ -30,7 +30,7 @@ function Main() {
                 {(userType === "Admin" || userType === "Operador") && (
                     <Navbar className="bg-body-tertiary">
                         <Container>
-                            <Navbar.Brand>Gerir de tipos de crime</Navbar.Brand>
+                            <Navbar.Brand onClick={() => navigate("/crimes")}>Gerir de tipos de crime</Navbar.Brand>
                         </Container>
                     </Navbar>
                 )}

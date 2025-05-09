@@ -1,4 +1,4 @@
-import {DataProvider} from "./DataContext";
+import {DataProvider} from "./Components/DataContext";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Main from "./Components/Main/Main";
 import Persons from "./Components/Persons/Persons";
@@ -7,6 +7,7 @@ import PersonDetail from "./PersonDetail";
 import CasefileDetail from "./CasefileDetail";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import {UserProvider} from "./Components/UserContext";
+import ManageCrimeTypes from "./Components/ManageCrimeTypes/ManageCrimeTypes";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                         <Route path="/persondetail" element={<PersonDetail/>}/>
                         <Route path="/casefiles" element={<Casefiles/>}/>
                         <Route path="/casefiledetail" element={<CasefileDetail/>}/>
+                        <Route path="/crimes" element={<ManageCrimeTypes/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
@@ -29,8 +31,8 @@ function App() {
 
 export default App;
 
-// TODO 2 *** implementar gestão de users
 // TODO 3 *** implementar gestão de crimes
+// TODO 2 *** implementar gestão de users
 // TODO 4 *** implementar detalhe pessoa
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo

@@ -2,7 +2,7 @@ import {useState} from "react";
 import axios from "axios";
 import {format} from "date-fns";
 import {useNavigate} from "react-router-dom";
-import {useData} from "../../DataContext";
+import {useData} from "../DataContext";
 import MyNavbar from "../MyNavbar/MyNavbar";
 import {Table} from "react-bootstrap";
 import "./personsStyle.css";
@@ -16,13 +16,8 @@ function Persons() {
     const navigate = useNavigate();
     const [show, setShow] = useState(false);
 
-    const handleClick = () => {
-        setShow(true);
-    };
-
-    const handleClose = () => {
-        setShow(false);
-    };
+    const handleClickCreatePerson = () => setShow(true);
+    const handleClose = () => setShow(false);
 
     const handleRemovePerson = (idToRemove) => {
         axios.delete(PERSONS_URL + idToRemove + "/").then(() => refreshPersons());
@@ -34,7 +29,7 @@ function Persons() {
             <h1>
                 Pessoas
                 {(userType === "Admin" || userType === "Operador") && (
-                    <Button variant="warning" onClick={handleClick}>
+                    <Button variant="warning" onClick={handleClickCreatePerson}>
                         Criar pessoa
                     </Button>
                 )}

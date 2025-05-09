@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {useData} from "./DataContext";
+import {useData} from "./Components/DataContext";
 import MyNavbar from "./Components/MyNavbar/MyNavbar";
 
 function Casefiles() {
