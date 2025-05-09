@@ -13,17 +13,26 @@ export const UserProvider = ({children}) => {
     const [messageStyle, setMessageStyle] = useState("");
     const [isSuper, setIsSuper] = useState(false);
     const [isStaff, setIsStaff] = useState(false);
-    const [userType, setUserType] = useState("Investigador");
+    const [userType, setUserType] = useState("");
     const navigate = useNavigate();
 
-    useEffect(() => { // carrega dados do utilizador no mount para persistir a sessão
-        axios.get("http://localhost:8000/records/api/user/", {withCredentials: true})
-            .then((response) => {
-                setUsername(response.data.username);
-                setIsStaff(response.data.isStaff);
-                setIsSuper(response.data.isSuper);
-                setUserType(response.data.isSuper ? "Admin" : response.data.isStaff ? "Operador" : "Investigador");
-            });
+    // useEffect(() => { // carrega dados do utilizador no mount para persistir a sessão
+    //     axios.get("http://localhost:8000/records/api/user/", {withCredentials: true})
+    //         .then((response) => {
+    //             setUsername(response.data.username);
+    //             setIsStaff(response.data.isStaff);
+    //             setIsSuper(response.data.isSuper);
+    //             setUserType(response.data.isSuper ? "Admin" : response.data.isStaff ? "Operador" : "Investigador");
+    //         });
+    // }, []);
+    useEffect(() => {
+        const storedUsername = localStorage.getItem("username");
+        const storedUserType = localStorage.getItem("userType");
+
+        if (storedUsername && storedUserType) {
+            setUsername(storedUsername);
+            setUserType(storedUserType);
+        }
     }, []);
 
     const handleLogin = async (e) => {
@@ -38,10 +47,14 @@ export const UserProvider = ({children}) => {
             const response = await axios.get("http://localhost:8000/records/api/user/", {
                 withCredentials: true,
             });
-            setUsername(response.data.username);
+            const fetchedUsername = response.data.username;
+            const fetchedUserType = response.data.isSuper ? "Admin" : response.data.isStaff ? "Operador" : "Investigador";
+            setUsername(fetchedUsername);
             setIsStaff(response.data.isStaff);
             setIsSuper(response.data.isSuper);
-            setUserType(response.data.isSuper ? "Admin" : response.data.isStaff ? "Operador" : "Investigador");
+            setUserType(fetchedUserType);
+            localStorage.setItem('username', fetchedUsername);
+            localStorage.setItem('userType', fetchedUserType);
             navigate("/main");
         } catch (error) {
             setMessageStyle("bg-danger text-white");
@@ -83,7 +96,9 @@ export const UserProvider = ({children}) => {
             setPassword("");
             setIsStaff(false);
             setIsSuper(false);
-            setUserType("Investigador");
+            setUserType("");
+            localStorage.removeItem('username');
+            localStorage.removeItem('userType');
             navigate("/");
         } catch (error) {
             setMessageStyle("bg-danger text-white");

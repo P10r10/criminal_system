@@ -29,10 +29,9 @@ function App() {
 
 export default App;
 
-// TODO 1 *** css Persons FAZER MODAL PARA CRIAR PESSOA
-// TODO Resover refresh não persiste user
 // TODO 2 *** implementar gestão de users
 // TODO 3 *** implementar gestão de crimes
+// TODO 4 *** implementar detalhe pessoa
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
@@ -44,7 +43,6 @@ export default App;
 //nas views falta PUT linha 56
 
 //tratar dados no backend ?
-//crimes podem ser editados pelo operador e admin
 
 //adicionar botões de navegação (menu, voltar, etc) usar React Bootstrap
 //PersonDetail usar persons do DataContext? PINCEL...
