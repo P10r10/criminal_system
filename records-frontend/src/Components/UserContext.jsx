@@ -15,7 +15,9 @@ export const UserProvider = ({children}) => {
     const [isStaff, setIsStaff] = useState(false);
     const [userType, setUserType] = useState("");
     const USER_URL = "http://localhost:8000/records/api/user/";
+    const USERS_URL = "http://localhost:8000/records/api/users/";
     const navigate = useNavigate();
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         const storedUsername = localStorage.getItem("username");
@@ -26,6 +28,19 @@ export const UserProvider = ({children}) => {
             setUserType(storedUserType);
         }
     }, []);
+
+    useEffect(() => {
+        (async () => {
+            await Promise.all([
+                refreshUsers()
+            ]);
+        })();
+    }, []);
+
+    const refreshUsers = async () => {
+        const res = await axios.get(USERS_URL);
+        setUsers(res.data);
+    };
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -120,6 +135,9 @@ export const UserProvider = ({children}) => {
                 handleSignUp,
                 handleLogout,
                 handlePopupClose,
+                USERS_URL,
+                refreshUsers,
+                users
             }}
         >
             {children}

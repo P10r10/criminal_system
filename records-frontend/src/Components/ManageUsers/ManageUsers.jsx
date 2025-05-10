@@ -1,28 +1,37 @@
 import MyNavbar from "../MyNavbar/MyNavbar";
 import "./usersStyle.css";
-import {useData} from "../DataContext";
 import Button from "react-bootstrap/Button";
 import {Table} from "react-bootstrap";
 import {useUserContext} from "../UserContext";
 import axios from "axios";
 import {useState} from "react";
+
 // import ModalCreateCrimeType from "./ModalCreateCrimeType";
 
 function ManageUsers() {
 
-    const {crimetypes, CRIMETYPES_URL, refreshCrimeTypes} = useData();
+    const {USERS_URL, refreshUsers, users} = useUserContext();
     const {userType} = useUserContext();
     const [show, setShow] = useState(false);
 
-    const handleRemoveCrimeType = (idToRemove) => {
-        axios.delete(CRIMETYPES_URL + idToRemove + "/").then(() => refreshCrimeTypes());
+    const handleRemoveUser = (idToRemove) => {
+        axios.delete(USERS_URL + idToRemove + "/").then(() => refreshUsers());
     };
+
+    const handleToggleSuper = (user) => {
+        axios.put(USERS_URL + user.id + "/", {...user, is_superuser: !user.is_superuser})
+            .then(() => refreshUsers());
+    }
+    const handleToggleStaff = (user) => {
+        axios.put(USERS_URL + user.id + "/", {...user, is_staff: !user.is_staff})
+            .then(() => refreshUsers());
+    }
 
     const handleClickCreateCrimeType = () => setShow(true);
     const handleClose = () => setShow(false);
 
     return (
-        <div className="crime-style">
+        <div className="user-style">
             <MyNavbar/>
             <h1>
                 Gerir utilizadores
@@ -39,22 +48,36 @@ function ManageUsers() {
                 <Table striped>
                     <thead>
                     <tr>
-                        <th>Value</th>
-                        <th>Label</th>
+                        <th>Username</th>
+                        <th>Is_superuser</th>
+                        <th>Is_staff</th>
                         <th>Acções</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {crimetypes.map((ct) => (
-                        <tr key={ct.id}>
-                            <td>{ct.value}</td>
-                            <td>{ct.label}</td>
+                    {users.map((user) => (
+                        <tr key={user.id}>
+                            <td>{user.username}</td>
+                            <td>{user.is_superuser ? "X" : ""}</td>
+                            <td>{user.is_staff ? "X" : ""}</td>
                             <td>
-                                {userType === "Admin" && (
-                                    <Button
-                                        variant="danger"
-                                        onClick={() => handleRemoveCrimeType(ct.id)}>Remover</Button>
-                                )}
+                                {user.username === "admin" ? (<></>) : ( // para não se remover o admin
+                                    userType === "Admin" && (
+                                        <>
+                                            <Button
+                                                variant="danger"
+                                                onClick={() => handleRemoveUser(user.id)}
+                                            >Remover</Button>
+                                            <Button
+                                                variant="success"
+                                                onClick={() => handleToggleSuper(user)}
+                                            >Super</Button>
+                                            <Button variant="success"
+                                                    onClick={() => handleToggleStaff(user)}
+                                            >Staff</Button>
+                                        </>)
+                                )
+                                }
                             </td>
                         </tr>
                     ))}

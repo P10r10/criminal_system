@@ -1,0 +1,52 @@
+.user-style {
+    background: #0d6efd;
+    width: 100%;
+    height: 100vh;
+}
+
+.user-style h1 {
+    text-align: center;
+    font-size: 4rem;
+    color: white;
+    padding-bottom: 2rem;
+}
+
+.user-style .table {
+    width: 100%;
+    margin: 0;
+}
+
+h1 .btn {
+    margin-left: 5px;
+}
+
+td .btn {
+    margin-right: 5px;
+}
+
+.table-container {
+    max-height: 591px;
+    overflow-y: auto;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.table-container thead th { /* header fica sempre visível*/
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #fff;
+}
+
+.table-container::-webkit-scrollbar {
+    width: 10px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

@@ -33,7 +33,7 @@ function App() {
 
 export default App;
 
-// TODO 2 *** implementar gestão de users
+// TODO 2 *** implementar gestão de users // TOGGLE → REMOVE
 // TODO 4 *** implementar detalhe pessoa
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo

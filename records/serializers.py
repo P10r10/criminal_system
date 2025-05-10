@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Person, Casefile, Personcasefile, CrimeType
+from django.contrib.auth.models import User
 
 
 class PersonSerializer(serializers.ModelSerializer):
@@ -27,3 +28,9 @@ class CrimeTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = CrimeType
         fields = ['id', 'value', 'label']
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'is_superuser', 'is_staff']
