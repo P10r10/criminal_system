@@ -14,6 +14,7 @@ urlpatterns = [
     path("api/signup/", views.signup),
     path("api/login/", views.login_view),
     path("api/logout/", views.logout_view),
+    # path("api/users/", views.users_view),
     path("api/user/", views.user_view),
     path("api/crime-types/", views.crime_types_list),
     path("api/crime-types/<int:crimetype_id>/", views.crime_type_list),

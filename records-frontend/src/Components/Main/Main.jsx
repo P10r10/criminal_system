@@ -38,7 +38,7 @@ function Main() {
                 {userType === "Admin" && (
                     <Navbar className="bg-body-tertiary">
                         <Container>
-                            <Navbar.Brand>Gerir utilizadores</Navbar.Brand>
+                            <Navbar.Brand onClick={() => navigate("/users")}>Gerir utilizadores</Navbar.Brand>
                         </Container>
                     </Navbar>
                 )}

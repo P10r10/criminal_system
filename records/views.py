@@ -145,6 +145,12 @@ def user_view(request):
                      "isStaff": request.user.is_staff,
                      "isSuper": request.user.is_superuser})
 
+# @api_view(['GET'])
+# def users_view(request):
+#     if request.method == 'GET':
+#         users = User.objects.all()
+#         serializer =
+
 
 @api_view(['GET', 'POST'])
 def crime_types_list(request):

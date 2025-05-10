@@ -14,17 +14,9 @@ export const UserProvider = ({children}) => {
     const [isSuper, setIsSuper] = useState(false);
     const [isStaff, setIsStaff] = useState(false);
     const [userType, setUserType] = useState("");
+    const USER_URL = "http://localhost:8000/records/api/user/";
     const navigate = useNavigate();
 
-    // useEffect(() => { // carrega dados do utilizador no mount para persistir a sessão
-    //     axios.get("http://localhost:8000/records/api/user/", {withCredentials: true})
-    //         .then((response) => {
-    //             setUsername(response.data.username);
-    //             setIsStaff(response.data.isStaff);
-    //             setIsSuper(response.data.isSuper);
-    //             setUserType(response.data.isSuper ? "Admin" : response.data.isStaff ? "Operador" : "Investigador");
-    //         });
-    // }, []);
     useEffect(() => {
         const storedUsername = localStorage.getItem("username");
         const storedUserType = localStorage.getItem("userType");
@@ -44,9 +36,7 @@ export const UserProvider = ({children}) => {
                 {withCredentials: true}
             );
 
-            const response = await axios.get("http://localhost:8000/records/api/user/", {
-                withCredentials: true,
-            });
+            const response = await axios.get(USER_URL, {withCredentials: true,});
             const fetchedUsername = response.data.username;
             const fetchedUserType = response.data.isSuper ? "Admin" : response.data.isStaff ? "Operador" : "Investigador";
             setUsername(fetchedUsername);

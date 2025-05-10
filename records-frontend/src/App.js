@@ -8,6 +8,7 @@ import CasefileDetail from "./CasefileDetail";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import {UserProvider} from "./Components/UserContext";
 import ManageCrimeTypes from "./Components/ManageCrimeTypes/ManageCrimeTypes";
+import ManageUsers from "./Components/ManageUsers/ManageUsers";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                         <Route path="/casefiles" element={<Casefiles/>}/>
                         <Route path="/casefiledetail" element={<CasefileDetail/>}/>
                         <Route path="/crimes" element={<ManageCrimeTypes/>}/>
+                        <Route path="/users" element={<ManageUsers/>}/>
                     </Routes>
                 </UserProvider>
             </BrowserRouter>
@@ -37,7 +39,7 @@ export default App;
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
 
-// criar mais fields Person
+// criar mais fields Person?
 // Associar fotos pessoas
 
 //no processo acrescentar data de ocorrência FACULTATIVO?
@@ -45,7 +47,6 @@ export default App;
 
 //tratar dados no backend ?
 
-//adicionar botões de navegação (menu, voltar, etc) usar React Bootstrap
 //PersonDetail usar persons do DataContext? PINCEL...
 
 //IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho
