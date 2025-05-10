@@ -33,7 +33,7 @@ function App() {
 
 export default App;
 
-// TODO 4 *** implementar detalhe pessoa
+// TODO 4 *** implementar detalhe pessoa *** ESTOU no css / impedir navbar fechar demasiado
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo

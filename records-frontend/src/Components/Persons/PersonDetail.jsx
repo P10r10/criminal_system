@@ -7,7 +7,7 @@ import {format} from "date-fns";
 import "./personDetailStyle.css";
 import {Card, ListGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import shadowImg from "./shadow2.jpg";
+import shadowImg from "./shadow.jpg";
 import {useUserContext} from "../UserContext";
 
 function PersonDetail() {
@@ -64,7 +64,7 @@ function PersonDetail() {
                         {matchingCaseFiles.length > 0 ?
                             (matchingCaseFiles.map(mcf =>
                                 <ListGroup.Item key={mcf.id}>{mcf.id}/{mcf.year} - {mcf.crime}
-                                    {userType === "Admin" && (<Button
+                                    {userType === "Admin" && (<Button variant="danger"
                                         onClick={() => handleDeletion(mcf.id)}>Remover</Button>)}
                                 </ListGroup.Item>)) :
                             (<ListGroup.Item>Não tem processos associados</ListGroup.Item>)}
