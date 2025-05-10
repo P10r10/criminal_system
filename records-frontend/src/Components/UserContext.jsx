@@ -1,6 +1,6 @@
 import {createContext, useContext, useEffect, useState} from "react";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 const UserContext = createContext();
 
@@ -18,6 +18,7 @@ export const UserProvider = ({children}) => {
     const USERS_URL = "http://localhost:8000/records/api/users/";
     const navigate = useNavigate();
     const [users, setUsers] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
         const storedUsername = localStorage.getItem("username");
@@ -35,7 +36,13 @@ export const UserProvider = ({children}) => {
                 refreshUsers()
             ]);
         })();
-    }, [users]);
+    }, []);
+
+    useEffect(() => {  // faz o refreshUsers quando se acede ao ManageUsers
+        if (location.pathname === "/users") {
+            refreshUsers().then();
+        }
+    }, [location.pathname]);
 
     const refreshUsers = async () => {
         const res = await axios.get(USERS_URL);

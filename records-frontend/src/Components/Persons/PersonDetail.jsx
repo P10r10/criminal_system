@@ -1,23 +1,22 @@
 import {useLocation} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
-import {useData} from "./Components/DataContext";
-import MyNavbar from "./Components/MyNavbar/MyNavbar";
+import {useData} from "../DataContext";
+import MyNavbar from "../MyNavbar/MyNavbar";
 
 function PersonDetail() {
 
-    const {state} = useLocation();
+    const {state} = useLocation(); // TODO HERE buggy?
     const person = state.person;
-    const {casefiles} = useData();
-    const PERSONCASEFILES_URL = "http://127.0.0.1:8000/records/api/personcasefiles/";
-    const [personCaseFiles, setPersonCaseFiles] = useState([]);
+    const {casefiles, PERSONCASEFILES_URL, personCasefiles, setPersonCasefiles} = useData();
+    // const [personCasefiles, setPersonCasefiles] = useState([]);
     const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
 
-    useEffect(() => {
-        axios.get(PERSONCASEFILES_URL).then(response => setPersonCaseFiles(response.data));
-    }, [person]);
+    // useEffect(() => {
+    //     axios.get(PERSONCASEFILES_URL).then(response => setPersonCasefiles(response.data));
+    // }, [person]);
 
-    const personCasefileIds = personCaseFiles // ids de casefiles já associados à pessoa
+    const personCasefileIds = personCasefiles // ids de casefiles já associados à pessoa
         .filter(person_file => person_file.person === person.id)
         .map(person_file => person_file.casefile)
 
@@ -30,10 +29,8 @@ function PersonDetail() {
     );
 
     const handleCaseFileSelection = (casefileId) => {
-        setSelectedCaseFiles(prev =>
-            prev.includes(casefileId)
-                ? prev.filter(id => id !== casefileId)
-                : [...prev, casefileId]
+        setSelectedCaseFiles(prev => prev.includes(casefileId) ?
+            prev.filter(id => id !== casefileId) : [...prev, casefileId]
         );
     };
 
@@ -47,17 +44,17 @@ function PersonDetail() {
             )
         );
 
-        const response = await axios.get(PERSONCASEFILES_URL); // refresh personCaseFiles
-        setPersonCaseFiles(response.data);
-        setSelectedCaseFiles([]); // limpar checkboxes
+        // const response = await axios.get(PERSONCASEFILES_URL); // refresh personCaseFiles
+        // setPersonCasefiles(response.data);
+        // setSelectedCaseFiles([]); // limpar checkboxes
     };
 
     const handleDeletion = async (casefileId) => {
-        const personCaseFile = personCaseFiles.find(
+        const personCaseFile = personCasefiles.find(
             pcf => pcf.person === person.id && casefileId === pcf.casefile
         );
         await axios.delete(PERSONCASEFILES_URL + personCaseFile.id + "/");
-        setPersonCaseFiles(prev => prev.filter(pcf => pcf.id !== personCaseFile.id));
+        setPersonCasefiles(prev => prev.filter(pcf => pcf.id !== personCaseFile.id));
     }
 
     return (

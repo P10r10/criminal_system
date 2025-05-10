@@ -50,25 +50,15 @@ function Persons() {
                         <tr key={person.id}>
                             <td>{person.name}</td>
                             <td>{person.alias}</td>
-                            <td>
-                                {person.date_of_birth
-                                    ? format(new Date(person.date_of_birth), "dd/MM/yyyy")
-                                    : ""}
-                            </td>
+                            <td>{person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}</td>
                             <td>
                                 <Button
                                     variant="primary"
-                                    onClick={() => navigate("/persondetail", {state: {person}})}
-                                >
-                                    Detalhe
-                                </Button>
+                                    onClick={() => navigate("/persondetail", {state: {person}})}>Detalhe</Button>
                                 {userType === "Admin" && (
                                     <Button
                                         variant="danger"
-                                        onClick={() => handleRemovePerson(person.id)}
-                                    >
-                                        Remover
-                                    </Button>
+                                        onClick={() => handleRemovePerson(person.id)}>Remover</Button>
                                 )}
                             </td>
                         </tr>

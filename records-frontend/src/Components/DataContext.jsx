@@ -6,13 +6,13 @@ const DataContext = createContext();
 export function DataProvider({children}) {
     const [persons, setPersons] = useState([]);
     const [casefiles, setCasefiles] = useState([]);
-    const [links, setLinks] = useState([]); // personcasefiles
+    const [personCasefiles, setPersoncasefiles] = useState([]);
     const [crimetypes, setCrimetypes] = useState([]);
     const [statusChoices, setStatusChoices] = useState([]);
 
     const PERSONS_URL = "http://127.0.0.1:8000/records/api/persons/";
     const CASEFILES_URL = "http://127.0.0.1:8000/records/api/casefiles/";
-    const LINKS_URL = "http://127.0.0.1:8000/records/api/personcasefiles/";
+    const PERSONCASEFILES_URL = "http://127.0.0.1:8000/records/api/personcasefiles/";
     const CRIMETYPES_URL = "http://127.0.0.1:8000/records/api/crime-types/";
     const STATUS_CHOICES_URL = "http://127.0.0.1:8000/records/api/status-choices/";
 
@@ -26,10 +26,10 @@ export function DataProvider({children}) {
         setCasefiles(res.data);
     };
 
-    const refreshLinks = async () => {
-        const res = await axios.get(LINKS_URL);
-        setLinks(res.data);
-    };
+    // const refreshLinks = async () => {
+    //     const res = await axios.get(PERSONCASEFILES_URL);
+    //     setPersoncasefiles(res.data);
+    // };
 
     const refreshCrimeTypes = async () => {
         const res = await axios.get(CRIMETYPES_URL);
@@ -41,14 +41,20 @@ export function DataProvider({children}) {
         setStatusChoices(res.data);
     };
 
+    const refreshPersonCasefiles = async () => {
+        const res = await axios.get(PERSONCASEFILES_URL);
+        setPersoncasefiles(res.data);
+    };
+
     useEffect(() => {
         (async () => {
             await Promise.all([
                 refreshPersons(),
                 refreshCasefiles(),
-                refreshLinks(),
+                // refreshLinks(),
                 refreshCrimeTypes(),
-                refreshStatusChoices()
+                refreshStatusChoices(),
+                refreshPersonCasefiles()
             ]);
         })();
     }, []);
@@ -58,16 +64,17 @@ export function DataProvider({children}) {
         <DataContext.Provider value={{
             persons,
             casefiles,
-            links,
+            personCasefiles,
             crimetypes,
             statusChoices,
             refreshPersons,
             refreshCasefiles,
-            refreshLinks,
+            // refreshLinks,
             refreshCrimeTypes,
             PERSONS_URL,
             CASEFILES_URL,
-            CRIMETYPES_URL
+            CRIMETYPES_URL,
+            PERSONCASEFILES_URL
         }}>
             {children}
         </DataContext.Provider>

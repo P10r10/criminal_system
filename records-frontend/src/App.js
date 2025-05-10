@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Main from "./Components/Main/Main";
 import Persons from "./Components/Persons/Persons";
 import Casefiles from "./Casefiles";
-import PersonDetail from "./PersonDetail";
+import PersonDetail from "./Components/Persons/PersonDetail";
 import CasefileDetail from "./CasefileDetail";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import {UserProvider} from "./Components/UserContext";
@@ -33,7 +33,6 @@ function App() {
 
 export default App;
 
-// TODO 2 *** implementar gestão de users // CREATE
 // TODO 4 *** implementar detalhe pessoa
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
