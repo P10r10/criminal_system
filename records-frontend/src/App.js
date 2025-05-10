@@ -31,7 +31,6 @@ function App() {
 
 export default App;
 
-// TODO 3 *** implementar gestão de crimes
 // TODO 2 *** implementar gestão de users
 // TODO 4 *** implementar detalhe pessoa
 // ver pessoas no detalhe do processo
