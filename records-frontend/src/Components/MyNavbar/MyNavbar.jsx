@@ -22,7 +22,7 @@ function MyNavbar() {
                         height="30"
                         className="d-inline-block align-top"
                     />{" "}
-                    Força policial de investigação criminal
+                    Departamento de informação criminal
                     <Button variant="warning" onClick={() => navigate("/main")}>Menu</Button>
                     <Button variant="warning" onClick={() => navigate("/persons")}>Pessoas</Button>
                     <Button variant="warning" onClick={() => navigate("/casefiles")}>Processos</Button>

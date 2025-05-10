@@ -4,15 +4,11 @@ import Button from "react-bootstrap/Button";
 import {Table} from "react-bootstrap";
 import {useUserContext} from "../UserContext";
 import axios from "axios";
-import {useState} from "react";
-
-// import ModalCreateCrimeType from "./ModalCreateCrimeType";
 
 function ManageUsers() {
 
     const {USERS_URL, refreshUsers, users} = useUserContext();
     const {userType} = useUserContext();
-    const [show, setShow] = useState(false);
 
     const handleRemoveUser = (idToRemove) => {
         axios.delete(USERS_URL + idToRemove + "/").then(() => refreshUsers());
@@ -27,23 +23,10 @@ function ManageUsers() {
             .then(() => refreshUsers());
     }
 
-    const handleClickCreateCrimeType = () => setShow(true);
-    const handleClose = () => setShow(false);
-
     return (
         <div className="user-style">
             <MyNavbar/>
-            <h1>
-                Gerir utilizadores
-                {userType === "Admin" && (
-                    <Button variant="warning"
-                            onClick={handleClickCreateCrimeType}
-                    >
-                        Criar utilizador
-                    </Button>
-                )}
-            </h1>
-            {/*<ModalCreateCrimeType show={show} handleClose={handleClose}/>*/}
+            <h1>Gerir utilizadores</h1>
             <div className="table-container">
                 <Table striped>
                     <thead>

@@ -35,7 +35,7 @@ export const UserProvider = ({children}) => {
                 refreshUsers()
             ]);
         })();
-    }, []);
+    }, [users]);
 
     const refreshUsers = async () => {
         const res = await axios.get(USERS_URL);
@@ -74,16 +74,14 @@ export const UserProvider = ({children}) => {
     const handleSignUp = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://127.0.0.1:8000/records/api/signup/", {
-                username,
-                password,
-            });
+            const response = await axios.post("http://127.0.0.1:8000/records/api/signup/", {username, password,});
             setMessageStyle("bg-success text-white");
             setMessageTitle("Já pode fazer login.");
             setMessage(response.data.message);
             setUsername("");
             setPassword("");
             setShowPopup(true);
+            navigate("/");
         } catch (error) {
             setMessageStyle("bg-danger text-white");
             setMessageTitle("O sign up falhou");
