@@ -6,15 +6,10 @@ import MyNavbar from "../MyNavbar/MyNavbar";
 
 function PersonDetail() {
 
-    const {state} = useLocation(); // TODO HERE buggy?
+    const {state} = useLocation();
     const person = state.person;
-    const {casefiles, PERSONCASEFILES_URL, personCasefiles, setPersonCasefiles} = useData();
-    // const [personCasefiles, setPersonCasefiles] = useState([]);
+    const {casefiles, PERSONCASEFILES_URL, personCasefiles, refreshPersonCasefiles} = useData();
     const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
-
-    // useEffect(() => {
-    //     axios.get(PERSONCASEFILES_URL).then(response => setPersonCasefiles(response.data));
-    // }, [person]);
 
     const personCasefileIds = personCasefiles // ids de casefiles já associados à pessoa
         .filter(person_file => person_file.person === person.id)
@@ -35,26 +30,14 @@ function PersonDetail() {
     };
 
     const associateCaseFiles = async () => {
-        await Promise.all(
-            selectedCaseFiles.map(casefileId =>
-                axios.post(PERSONCASEFILES_URL, {
-                    person: person.id,
-                    casefile: casefileId,
-                })
-            )
-        );
-
-        // const response = await axios.get(PERSONCASEFILES_URL); // refresh personCaseFiles
-        // setPersonCasefiles(response.data);
-        // setSelectedCaseFiles([]); // limpar checkboxes
+        await Promise.all(selectedCaseFiles.map(casefileId =>
+            axios.post(PERSONCASEFILES_URL, {person: person.id, casefile: casefileId,})
+                .then(refreshPersonCasefiles)));
     };
 
     const handleDeletion = async (casefileId) => {
-        const personCaseFile = personCasefiles.find(
-            pcf => pcf.person === person.id && casefileId === pcf.casefile
-        );
-        await axios.delete(PERSONCASEFILES_URL + personCaseFile.id + "/");
-        setPersonCasefiles(prev => prev.filter(pcf => pcf.id !== personCaseFile.id));
+        const personCaseFile = personCasefiles.find(pcf => pcf.person === person.id && casefileId === pcf.casefile);
+        await axios.delete(PERSONCASEFILES_URL + personCaseFile.id + "/").then(refreshPersonCasefiles);
     }
 
     return (
@@ -81,7 +64,7 @@ function PersonDetail() {
                                 onChange={() => handleCaseFileSelection(casefile.id)}
                             />
                             <label>
-                                {casefile.number} - {casefile.crime}
+                                {casefile.id}/{casefile.year} - {casefile.crime}
                             </label>
                         </div>
                     ))}

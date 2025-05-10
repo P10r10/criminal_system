@@ -69,7 +69,7 @@ export function DataProvider({children}) {
             statusChoices,
             refreshPersons,
             refreshCasefiles,
-            // refreshLinks,
+            refreshPersonCasefiles,
             refreshCrimeTypes,
             PERSONS_URL,
             CASEFILES_URL,
