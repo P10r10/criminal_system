@@ -3,12 +3,19 @@ import {useState} from "react";
 import axios from "axios";
 import {useData} from "../DataContext";
 import MyNavbar from "../MyNavbar/MyNavbar";
+import {format} from "date-fns";
+import "./personDetailStyle.css";
+import {Card, ListGroup} from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import shadowImg from "./shadow2.jpg";
+import {useUserContext} from "../UserContext";
 
 function PersonDetail() {
 
     const {state} = useLocation();
     const person = state.person;
     const {casefiles, PERSONCASEFILES_URL, personCasefiles, refreshPersonCasefiles} = useData();
+    const {userType} = useUserContext();
     const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
 
     const personCasefileIds = personCasefiles // ids de casefiles já associados à pessoa
@@ -33,6 +40,7 @@ function PersonDetail() {
         await Promise.all(selectedCaseFiles.map(casefileId =>
             axios.post(PERSONCASEFILES_URL, {person: person.id, casefile: casefileId,})
                 .then(refreshPersonCasefiles)));
+        setSelectedCaseFiles([]); // limpar checkboxes
     };
 
     const handleDeletion = async (casefileId) => {
@@ -41,40 +49,63 @@ function PersonDetail() {
     }
 
     return (
-        <div>
+        <div className="persons">
             <MyNavbar/>
-            <h1>Nome: {person.name}</h1>
-            <h2>Alcunha: {person.alias}</h2>
-            <h3>DN: {person.date_of_birth}</h3>
-            <ul>Processos: {matchingCaseFiles.length > 0 ?
-                (matchingCaseFiles.map(mcf =>
-                    <li key={mcf.id}>{mcf.id}/{mcf.year} - {mcf.crime}
-                        <button onClick={() => handleDeletion(mcf.id)}>Remover</button>
-                    </li>)) :
-                (<li>Esta pessoa não tem processos associados</li>)}
-            </ul>
-            <h4>Associar novos processos:</h4>
-            {availableCaseFiles.length > 0 ? (
-                <div>
-                    {availableCaseFiles.map(casefile => (
-                        <div key={casefile.id}>
-                            <input
-                                type="checkbox"
-                                checked={selectedCaseFiles.includes(casefile.id)}
-                                onChange={() => handleCaseFileSelection(casefile.id)}
-                            />
-                            <label>
-                                {casefile.id}/{casefile.year} - {casefile.crime}
-                            </label>
+            <div className="card-container">
+                <Card style={{width: '22rem'}}>
+                    <Card.Img variant="top" src={shadowImg}/>
+                    <Card.Body>
+                        <Card.Title>{person.name}</Card.Title>
+                        <Card.Text>Alcunha {person.alias ? `(${person.alias})` : ""}</Card.Text>
+                        <Card.Text>DN: {person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}
+                        </Card.Text>
+                    </Card.Body>
+                    <ListGroup className="list-group-flush">
+                        {matchingCaseFiles.length > 0 ?
+                            (matchingCaseFiles.map(mcf =>
+                                <ListGroup.Item key={mcf.id}>{mcf.id}/{mcf.year} - {mcf.crime}
+                                    {userType === "Admin" && (<Button
+                                        onClick={() => handleDeletion(mcf.id)}>Remover</Button>)}
+                                </ListGroup.Item>)) :
+                            (<ListGroup.Item>Não tem processos associados</ListGroup.Item>)}
+                    </ListGroup>
+                    <Card.Body>
+                        <div className="d-flex justify-content-between">
+                            <Button variant="warning">
+                                Associar processos
+                            </Button>
+                            <Button variant="info">
+                                Associar foto
+                            </Button>
                         </div>
-                    ))}
-                    <button onClick={associateCaseFiles} disabled={selectedCaseFiles.length === 0}>
-                        Associar processos à pessoa
-                    </button>
-                </div>
-            ) : (
-                <p>Não há processos disponíveis para associar.</p>
-            )}
+                    </Card.Body>
+                </Card>
+            </div>
+
+            {/*{availableCaseFiles.length > 0 ? (*/}
+            {/*    <div>*/}
+            {/*        {availableCaseFiles.map(casefile => (*/}
+            {/*            <div key={casefile.id}>*/}
+            {/*                <input*/}
+            {/*                    type="checkbox"*/}
+            {/*                    checked={selectedCaseFiles.includes(casefile.id)}*/}
+            {/*                    onChange={() => handleCaseFileSelection(casefile.id)}*/}
+            {/*                />*/}
+            {/*                <label>*/}
+            {/*                    {casefile.id}/{casefile.year} - {casefile.crime}*/}
+            {/*                </label>*/}
+            {/*            </div>*/}
+            {/*        ))}*/}
+            {/*        <button onClick={associateCaseFiles} disabled={selectedCaseFiles.length === 0}>*/}
+            {/*            Associar processos à pessoa*/}
+            {/*        </button>*/}
+            {/*    </div>*/}
+            {/*) : (<p>Não há processos disponíveis para associar.</p>)*/}
+            {/*}*/}
+
+
+
+
         </div>
     );
 }
