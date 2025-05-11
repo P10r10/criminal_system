@@ -16,16 +16,11 @@ function ModalCreateCrimeType({show, handleClose}) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios
-            .post(CRIMETYPES_URL, {
-                value: crimeType,
-                label: crimeType
-            })
-            .then(() => {
-                refreshCrimeTypes();
-                setCrimeType("");
-                handleClose(); // fecha o modal
-            });
+        axios.post(CRIMETYPES_URL, {value: crimeType, label: crimeType}).then(() => {
+            refreshCrimeTypes();
+            setCrimeType("");
+            handleClose(); // fecha o modal
+        });
     };
 
     const changeHandler = (e) => {

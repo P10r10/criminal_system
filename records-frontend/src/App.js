@@ -9,7 +9,6 @@ import LandingPage from "./Components/LandingPage/LandingPage";
 import {UserProvider} from "./Components/UserContext";
 import ManageCrimeTypes from "./Components/ManageCrimeTypes/ManageCrimeTypes";
 import ManageUsers from "./Components/ManageUsers/ManageUsers";
-import MySelect from "./MySelect";
 
 function App() {
     return (
@@ -25,7 +24,6 @@ function App() {
                         <Route path="/casefiledetail" element={<CasefileDetail/>}/>
                         <Route path="/crimes" element={<ManageCrimeTypes/>}/>
                         <Route path="/users" element={<ManageUsers/>}/>
-                        <Route path="/xxx" element={<MySelect/>}/> {/*// TODO REMOVE*/}
                     </Routes>
                 </UserProvider>
             </BrowserRouter>

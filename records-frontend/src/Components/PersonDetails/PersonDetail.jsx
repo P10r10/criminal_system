@@ -9,7 +9,6 @@ import {Card, ListGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import shadowImg from "../Persons/shadow.jpg";
 import {useUserContext} from "../UserContext";
-import ModalCreateCrimeType from "../ManageCrimeTypes/ModalCreateCrimeType";
 import ModalCreateAssociationType from "./ModalCreateAssociationType";
 
 function PersonDetail() {
@@ -18,7 +17,7 @@ function PersonDetail() {
     const person = state.person; // aqui só é recebido um objecto person (não o array)
     const {casefiles, PERSONCASEFILES_URL, personCasefiles, refreshPersonCasefiles} = useData();
     const {userType} = useUserContext();
-    const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
+    // const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
     const handleClickAssociateCrimeType = () => setShow(true);
@@ -36,19 +35,6 @@ function PersonDetail() {
         casefile => !personCasefileIds.includes(casefile.id)
     );
 
-    const handleCaseFileSelection = (casefileId) => {
-        setSelectedCaseFiles(prev => prev.includes(casefileId) ?
-            prev.filter(id => id !== casefileId) : [...prev, casefileId]
-        );
-    };
-
-    const associateCaseFiles = async () => {
-        await Promise.all(selectedCaseFiles.map(casefileId =>
-            axios.post(PERSONCASEFILES_URL, {person: person.id, casefile: casefileId,})
-                .then(refreshPersonCasefiles)));
-        setSelectedCaseFiles([]); // limpar checkboxes
-    };
-
     const handleDeletion = async (casefileId) => {
         const personCaseFile = personCasefiles.find(pcf => pcf.person === person.id && casefileId === pcf.casefile);
         await axios.delete(PERSONCASEFILES_URL + personCaseFile.id + "/").then(refreshPersonCasefiles);
@@ -57,7 +43,10 @@ function PersonDetail() {
     return (
         <div className="persons">
             <MyNavbar/>
-            <ModalCreateAssociationType show={show} handleClose={handleClose}/>
+            <ModalCreateAssociationType show={show}
+                                        handleClose={handleClose}
+                                        availableCaseFiles={availableCaseFiles}
+                                        person={person}/>
             <div className="card-container">
                 <Card style={{width: '25rem'}}>
                     <Card.Img variant="top" src={shadowImg}/>

@@ -1,35 +1,35 @@
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {Modal, Button, Form} from "react-bootstrap";
 import axios from "axios";
 import {useData} from "../DataContext";
+import Select from 'react-select';
 
-function ModalCreateAssociationType({show, handleClose, availableCaseFiles}) {
-    const {CRIMETYPES_URL, refreshCrimeTypes} = useData();
-    const [crimeType, setCrimeType] = useState("");
+function ModalCreateAssociationType({show, handleClose, availableCaseFiles, person}) {
+    const {PERSONCASEFILES_URL, refreshPersonCasefiles} = useData();
+    const [casefileId, setCasefileId] = useState(null);
     const inputRef = useRef(null);
+
+    const availableCaseFilesMapped = availableCaseFiles.map((cf) =>
+        ({value: cf.id, label: cf.id + "/" + cf.year + " - " + cf.crime}));
 
     useEffect(() => {
         if (show && inputRef.current) {
             inputRef.current.focus(); // Põe o focus no input quando se abre o modal
         }
+        if (!show) {
+            setCasefileId(null); // limpa se fechar o modal
+        }
     }, [show]);
 
-    const handleSubmit = (e) => {
+    const handleAssociatePersonCasefile = (e) => {
         e.preventDefault();
-        axios
-            .post(CRIMETYPES_URL, {
-                value: crimeType,
-                label: crimeType
-            })
+        if (!casefileId) return;
+        axios.post(PERSONCASEFILES_URL, {person: person.id, casefile: casefileId,})
             .then(() => {
-                refreshCrimeTypes();
-                setCrimeType("");
+                refreshPersonCasefiles();
+                setCasefileId(null);
                 handleClose(); // fecha o modal
             });
-    };
-
-    const changeHandler = (e) => {
-        setCrimeType(e.target.value);
     };
 
     return (
@@ -43,26 +43,29 @@ function ModalCreateAssociationType({show, handleClose, availableCaseFiles}) {
                 <Modal.Title>Associar processo à pessoa</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleAssociatePersonCasefile}>
                     <Form.Group controlId="formName" className="mb-3">
                         <Form.Label>Processo a associar</Form.Label>
-                        <Form.Control
+                        <Select
                             ref={inputRef}
-                            type="text"
-                            name="value"
-                            maxLength="30"
-                            value={crimeType}
-                            onChange={changeHandler}
-                            required
+                            className="basic-single"
+                            classNamePrefix="select"
+                            isClearable={true}
+                            isSearchable={true}
+                            placeholder="Escolha..."
+                            options={availableCaseFilesMapped}
+                            noOptionsMessage={() => "Nenhuma opção encontrada"}
+                            onChange={(option) => {
+                                const case_id = option ? option.value : null;
+                                setCasefileId(case_id);
+                            }}
                         />
                     </Form.Group>
                     <Button variant="success" type="submit">Associar</Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer className="bg-warning text-white">
-                <Button variant="secondary" onClick={handleClose}>
-                    Fechar
-                </Button>
+                <Button variant="secondary" onClick={handleClose}>Fechar</Button>
             </Modal.Footer>
         </Modal>
     );
