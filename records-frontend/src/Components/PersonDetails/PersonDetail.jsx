@@ -7,17 +7,22 @@ import {format} from "date-fns";
 import "./personDetailStyle.css";
 import {Card, ListGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import shadowImg from "./shadow.jpg";
+import shadowImg from "../Persons/shadow.jpg";
 import {useUserContext} from "../UserContext";
+import ModalCreateCrimeType from "../ManageCrimeTypes/ModalCreateCrimeType";
+import ModalCreateAssociationType from "./ModalCreateAssociationType";
 
 function PersonDetail() {
 
     const {state} = useLocation();
-    const person = state.person;
+    const person = state.person; // aqui só é recebido um objecto person (não o array)
     const {casefiles, PERSONCASEFILES_URL, personCasefiles, refreshPersonCasefiles} = useData();
     const {userType} = useUserContext();
     const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
+    const [show, setShow] = useState(false);
     const navigate = useNavigate();
+    const handleClickAssociateCrimeType = () => setShow(true);
+    const handleClose = () => setShow(false);
 
     const personCasefileIds = personCasefiles // ids de casefiles já associados à pessoa
         .filter(person_file => person_file.person === person.id)
@@ -52,6 +57,7 @@ function PersonDetail() {
     return (
         <div className="persons">
             <MyNavbar/>
+            <ModalCreateAssociationType show={show} handleClose={handleClose}/>
             <div className="card-container">
                 <Card style={{width: '25rem'}}>
                     <Card.Img variant="top" src={shadowImg}/>
@@ -64,22 +70,22 @@ function PersonDetail() {
                     <ListGroup className="list-group-flush">
                         {matchingCaseFiles.length > 0 ?
                             (matchingCaseFiles.map(mcf =>
-                                <ListGroup.Item key={mcf.id} className="d-flex justify-content-between align-items-center">
+                                <ListGroup.Item key={mcf.id}
+                                                className="d-flex justify-content-between align-items-center">
                                     {mcf.id}/{mcf.year} - {mcf.crime}
                                     {userType === "Admin" && (<Button variant="danger"
-                                        onClick={() => handleDeletion(mcf.id)}>Remover</Button>)}
+                                                                      onClick={() => handleDeletion(mcf.id)}>Remover</Button>)}
                                 </ListGroup.Item>)) :
                             (<ListGroup.Item>Não tem processos associados</ListGroup.Item>)}
                     </ListGroup>
                     <Card.Body>
                         <div className="d-flex justify-content-between">
-                            <Button variant="warning" onClick={() => navigate("/persons")}>
-                                Voltar
-                            </Button>
+                            <Button variant="warning" onClick={() => navigate("/persons")}>Voltar</Button>
                             <Button variant="success">
                                 Associar foto
                             </Button>
-                            <Button variant="success">
+                            <Button variant="success"
+                                    onClick={handleClickAssociateCrimeType}>
                                 Associar processo
                             </Button>
                         </div>
@@ -87,30 +93,26 @@ function PersonDetail() {
                 </Card>
             </div>
 
-            {availableCaseFiles.length > 0 ? (
-                <div>
-                    {availableCaseFiles.map(casefile => (
-                        <div key={casefile.id}>
-                            <input
-                                type="checkbox"
-                                checked={selectedCaseFiles.includes(casefile.id)}
-                                onChange={() => handleCaseFileSelection(casefile.id)}
-                            />
-                            <label>
-                                {casefile.id}/{casefile.year} - {casefile.crime}
-                            </label>
-                        </div>
-                    ))}
-                    <button onClick={associateCaseFiles} disabled={selectedCaseFiles.length === 0}>
-                        Associar processos à pessoa
-                    </button>
-                </div>
-            ) : (<p>Não há processos disponíveis para associar.</p>)
-            }
-
-
-
-
+            {/*{availableCaseFiles.length > 0 ? (*/}
+            {/*    <div>*/}
+            {/*        {availableCaseFiles.map(casefile => (*/}
+            {/*            <div key={casefile.id}>*/}
+            {/*                <input*/}
+            {/*                    type="checkbox"*/}
+            {/*                    checked={selectedCaseFiles.includes(casefile.id)}*/}
+            {/*                    onChange={() => handleCaseFileSelection(casefile.id)}*/}
+            {/*                />*/}
+            {/*                <label>*/}
+            {/*                    {casefile.id}/{casefile.year} - {casefile.crime}*/}
+            {/*                </label>*/}
+            {/*            </div>*/}
+            {/*        ))}*/}
+            {/*        <button onClick={associateCaseFiles} disabled={selectedCaseFiles.length === 0}>*/}
+            {/*            Associar processos à pessoa*/}
+            {/*        </button>*/}
+            {/*    </div>*/}
+            {/*) : (<p>Não há processos disponíveis para associar.</p>)*/}
+            {/*}*/}
         </div>
     );
 }

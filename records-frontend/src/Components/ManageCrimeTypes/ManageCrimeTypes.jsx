@@ -30,10 +30,7 @@ function ManageCrimeTypes() {
                 Gerir tipos de crime
                 {(userType === "Admin" || userType === "Operador") && (
                     <Button variant="warning"
-                            onClick={handleClickCreateCrimeType}
-                    >
-                        Criar tipo de crime
-                    </Button>
+                            onClick={handleClickCreateCrimeType}>Criar tipo de crime</Button>
                 )}
             </h1>
             <ModalCreateCrimeType show={show} handleClose={handleClose}/>

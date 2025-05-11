@@ -44,7 +44,7 @@ if %ERRORLEVEL% NEQ 0 (
 :: Install React frontend dependencies
 ECHO Installing React frontend dependencies...
 cd records-frontend
-call npm install axios react-router-dom date-fns react-bootstrap bootstrap
+call npm install axios react-router-dom date-fns react-bootstrap bootstrap react-select
 if %ERRORLEVEL% NEQ 0 (
     ECHO Failed to install frontend dependencies.
     pause

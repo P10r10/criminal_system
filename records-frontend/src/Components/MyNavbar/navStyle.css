@@ -1,3 +1,12 @@
-.btn {
+.my-navbar .btn {
     margin-left: 5px;
+}
+
+.my-navbar .my-brand {
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+.my-navbar .my-navbar-bar {
+    background-color: white;
 }
