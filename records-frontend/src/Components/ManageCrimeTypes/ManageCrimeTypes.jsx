@@ -26,17 +26,16 @@ function ManageCrimeTypes() {
     return (
         <div className="crime-style">
             <MyNavbar/>
-            <h1>
-                Gerir tipos de crime
+            <h1>Gerir tipos de crime</h1>
+            <ModalCreateCrimeType show={show} handleClose={handleClose}/>
+            <div className="button-group">
+                <Button variant="warning"
+                        onClick={() => navigate("/main")}>Voltar</Button>
                 {(userType === "Admin" || userType === "Operador") && (
                     <Button variant="warning"
                             onClick={handleClickCreateCrimeType}>Criar tipo de crime</Button>
                 )}
-            </h1>
-            <ModalCreateCrimeType show={show} handleClose={handleClose}/>
-            <Button className="back-button"
-                    variant="warning"
-                    onClick={() => navigate("/main")}>Voltar</Button>
+            </div>
             <div className="table-container">
                 <Table striped>
                     <thead>

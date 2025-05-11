@@ -24,10 +24,10 @@ function MyNavbar() {
                             className="d-inline-block align-top"
                         />{" "}
                         Departamento de informação criminal
-                        <Button variant="warning" onClick={() => navigate("/main")}>Menu</Button>
                     </Navbar.Brand>
                     <Navbar.Text className="d-flex align-items-center">
                         Utilizador: <strong className="ms-1">{username}</strong> ({userType})
+                        <Button variant="warning" onClick={() => navigate("/main")}>Menu</Button>
                         <Button variant="danger" className="ms-2" onClick={handleLogout}>sair</Button>
                     </Navbar.Text>
                 </Container>

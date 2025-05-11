@@ -17,7 +17,6 @@ function PersonDetail() {
     const person = state.person; // aqui só é recebido um objecto person (não o array)
     const {casefiles, PERSONCASEFILES_URL, personCasefiles, refreshPersonCasefiles} = useData();
     const {userType} = useUserContext();
-    // const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
     const handleClickAssociateCrimeType = () => setShow(true);
@@ -70,13 +69,13 @@ function PersonDetail() {
                     <Card.Body>
                         <div className="d-flex justify-content-between">
                             <Button variant="warning" onClick={() => navigate("/persons")}>Voltar</Button>
-                            <Button variant="success">
-                                Associar foto
-                            </Button>
-                            <Button variant="success"
-                                    onClick={handleClickAssociateCrimeType}>
-                                Associar processo
-                            </Button>
+                            {(userType === "Admin" || userType === "Operador") && (
+                                <>
+                                    <Button variant="success">Associar foto</Button>
+                                    <Button variant="success"
+                                            onClick={handleClickAssociateCrimeType}>Associar processo</Button>
+                                </>
+                            )}
                         </div>
                     </Card.Body>
                 </Card>

@@ -26,15 +26,16 @@ function Persons() {
     return (
         <div className="persons">
             <MyNavbar/>
-            <h1>
-                Pessoas
-                {(userType === "Admin" || userType === "Operador") && (
-                    <Button variant="warning" onClick={handleClickCreatePerson}>
-                        Criar pessoa
-                    </Button>
-                )}
-            </h1>
+            <h1>Pessoas</h1>
             <ModalCreatePerson show={show} handleClose={handleClose}/>
+            <div className="button-group">
+                <Button variant="warning"
+                        onClick={() => navigate("/main")}>Voltar</Button>
+                {(userType === "Admin" || userType === "Operador") && (
+                    <Button variant="warning"
+                            onClick={handleClickCreatePerson}>Criar pessoa</Button>
+                )}
+            </div>
             <div className="table-container">
                 <Table striped>
                     <thead>

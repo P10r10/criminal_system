@@ -4,11 +4,13 @@ import Button from "react-bootstrap/Button";
 import {Table} from "react-bootstrap";
 import {useUserContext} from "../UserContext";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function ManageUsers() {
 
     const {USERS_URL, refreshUsers, users} = useUserContext();
     const {userType} = useUserContext();
+    const navigate = useNavigate();
 
     const handleRemoveUser = (idToRemove) => {
         axios.delete(USERS_URL + idToRemove + "/").then(() => refreshUsers());
@@ -27,6 +29,9 @@ function ManageUsers() {
         <div className="user-style">
             <MyNavbar/>
             <h1>Gerir utilizadores</h1>
+            <div className="button-group">
+                <Button variant="warning" onClick={() => navigate("/main")}>Voltar</Button>
+            </div>
             <div className="table-container">
                 <Table striped>
                     <thead>

@@ -33,7 +33,8 @@ function App() {
 
 export default App;
 
-// TODO 4 *** implementar detalhe pessoa  / associar foto / editar pessoa?
+// TODO 1 *** css processos
+// TODO 2 *** implementar detalhe pessoa  / associar foto / editar pessoa?
 
 
 // ver pessoas no detalhe do processo

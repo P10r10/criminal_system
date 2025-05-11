@@ -1,5 +1,5 @@
 .crime-style {
-    background: #0d6efd;
+    background: #4670a9;
     width: 100%;
     min-height: 100vh;
 }
@@ -15,8 +15,10 @@
     margin: 0;
 }
 
-.back-button {
-    display: block;
+.crime-style .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem; /* espaço entre botões */
     margin: 1rem auto;
 }
 
