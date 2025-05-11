@@ -50,3 +50,8 @@ h1 .btn {
 .persons .table-container::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.persons .list-group { /* scroll quando a pessoa tem muitos crimes */
+    max-height: 225px;
+    overflow-y: auto;
+}

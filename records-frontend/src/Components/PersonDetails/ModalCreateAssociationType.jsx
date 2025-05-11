@@ -54,7 +54,7 @@ function ModalCreateAssociationType({show, handleClose, availableCaseFiles, pers
                             isSearchable={true}
                             placeholder="Escolha..."
                             options={availableCaseFilesMapped}
-                            noOptionsMessage={() => "Nenhuma opção encontrada"}
+                            noOptionsMessage={() => "Nenhum processo encontrado"}
                             onChange={(option) => {
                                 const case_id = option ? option.value : null;
                                 setCasefileId(case_id);

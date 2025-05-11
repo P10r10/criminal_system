@@ -81,27 +81,6 @@ function PersonDetail() {
                     </Card.Body>
                 </Card>
             </div>
-
-            {/*{availableCaseFiles.length > 0 ? (*/}
-            {/*    <div>*/}
-            {/*        {availableCaseFiles.map(casefile => (*/}
-            {/*            <div key={casefile.id}>*/}
-            {/*                <input*/}
-            {/*                    type="checkbox"*/}
-            {/*                    checked={selectedCaseFiles.includes(casefile.id)}*/}
-            {/*                    onChange={() => handleCaseFileSelection(casefile.id)}*/}
-            {/*                />*/}
-            {/*                <label>*/}
-            {/*                    {casefile.id}/{casefile.year} - {casefile.crime}*/}
-            {/*                </label>*/}
-            {/*            </div>*/}
-            {/*        ))}*/}
-            {/*        <button onClick={associateCaseFiles} disabled={selectedCaseFiles.length === 0}>*/}
-            {/*            Associar processos à pessoa*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*) : (<p>Não há processos disponíveis para associar.</p>)*/}
-            {/*}*/}
         </div>
     );
 }

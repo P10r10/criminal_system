@@ -31,7 +31,7 @@ function LandingPage() {
                 onClose={handlePopupClose}
             />}
             <div className="login-signin">
-                <Form>
+                <Form onSubmit={handleLogin}>
                     <Form.Group className="mb-3">
                         <Form.Label>Utilizador</Form.Label>
                         <Form.Control
@@ -47,10 +47,10 @@ function LandingPage() {
                             value={password}/>
                     </Form.Group>
                     <div className="d-flex justify-content-between">
-                        <Button variant="primary" onClick={handleLogin}>
+                        <Button variant="primary" type="submit">
                             Login
                         </Button>
-                        <Button variant="danger" onClick={handleSignUp}>
+                        <Button variant="danger" type="button" onClick={handleSignUp}>
                             Sign up
                         </Button>
                     </div>

@@ -33,7 +33,9 @@ function App() {
 
 export default App;
 
-// TODO 4 *** implementar detalhe pessoa / Associar processos(usar dropdown em vez de checkboxes)  / associar foto / editar pessoa?
+// TODO 4 *** implementar detalhe pessoa  / associar foto / editar pessoa?
+
+
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
