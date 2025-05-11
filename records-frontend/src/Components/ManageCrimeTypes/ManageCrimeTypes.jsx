@@ -7,12 +7,14 @@ import {useUserContext} from "../UserContext";
 import axios from "axios";
 import {useState} from "react";
 import ModalCreateCrimeType from "./ModalCreateCrimeType";
+import {useNavigate} from "react-router-dom";
 
 function ManageCrimeTypes() {
 
     const {crimetypes, CRIMETYPES_URL, refreshCrimeTypes} = useData();
     const {userType} = useUserContext();
     const [show, setShow] = useState(false);
+    const navigate = useNavigate();
 
     const handleRemoveCrimeType = (idToRemove) => {
         axios.delete(CRIMETYPES_URL + idToRemove + "/").then(() => refreshCrimeTypes());
@@ -35,12 +37,14 @@ function ManageCrimeTypes() {
                 )}
             </h1>
             <ModalCreateCrimeType show={show} handleClose={handleClose}/>
+            <Button className="back-button"
+                    variant="warning"
+                    onClick={() => navigate("/main")}>Voltar</Button>
             <div className="table-container">
                 <Table striped>
                     <thead>
                     <tr>
-                        <th>Value</th>
-                        <th>Label</th>
+                        <th>Crime</th>
                         <th>Acções</th>
                     </tr>
                     </thead>
@@ -48,7 +52,6 @@ function ManageCrimeTypes() {
                     {crimetypes.map((ct) => (
                         <tr key={ct.id}>
                             <td>{ct.value}</td>
-                            <td>{ct.label}</td>
                             <td>
                                 {(userType === "Admin" || userType === "Operador") && (
                                     <Button

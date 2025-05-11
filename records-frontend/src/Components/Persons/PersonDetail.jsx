@@ -1,4 +1,4 @@
-import {useLocation} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useState} from "react";
 import axios from "axios";
 import {useData} from "../DataContext";
@@ -17,6 +17,7 @@ function PersonDetail() {
     const {casefiles, PERSONCASEFILES_URL, personCasefiles, refreshPersonCasefiles} = useData();
     const {userType} = useUserContext();
     const [selectedCaseFiles, setSelectedCaseFiles] = useState([]);
+    const navigate = useNavigate();
 
     const personCasefileIds = personCasefiles // ids de casefiles já associados à pessoa
         .filter(person_file => person_file.person === person.id)
@@ -52,7 +53,7 @@ function PersonDetail() {
         <div className="persons">
             <MyNavbar/>
             <div className="card-container">
-                <Card style={{width: '22rem'}}>
+                <Card style={{width: '25rem'}}>
                     <Card.Img variant="top" src={shadowImg}/>
                     <Card.Body>
                         <Card.Title>{person.name}</Card.Title>
@@ -63,7 +64,8 @@ function PersonDetail() {
                     <ListGroup className="list-group-flush">
                         {matchingCaseFiles.length > 0 ?
                             (matchingCaseFiles.map(mcf =>
-                                <ListGroup.Item key={mcf.id}>{mcf.id}/{mcf.year} - {mcf.crime}
+                                <ListGroup.Item key={mcf.id} className="d-flex justify-content-between align-items-center">
+                                    {mcf.id}/{mcf.year} - {mcf.crime}
                                     {userType === "Admin" && (<Button variant="danger"
                                         onClick={() => handleDeletion(mcf.id)}>Remover</Button>)}
                                 </ListGroup.Item>)) :
@@ -71,37 +73,40 @@ function PersonDetail() {
                     </ListGroup>
                     <Card.Body>
                         <div className="d-flex justify-content-between">
-                            <Button variant="warning">
-                                Associar processos
+                            <Button variant="warning" onClick={() => navigate("/persons")}>
+                                Voltar
                             </Button>
-                            <Button variant="info">
+                            <Button variant="success">
                                 Associar foto
+                            </Button>
+                            <Button variant="success">
+                                Associar processo
                             </Button>
                         </div>
                     </Card.Body>
                 </Card>
             </div>
 
-            {/*{availableCaseFiles.length > 0 ? (*/}
-            {/*    <div>*/}
-            {/*        {availableCaseFiles.map(casefile => (*/}
-            {/*            <div key={casefile.id}>*/}
-            {/*                <input*/}
-            {/*                    type="checkbox"*/}
-            {/*                    checked={selectedCaseFiles.includes(casefile.id)}*/}
-            {/*                    onChange={() => handleCaseFileSelection(casefile.id)}*/}
-            {/*                />*/}
-            {/*                <label>*/}
-            {/*                    {casefile.id}/{casefile.year} - {casefile.crime}*/}
-            {/*                </label>*/}
-            {/*            </div>*/}
-            {/*        ))}*/}
-            {/*        <button onClick={associateCaseFiles} disabled={selectedCaseFiles.length === 0}>*/}
-            {/*            Associar processos à pessoa*/}
-            {/*        </button>*/}
-            {/*    </div>*/}
-            {/*) : (<p>Não há processos disponíveis para associar.</p>)*/}
-            {/*}*/}
+            {availableCaseFiles.length > 0 ? (
+                <div>
+                    {availableCaseFiles.map(casefile => (
+                        <div key={casefile.id}>
+                            <input
+                                type="checkbox"
+                                checked={selectedCaseFiles.includes(casefile.id)}
+                                onChange={() => handleCaseFileSelection(casefile.id)}
+                            />
+                            <label>
+                                {casefile.id}/{casefile.year} - {casefile.crime}
+                            </label>
+                        </div>
+                    ))}
+                    <button onClick={associateCaseFiles} disabled={selectedCaseFiles.length === 0}>
+                        Associar processos à pessoa
+                    </button>
+                </div>
+            ) : (<p>Não há processos disponíveis para associar.</p>)
+            }
 
 
 

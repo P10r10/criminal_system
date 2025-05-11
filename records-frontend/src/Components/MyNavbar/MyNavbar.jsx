@@ -24,16 +24,11 @@ function MyNavbar() {
                     />{" "}
                     Departamento de informação criminal
                     <Button variant="warning" onClick={() => navigate("/main")}>Menu</Button>
-                    <Button variant="warning" onClick={() => navigate("/persons")}>Pessoas</Button>
-                    <Button variant="warning" onClick={() => navigate("/casefiles")}>Processos</Button>
                 </Navbar.Brand>
-                <Navbar.Toggle/>
-                <Navbar.Collapse className="justify-content-end">
-                    <Navbar.Text>
-                        Utilizador: <strong>{username}</strong> ({userType})
-                        <Button variant="danger" onClick={handleLogout}>sair</Button>
-                    </Navbar.Text>
-                </Navbar.Collapse>
+                <Navbar.Text className="d-flex align-items-center">
+                    Utilizador: <strong className="ms-1">{username}</strong> ({userType})
+                    <Button variant="danger" className="ms-2" onClick={handleLogout}>sair</Button>
+                </Navbar.Text>
             </Container>
         </Navbar>
     );

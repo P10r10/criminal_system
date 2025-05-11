@@ -1,19 +1,23 @@
 .crime-style {
     background: #0d6efd;
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .crime-style h1 {
     text-align: center;
     font-size: 4rem;
     color: white;
-    padding-bottom: 2rem;
 }
 
 .crime-style .table {
     width: 100%;
     margin: 0;
+}
+
+.back-button {
+    display: block;
+    margin: 1rem auto;
 }
 
 h1 .btn {
@@ -24,29 +28,29 @@ td .btn {
     margin-right: 5px;
 }
 
-.table-container {
+.crime-style .table-container {
     max-height: 591px;
     overflow-y: auto;
-    width: 75%;
+    width: 30%;
     margin: 0 auto;
 }
 
-.table-container thead th { /* header fica sempre visível*/
+.crime-style .table-container thead th { /* header fica sempre visível*/
     position: sticky;
     top: 0;
     z-index: 1;
     background: #fff;
 }
 
-.table-container::-webkit-scrollbar {
+.crime-style .table-container::-webkit-scrollbar {
     width: 10px;
 }
 
-.table-container::-webkit-scrollbar-thumb {
+.crime-style .table-container::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 4px;
 }
 
-.table-container::-webkit-scrollbar-thumb:hover {
+.crime-style .table-container::-webkit-scrollbar-thumb:hover {
     background: #555;
 }

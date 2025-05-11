@@ -24,29 +24,29 @@ h1 .btn {
     margin-left: 5px;
 }
 
-.table-container {
+.persons .table-container {
     max-height: 591px;
     overflow-y: auto;
     width: 75%;
     margin: 0 auto;
 }
 
-.table-container thead th { /* header fica sempre visível*/
+.persons .table-container thead th { /* header fica sempre visível*/
     position: sticky;
     top: 0;
     z-index: 1;
     background: #fff;
 }
 
-.table-container::-webkit-scrollbar {
+.persons .table-container::-webkit-scrollbar {
     width: 10px;
 }
 
-.table-container::-webkit-scrollbar-thumb {
+.persons .table-container::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 4px;
 }
 
-.table-container::-webkit-scrollbar-thumb:hover {
+.persons .table-container::-webkit-scrollbar-thumb:hover {
     background: #555;
 }

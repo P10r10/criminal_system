@@ -6,7 +6,7 @@ import MyNavbar from "./Components/MyNavbar/MyNavbar";
 
 function Casefiles() {
     const {casefiles, refreshCasefiles, CASEFILES_URL, crimetypes} = useData();
-    const [inputs, setInputs] = useState({id: null, crime: "agressão", status: "pendente", year: null})
+    const [inputs, setInputs] = useState({id: null, crime: "agressão", status: "pendente", year: null}) // REVIEW agressão TODO
     const navigate = useNavigate();
 
     const handleCreateCasefile = (e) => {
