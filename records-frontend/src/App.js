@@ -2,7 +2,7 @@ import {DataProvider} from "./Components/DataContext";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Main from "./Components/Main/Main";
 import Persons from "./Components/Persons/Persons";
-import Casefiles from "./Casefiles";
+import Casefiles from "./Components/Casefiles/Casefiles";
 import PersonDetail from "./Components/PersonDetails/PersonDetail";
 import CasefileDetail from "./CasefileDetail";
 import LandingPage from "./Components/LandingPage/LandingPage";
