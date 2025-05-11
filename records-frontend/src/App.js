@@ -33,13 +33,13 @@ function App() {
 
 export default App;
 
-// TODO 1 *** css processos
-// TODO 2 *** implementar detalhe pessoa  / associar foto / editar pessoa?
-
+// TODO 1 *** criar processo com modal
 
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
+
+// *** implementar detalhe pessoa  / associar foto / editar pessoa?
 
 // criar mais fields Person?
 // Associar fotos pessoas

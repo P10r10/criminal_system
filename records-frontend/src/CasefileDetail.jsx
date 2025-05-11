@@ -6,10 +6,11 @@ import MyNavbar from "./Components/MyNavbar/MyNavbar";
 
 function Casefile() {
 
-    const {statusChoices, refreshCasefiles, CASEFILES_URL, casefiles} = useData();
+    const {statusChoices, refreshCasefiles, CASEFILES_URL} = useData();
+
+
     const {state} = useLocation();
-    const casefileId = state.id;
-    const casefile = casefiles.find((c) => c.id === casefileId);
+    const casefile = state.cf;
     const [statusSelected, setStatusSelected] = useState(casefile.status);
 
     const changeHandler = (e) => {
