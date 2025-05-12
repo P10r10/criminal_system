@@ -23,7 +23,6 @@ function ModalCreateAssociationType({show, handleClose, availableCaseFiles, pers
 
     const handleAssociatePersonCasefile = (e) => {
         e.preventDefault();
-        if (!casefileId) return;
         axios.post(PERSONCASEFILES_URL, {person: person.id, casefile: casefileId,})
             .then(() => {
                 refreshPersonCasefiles();
@@ -59,6 +58,7 @@ function ModalCreateAssociationType({show, handleClose, availableCaseFiles, pers
                                 const case_id = option ? option.value : null;
                                 setCasefileId(case_id);
                             }}
+                            required
                         />
                     </Form.Group>
                     <Button variant="success" type="submit">Associar</Button>

@@ -39,7 +39,7 @@ function ModalCreateCrimeType({show, handleClose}) {
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formName" className="mb-3">
+                    <Form.Group className="mb-3">
                         <Form.Label>Tipo de crime</Form.Label>
                         <Form.Control
                             ref={inputRef}

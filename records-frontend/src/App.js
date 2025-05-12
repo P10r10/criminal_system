@@ -33,7 +33,7 @@ function App() {
 
 export default App;
 
-// TODO 1 *** criar processo com modal
+// TODO 1 *** criar processo com modal FALTA DATA OCORRÊNCIA
 
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
@@ -44,8 +44,6 @@ export default App;
 // criar mais fields Person?
 // Associar fotos pessoas
 // focus noutras partes onde seja necessário
-
-//no processo acrescentar data de ocorrência FACULTATIVO?
 
 //tratar dados no backend ?
 

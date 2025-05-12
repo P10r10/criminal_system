@@ -26,11 +26,6 @@ export function DataProvider({children}) {
         setCasefiles(res.data);
     };
 
-    // const refreshLinks = async () => {
-    //     const res = await axios.get(PERSONCASEFILES_URL);
-    //     setPersoncasefiles(res.data);
-    // };
-
     const refreshCrimeTypes = async () => {
         const res = await axios.get(CRIMETYPES_URL);
         setCrimetypes(res.data);
