@@ -14,7 +14,7 @@ class PersonSerializer(serializers.ModelSerializer):
 class CasefileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Casefile
-        fields = ['id', 'year', 'crime', 'status']
+        fields = ['id', 'year', 'crime', 'crime_date', 'description', 'status']
         read_only_fields = ('id', 'year')
 
 

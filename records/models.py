@@ -28,6 +28,8 @@ class CrimeType(models.Model):
 class Casefile(models.Model):
     year = models.IntegerField(default=datetime.today().year)
     crime = models.CharField(max_length=50)
+    crime_date = models.DateField()
+    description = models.TextField(max_length=200, null=True, blank=True)
     status = models.CharField(max_length=10, choices=Status.choices, default=Status.PENDENTE)
 
     def __str__(self):

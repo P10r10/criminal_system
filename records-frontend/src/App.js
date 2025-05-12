@@ -35,18 +35,19 @@ export default App;
 
 // TODO 1 *** criar processo com modal FALTA DATA OCORRÊNCIA
 
+// DETALHE DO PROCESSO CSS descrição / data ocorrência
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
+// detalhe do processo tem descrição?
 
 // *** implementar detalhe pessoa  / associar foto / editar pessoa?
+// *** editar processo?
 
-// criar mais fields Person?
 // Associar fotos pessoas
 // focus noutras partes onde seja necessário
 
 //tratar dados no backend ?
 
-//IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho
-
 //ordem alpha nas tabelas
+//IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho

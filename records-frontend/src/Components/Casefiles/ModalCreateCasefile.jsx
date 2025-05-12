@@ -18,7 +18,7 @@ function ModalCreateCasefile({show, handleClose}) {
 
     const handleCreateCasefile = (e) => {
         e.preventDefault();
-        axios.post(CASEFILES_URL, {crime: crimeType}).then(() => {
+        axios.post(CASEFILES_URL, {crime: crimeType, crime_date: crimeDate}).then(() => {
             refreshCasefiles();
             setCrimeType(null);
             setCrimeDate(null);

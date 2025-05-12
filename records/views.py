@@ -128,7 +128,7 @@ def login_view(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)  # Criação da sessão
-        return Response({'message': 'Logged in bem sucedido'})
+        return Response({'message': 'Log in bem sucedido'})
     else:
         return Response({'error': 'Credenciais inválidas'}, status=status.HTTP_401_UNAUTHORIZED)
 
@@ -136,7 +136,7 @@ def login_view(request):
 @api_view(['GET'])
 def logout_view(request):
     logout(request)
-    return Response({'message': 'Logged out successfully'})
+    return Response({'message': 'Log out bem sucedido'})
 
 
 @api_view(['GET'])
