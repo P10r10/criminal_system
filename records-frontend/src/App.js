@@ -48,5 +48,5 @@ export default App;
 
 //tratar dados no backend ?
 
-//ordem alpha nas tabelas
+//ordem alpha nas tabelas IMPLEMENTAR pesquisa react select ou assim?
 //IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho
