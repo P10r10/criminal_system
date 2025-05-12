@@ -33,7 +33,6 @@ function App() {
 
 export default App;
 
-// TODO 1 *** criar processo com modal FALTA DATA OCORRÊNCIA
 
 // DETALHE DO PROCESSO CSS descrição / data ocorrência
 // ver pessoas no detalhe do processo
