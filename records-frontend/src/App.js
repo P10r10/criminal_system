@@ -4,7 +4,7 @@ import Main from "./Components/Main/Main";
 import Persons from "./Components/Persons/Persons";
 import Casefiles from "./Components/Casefiles/Casefiles";
 import PersonDetail from "./Components/PersonDetails/PersonDetail";
-import CasefileDetail from "./CasefileDetail";
+import CasefileDetail from "./Components/CasefileDetail/CasefileDetail";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import {UserProvider} from "./Components/UserContext";
 import ManageCrimeTypes from "./Components/ManageCrimeTypes/ManageCrimeTypes";

@@ -8,6 +8,7 @@ function ModalCreateCasefile({show, handleClose}) {
     const {crimetypes, CASEFILES_URL, refreshCasefiles} = useData();
     const [crimeType, setCrimeType] = useState(null);
     const [crimeDate, setCrimeDate] = useState(null);
+    const [description, setDescription] = useState(null);
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -18,7 +19,11 @@ function ModalCreateCasefile({show, handleClose}) {
 
     const handleCreateCasefile = (e) => {
         e.preventDefault();
-        axios.post(CASEFILES_URL, {crime: crimeType, crime_date: crimeDate}).then(() => {
+        axios.post(CASEFILES_URL, {
+            crime: crimeType,
+            crime_date: crimeDate,
+            description: description
+        }).then(() => {
             refreshCasefiles();
             setCrimeType(null);
             setCrimeDate(null);
@@ -39,6 +44,7 @@ function ModalCreateCasefile({show, handleClose}) {
             <Modal.Body>
                 <Form onSubmit={handleCreateCasefile}>
                     <Form.Group className="mb-3">
+                        <Form.Label>Crime</Form.Label>
                         <Select
                             ref={inputRef}
                             className="basic-single"
@@ -60,11 +66,18 @@ function ModalCreateCasefile({show, handleClose}) {
                         <Form.Label>Data da ocorrência</Form.Label>
                         <Form.Control
                             type="date"
-                            name="date_of_birth"
                             value={crimeDate}
                             onChange={(e) => setCrimeDate(e.target.value)}
                             required
                         />
+                    </Form.Group>
+                    <Form.Label>Descrição</Form.Label>
+                    <Form.Control
+                        type="text"
+                        value={description}
+                        onChange={(e) => setDescription(e.target.value)}
+                    />
+                    <Form.Group className="mb-3">
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Criar processo

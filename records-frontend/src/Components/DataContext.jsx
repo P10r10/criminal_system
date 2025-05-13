@@ -46,7 +46,6 @@ export function DataProvider({children}) {
             await Promise.all([
                 refreshPersons(),
                 refreshCasefiles(),
-                // refreshLinks(),
                 refreshCrimeTypes(),
                 refreshStatusChoices(),
                 refreshPersonCasefiles()

@@ -1,0 +1,25 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    background: #4670a9;
+}
+
+.casefiles .card-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.casefiles .card-container .card-title {
+    color: #3b3bb7;
+    font-weight: bold;
+}
+
+.casefiles .list-group-item:nth-child(even) {
+    background: rgb(243, 237, 237);
+}
+
+.casefiles .list-group { /* scroll quando a pessoa tem muitos crimes */
+    max-height: 225px;
+    overflow-y: auto;
+}
