@@ -34,7 +34,7 @@ function App() {
 export default App;
 
 
-// DETALHE DO PROCESSO CSS descrição / data ocorrência
+// DETALHE DO PROCESSO CSS *** todo alterar mudança de estado
 // ver pessoas no detalhe do processo
 // criar pessoas no detalhe do processo
 // apagar pessoas no detalhe do processo
