@@ -34,14 +34,10 @@ function App() {
 export default App;
 
 
-// DETALHE DO PROCESSO CSS *** todo alterar mudança de estado EDITAR PROCESSO
+// EDITAR PROCESSO *** todo alterar mudança de estado EDITAR PROCESSO
 
-
-// *** implementar detalhe pessoa  / associar foto / editar pessoa?
-// *** editar processo? // Editar pessoa?
-
-// Associar fotos pessoas
-// focus noutras partes onde seja necessário
+// *** Editar pessoa / associar foto ao criar ?/ usar mesmo modal para editar?
+// *** editar processo? // ?
 
 //tratar dados no backend ?
 
