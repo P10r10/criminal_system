@@ -8,6 +8,7 @@ import {format} from "date-fns";
 import Button from "react-bootstrap/Button";
 import {useUserContext} from "../UserContext";
 import "./casefileDetailStyle.css";
+import Select from "react-select";
 
 function Casefile() {
 
@@ -19,20 +20,18 @@ function Casefile() {
     const [statusSelected, setStatusSelected] = useState(casefile.status);
     const [show, setShow] = useState(false);
     const handleClickAssociatePerson = () => setShow(true);
+
+    const statusChoicesMapped = statusChoices.map((sc) =>
+        ({value: sc.value, label: sc.label}));
+
     const changeHandler = (e) => {
         setStatusSelected(e.target.value);
     }
 
     const handleChangeStatus = () => {
-        if (statusSelected === "pendente") { // TODO HERE mudar para modal?
-            setStatusSelected("arquivado");
-        } else if (statusSelected === "arquivado") {
-            setStatusSelected("acusado");
-        } else if (statusSelected === "acusado") {
-            setStatusSelected("pendente");
-        }
-        axios.put(CASEFILES_URL + casefile.id + "/", {...casefile, status: statusSelected})
-            .then(() => refreshCasefiles());
+        alert(statusChoices[0].label);
+        // axios.put(CASEFILES_URL + casefile.id + "/", {...casefile, status: statusSelected})
+        //     .then(() => refreshCasefiles());
     }
 
     return (
@@ -50,6 +49,20 @@ function Casefile() {
                         <Card.Text><strong>Data da
                             ocorrência:</strong> {format(new Date(casefile.crime_date), "dd/MM/yyyy")}</Card.Text>
                         <Card.Text><strong>Descrição:</strong> {casefile.description}</Card.Text>
+                        <Card.Text>
+                            <Select name="status"
+                                    value={statusSelected}
+                                    onChange={(e) => changeHandler(e)}
+                                    isSearchable={false}
+                                    isDisabled={!(userType === "Admin" || userType === "Operador")}
+                                    options={statusChoicesMapped}
+                                    placeholder={casefile.status} //mudar? alterar escolha estado para Capital na criação do processo
+                            >
+                                {statusChoices.map(stat => (<option key={stat.id}
+                                                                    value={stat.label}
+                                >{stat.label}</option>))}
+                            </Select>
+                        </Card.Text>
                     </Card.Body>
                     {/*<ListGroup className="list-group-flush">*/}
                     {/*    {matchingCaseFiles.length > 0 ?*/}
@@ -69,7 +82,7 @@ function Casefile() {
                                 <>
                                     <Button variant="success"
                                             onClick={handleChangeStatus}>Alterar estado</Button>
-                                    <Button variant="success"
+                                    <Button variant="succe  ss"
                                             onClick={handleClickAssociatePerson}>Associar pessoa</Button>
                                 </>
                             )}
@@ -77,6 +90,12 @@ function Casefile() {
                     </Card.Body>
                 </Card>
             </div>
+
+            {/*<select name="status" value={statusSelected} onChange={(e) => changeHandler(e)}>*/}
+            {/*    {statusChoices.map(stat => (<option key={stat.id} value={stat.value}>{stat.label}</option>))}*/}
+            {/*</select>*/}
+            {/*<button>Alterar estado</button>*/}
+
         </div>
     );
 }
@@ -84,11 +103,7 @@ function Casefile() {
 export default Casefile;
 
 
-//     <h1>Processo: {casefile.id}/{casefile.year}</h1>
-//     <h2>Crime: {casefile.crime}</h2>
-//     <h3>Estado: {casefile.status}</h3>
-//     <select name="status" value={statusSelected} onChange={(e) => changeHandler(e)}>
-//         {statusChoices.map((stat, idx) => (<option key={idx} value={stat.value}>{stat.label}</option>))}
-//     </select>
-//     <button onClick={handleChangeState}>Alterar estado</button>
+// <h1>Processo: {casefile.id}/{casefile.year}</h1>
+// <h2>Crime: {casefile.crime}</h2>
+// <h3>Estado: {casefile.status}</h3>
 // </div>
