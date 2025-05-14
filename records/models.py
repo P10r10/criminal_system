@@ -12,9 +12,9 @@ class Person(models.Model):
 
 
 class Status(models.TextChoices):
-    PENDENTE = 'pendente', 'Pendente'
-    ARQUIVADO = 'arquivado', 'Arquivado'
-    ACUSADO = 'acusado', 'Acusado'
+    PENDENTE = 'Pendente', 'Pendente'
+    ARQUIVADO = 'Arquivado', 'Arquivado'
+    ACUSADO = 'Acusado', 'Acusado'
 
 
 class CrimeType(models.Model):

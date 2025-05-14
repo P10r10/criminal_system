@@ -24,7 +24,7 @@ function PersonDetail() {
 
     const personCasefileIds = personCasefiles // ids de casefiles já associados à pessoa
         .filter(person_file => person_file.person === person.id)
-        .map(person_file => person_file.casefile)
+        .map(person_file => person_file.casefile);
 
     const matchingCaseFiles = casefiles.filter(casefile => // filtra casefiles por ids
         personCasefileIds.includes(casefile.id)
@@ -62,8 +62,9 @@ function PersonDetail() {
                                 <ListGroup.Item key={mcf.id}
                                                 className="d-flex justify-content-between align-items-center">
                                     {mcf.id}/{mcf.year} - {mcf.crime}
-                                    {userType === "Admin" && (<Button variant="danger"
-                                                                      onClick={() => handleDeletion(mcf.id)}>Remover</Button>)}
+                                    {userType === "Admin" && (
+                                        <Button variant="danger"
+                                                onClick={() => handleDeletion(mcf.id)}>Remover</Button>)}
                                 </ListGroup.Item>)) :
                             (<ListGroup.Item>Não tem processos associados</ListGroup.Item>)}
                     </ListGroup>

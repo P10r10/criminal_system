@@ -47,20 +47,20 @@ function Casefiles() {
                     </tr>
                     </thead>
                     <tbody>
-                    {casefiles.map((cf) => (
-                        <tr key={cf.id}>
-                            <td>{cf.id + "/" + cf.year}</td>
-                            <td>{cf.crime}</td>
-                            <td>{cf.status}</td>
+                    {casefiles.map((casefile) => (
+                        <tr key={casefile.id}>
+                            <td>{casefile.id + "/" + casefile.year}</td>
+                            <td>{casefile.crime}</td>
+                            <td>{casefile.status}</td>
                             <td>
                                 <Button
                                     variant="primary"
-                                    onClick={() => navigate("/casefiledetail", {state: {cf}})}
+                                    onClick={() => navigate("/casefiledetail", {state: {casefile}})}
                                 >Detalhe</Button>
                                 {userType === "Admin" && (
                                     <Button
                                         variant="danger"
-                                        onClick={() => handleRemoveCasefile(cf.id)}>Remover</Button>
+                                        onClick={() => handleRemoveCasefile(casefile.id)}>Remover</Button>
                                 )}
                             </td>
                         </tr>

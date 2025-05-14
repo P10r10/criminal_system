@@ -34,11 +34,9 @@ function App() {
 export default App;
 
 
-// DETALHE DO PROCESSO CSS *** todo alterar mudança de estado
-// ver pessoas no detalhe do processo
-// criar pessoas no detalhe do processo
-// apagar pessoas no detalhe do processo
-// detalhe do processo tem descrição?
+// DETALHE DO PROCESSO CSS *** todo alterar mudança de estado EDITAR PROCESSO
+// associar pessoas pessoas no detalhe do processo
+
 
 // *** implementar detalhe pessoa  / associar foto / editar pessoa?
 // *** editar processo?

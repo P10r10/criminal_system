@@ -4,7 +4,7 @@ import axios from "axios";
 import {useData} from "../DataContext";
 import Select from 'react-select';
 
-function ModalCreateAssociationType({show, handleClose, availableCaseFiles, person}) {
+function ModalAssociatePerson({show, handleClose, availableCaseFiles, person}) {
     const {PERSONCASEFILES_URL, refreshPersonCasefiles} = useData();
     const [casefileId, setCasefileId] = useState(null);
     const inputRef = useRef(null);
@@ -69,4 +69,4 @@ function ModalCreateAssociationType({show, handleClose, availableCaseFiles, pers
     );
 }
 
-export default ModalCreateAssociationType;
+export default ModalAssociatePerson;
