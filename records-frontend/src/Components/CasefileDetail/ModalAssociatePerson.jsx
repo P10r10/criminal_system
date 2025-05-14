@@ -3,30 +3,38 @@ import {Modal, Button, Form} from "react-bootstrap";
 import axios from "axios";
 import {useData} from "../DataContext";
 import Select from 'react-select';
+import {format} from "date-fns";
 
-function ModalAssociatePerson({show, handleClose, availableCaseFiles, person}) {
+function ModalAssociatePerson({show, handleClose, availablePersons, casefile}) {
     const {PERSONCASEFILES_URL, refreshPersonCasefiles} = useData();
-    const [casefileId, setCasefileId] = useState(null);
+    const [personId, setPersonId] = useState(null);
     const inputRef = useRef(null);
 
-    const availableCaseFilesMapped = availableCaseFiles.map((cf) =>
-        ({value: cf.id, label: cf.id + "/" + cf.year + " - " + cf.crime}));
+    const availablePersonsMapped = availablePersons.map((person) =>
+        ({
+            value: person.id,
+            label: person.id + " - " + person.name + " " +
+                (person.alias ? "(" + person.alias + ")" : "") + " - " +
+                (person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : "Sem DN")
+        }));
 
     useEffect(() => {
         if (show && inputRef.current) {
             inputRef.current.focus(); // Põe o focus no input quando se abre o modal
         }
         if (!show) {
-            setCasefileId(null); // limpa se fechar o modal
+            setPersonId(null); // limpa se fechar o modal
         }
     }, [show]);
 
     const handleAssociatePersonCasefile = (e) => {
         e.preventDefault();
-        axios.post(PERSONCASEFILES_URL, {person: person.id, casefile: casefileId,})
+        // alert("pid: " + personId);
+        // alert("case id: " + casefile.id);
+        axios.post(PERSONCASEFILES_URL, {person: personId, casefile: casefile.id,})
             .then(() => {
                 refreshPersonCasefiles();
-                setCasefileId(null);
+                setPersonId(null);
                 handleClose(); // fecha o modal
             });
     };
@@ -39,22 +47,22 @@ function ModalAssociatePerson({show, handleClose, availableCaseFiles, person}) {
             keyboard={false}
         >
             <Modal.Header closeButton className="bg-warning text-white">
-                <Modal.Title>Associar processo à pessoa</Modal.Title>
+                <Modal.Title>Associar pessoa ao processo</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form onSubmit={handleAssociatePersonCasefile}>
                     <Form.Group controlId="formName" className="mb-3">
-                        <Form.Label>Processo a associar</Form.Label>
+                        <Form.Label>Pessoa a associar</Form.Label>
                         <Select
                             ref={inputRef}
                             isClearable={true}
                             isSearchable={true}
                             placeholder="Escolha..."
-                            options={availableCaseFilesMapped}
-                            noOptionsMessage={() => "Nenhum processo encontrado"}
+                            options={availablePersonsMapped}
+                            noOptionsMessage={() => "Nenhuma pessoa encontrada"}
                             onChange={(option) => {
-                                const case_id = option ? option.value : null;
-                                setCasefileId(case_id);
+                                const person_id = option ? option.value : null;
+                                setPersonId(person_id);
                             }}
                             required
                         />

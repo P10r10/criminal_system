@@ -57,10 +57,10 @@ function Casefile() {
     return (
         <div className="casefiles">
             <MyNavbar/>
-            {/*<ModalAssociatePerson show={show}*/}
-            {/*                      handleClose={handleClose}*/}
-            {/*                      availablePersons={availablePersons}*/}
-            {/*                      casefile={casefile}/>*/}
+            <ModalAssociatePerson show={show}
+                                  handleClose={handleClose}
+                                  availablePersons={availablePersons}
+                                  casefile={casefile}/>
             <div className="card-container">
                 <Card style={{width: '35rem'}}>
                     <Card.Body>

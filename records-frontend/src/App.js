@@ -35,11 +35,10 @@ export default App;
 
 
 // DETALHE DO PROCESSO CSS *** todo alterar mudança de estado EDITAR PROCESSO
-// associar pessoas pessoas no detalhe do processo
 
 
 // *** implementar detalhe pessoa  / associar foto / editar pessoa?
-// *** editar processo?
+// *** editar processo? // Editar pessoa?
 
 // Associar fotos pessoas
 // focus noutras partes onde seja necessário
