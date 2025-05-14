@@ -51,8 +51,9 @@ function PersonDetail() {
                     <Card.Img variant="top" src={shadowImg}/>
                     <Card.Body>
                         <Card.Title>{person.name}</Card.Title>
-                        <Card.Text>Alcunha {person.alias ? `(${person.alias})` : ""}</Card.Text>
-                        <Card.Text>DN: {person.date_of_birth ? format(new Date(person.date_of_birth), "dd/MM/yyyy") : ""}
+                        <Card.Text>Alcunha {person.alias ? `(${person.alias})` : "(Desconhecida)"}</Card.Text>
+                        <Card.Text>Data de Nascimento: {person.date_of_birth ?
+                            format(new Date(person.date_of_birth), "dd/MM/yyyy") : "Desconhecida"}
                         </Card.Text>
                     </Card.Body>
                     <ListGroup className="list-group-flush">
