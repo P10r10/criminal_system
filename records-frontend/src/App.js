@@ -34,12 +34,8 @@ function App() {
 export default App;
 
 
-// EDITAR PROCESSO *** todo alterar mudança de estado EDITAR PROCESSO
+//  associar ESTADO ao criar *** TODO
 
-// *** Editar pessoa / associar foto ao criar ?/ usar mesmo modal para editar?
-// *** editar processo? // ?
+//  associar foto ao criar / NULL ?
 
-//tratar dados no backend ?
-
-//ordem alpha nas tabelas IMPLEMENTAR pesquisa react select ou assim?
 //IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho
