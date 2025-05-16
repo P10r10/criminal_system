@@ -65,8 +65,8 @@ export const UserProvider = ({children}) => {
             setIsStaff(response.data.isStaff);
             setIsSuper(response.data.isSuper);
             setUserType(fetchedUserType);
-            sessionStorage.setItem('username', fetchedUsername);
-            sessionStorage.setItem('userType', fetchedUserType);
+            localStorage.setItem('username', fetchedUsername);
+            localStorage.setItem('userType', fetchedUserType);
             navigate("/main");
         } catch (error) {
             setMessageStyle("bg-danger text-white");

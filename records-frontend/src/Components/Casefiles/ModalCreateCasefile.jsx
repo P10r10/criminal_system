@@ -5,10 +5,11 @@ import {useData} from "../DataContext";
 import Select from "react-select";
 
 function ModalCreateCasefile({show, handleClose}) {
-    const {crimetypes, CASEFILES_URL, refreshCasefiles} = useData();
+    const {crimetypes, CASEFILES_URL, refreshCasefiles, statusChoices} = useData();
     const [crimeType, setCrimeType] = useState(null);
-    const [crimeDate, setCrimeDate] = useState(null);
-    const [description, setDescription] = useState(null);
+    const [crimeDate, setCrimeDate] = useState("");
+    const [description, setDescription] = useState("");
+    const [status, setStatus] = useState("Pendente");
     const inputRef = useRef(null);
 
     useEffect(() => {
@@ -22,19 +23,31 @@ function ModalCreateCasefile({show, handleClose}) {
         axios.post(CASEFILES_URL, {
             crime: crimeType,
             crime_date: crimeDate,
-            description: description
+            description: description,
+            status: status
         }).then(() => {
             refreshCasefiles();
-            setCrimeType(null);
-            setCrimeDate(null);
+            resetForm();
             handleClose(); // fecha o modal
         });
+    };
+
+    const resetForm = () => {
+        setCrimeType(null);
+        setCrimeDate("");
+        setDescription("");
+        setStatus("Pendente");
+    };
+
+    const onClose = () => {
+        resetForm();
+        handleClose();
     };
 
     return (
         <Modal
             show={show}
-            onHide={handleClose}
+            onHide={onClose}
             backdrop="static"
             keyboard={false}
         >
@@ -71,13 +84,23 @@ function ModalCreateCasefile({show, handleClose}) {
                             required
                         />
                     </Form.Group>
-                    <Form.Label>Descrição</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
                     <Form.Group className="mb-3">
+                        <Form.Label>Descrição</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Estado</Form.Label>
+                        <Form.Select name="statusOptions"
+                                     id="statusSelect"
+                                     value={status}
+                                     onChange={(e) => setStatus(e.target.value)}>
+                            {statusChoices.map(sc => <option key={sc.value} value={sc.value}>{sc.label}</option>)}
+                        </Form.Select>
                     </Form.Group>
                     <Button variant="primary" type="submit">
                         Criar processo
@@ -85,12 +108,13 @@ function ModalCreateCasefile({show, handleClose}) {
                 </Form>
             </Modal.Body>
             <Modal.Footer className="bg-warning text-white">
-                <Button variant="secondary" onClick={handleClose}>
+                <Button variant="secondary" onClick={onClose}>
                     Fechar
                 </Button>
             </Modal.Footer>
         </Modal>
-    );
+    )
+        ;
 }
 
 export default ModalCreateCasefile;
