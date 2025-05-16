@@ -8,7 +8,7 @@ class PersonSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Person
-        fields = ('id', 'name', 'alias', 'date_of_birth')
+        fields = ('id', 'name', 'alias', 'date_of_birth', 'image')
 
 
 class CasefileSerializer(serializers.ModelSerializer):

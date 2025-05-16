@@ -6,6 +6,8 @@ import {useData} from "../DataContext";
 function ModalCreatePerson({show, handleClose}) {
     const {PERSONS_URL, refreshPersons} = useData();
     const [inputs, setInputs] = useState({name: "", alias: "", date_of_birth: ""});
+    const [image, setImage] = useState(null);
+    // const [previewUrl, setPreviewUrl] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,16 +16,48 @@ function ModalCreatePerson({show, handleClose}) {
                 name: inputs.name,
                 alias: inputs.alias || null,
                 date_of_birth: inputs.date_of_birth || null,
+                image: image
+            }, {headers: {"Content-Type": "multipart/form-data",},
             })
             .then(() => {
                 refreshPersons();
                 setInputs({name: "", alias: "", date_of_birth: ""});
+                setImage(null);
                 handleClose(); // fecha o modal
             });
     };
 
     const changeHandler = (e) => {
         setInputs((i) => ({...i, [e.target.name]: e.target.value}));
+    };
+
+    const handleImageChange = (e) => {
+        e.preventDefault();
+        const image = e.target.files[0];
+        if (image) {
+            setImage(image);
+            // setPreviewUrl(URL.createObjectURL(image));
+        } else {
+            setImage(null);
+            // setPreviewUrl('');
+        }
+    };
+
+    const handleUpload = (e) => {
+        e.preventDefault();
+        // if (image) {
+        //     const updatedProfile = profile;
+        //     updatedProfile.imagem = image;
+        //     axios.put(PROFILE_URL, updatedProfile, {
+        //         headers: {
+        //             'X-CSRFToken': getCSRFToken(),
+        //             'Content-Type': 'multipart/form-data'
+        //         }, withCredentials: true
+        //     })
+        //         .then(() => getProfile())
+        //         .catch(err => console.error('Failed to update profile:', err));
+        //     setPreviewUrl('');
+        // }
     };
 
     return (
@@ -68,6 +102,16 @@ function ModalCreatePerson({show, handleClose}) {
                             onChange={changeHandler}
                         />
                     </Form.Group>
+
+                    <Form.Group controlId="formImage" className="mb-3">
+                        <Form.Label>Imagem</Form.Label>
+                        <Form.Control type="file" onChange={handleImageChange} accept="image/*"/>
+                        {/*<Button onClick={(e) => handleUpload(e, profile)}>Upload</Button>*/}
+                        {/*<br/>*/}
+                        {/*{previewUrl && <img src={previewUrl} alt="Preview" height="100px"/>}*/}
+                    </Form.Group>
+
+
                     <Button variant="primary" type="submit">
                         Criar pessoa
                     </Button>

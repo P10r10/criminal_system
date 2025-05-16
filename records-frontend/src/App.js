@@ -34,6 +34,6 @@ function App() {
 export default App;
 
 
-//  associar foto ao criar / NULL ?
+// limpar código e fazer relatório
 
 //IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho

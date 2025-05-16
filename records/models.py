@@ -6,6 +6,7 @@ class Person(models.Model):
     name = models.CharField(max_length=100)
     alias = models.CharField(max_length=50, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
+    image = models.ImageField(upload_to='profile_pics', default='default.png')
 
     def __str__(self):
         return self.name

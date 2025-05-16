@@ -34,7 +34,7 @@ if %ERRORLEVEL% NEQ 0 (
 
 :: Install Python dependencies
 ECHO Installing Django backend dependencies...
-pip install django djangorestframework django-cors-headers
+pip install django djangorestframework django-cors-headers Pillow
 if %ERRORLEVEL% NEQ 0 (
     ECHO Failed to install Python dependencies.
     pause

@@ -7,7 +7,6 @@ import {format} from "date-fns";
 import "./personDetailStyle.css";
 import {Card, ListGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import shadowImg from "../Persons/shadow.jpg";
 import {useUserContext} from "../UserContext";
 import ModalCreateAssociationType from "./ModalCreateAssociationType";
 
@@ -48,7 +47,7 @@ function PersonDetail() {
                                         person={person}/>
             <div className="card-container">
                 <Card style={{width: '25rem'}}>
-                    <Card.Img variant="top" src={shadowImg}/>
+                    <Card.Img variant="top" src={"http://127.0.0.1:8000" + person.image}/>
                     <Card.Body>
                         <Card.Title>{person.name}</Card.Title>
                         <Card.Text>Alcunha {person.alias ? `(${person.alias})` : "(Desconhecida)"}</Card.Text>
