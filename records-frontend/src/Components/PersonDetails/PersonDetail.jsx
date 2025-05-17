@@ -71,11 +71,8 @@ function PersonDetail() {
                         <div className="d-flex justify-content-between">
                             <Button variant="warning" onClick={() => navigate("/persons")}>Voltar</Button>
                             {(userType === "Admin" || userType === "Operador") && (
-                                <>
-                                    <Button variant="success">Associar foto</Button>
-                                    <Button variant="success"
-                                            onClick={handleClickAssociateCrimeType}>Associar processo</Button>
-                                </>
+                                <Button variant="success"
+                                        onClick={handleClickAssociateCrimeType}>Associar processo</Button>
                             )}
                         </div>
                     </Card.Body>
