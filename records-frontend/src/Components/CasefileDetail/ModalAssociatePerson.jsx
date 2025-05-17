@@ -29,8 +29,6 @@ function ModalAssociatePerson({show, handleClose, availablePersons, casefile}) {
 
     const handleAssociatePersonCasefile = (e) => {
         e.preventDefault();
-        // alert("pid: " + personId);
-        // alert("case id: " + casefile.id);
         axios.post(PERSONCASEFILES_URL, {person: personId, casefile: casefile.id,})
             .then(() => {
                 refreshPersonCasefiles();

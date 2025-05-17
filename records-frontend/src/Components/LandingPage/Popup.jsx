@@ -15,19 +15,13 @@ function Popup({messageTitle="", message = "", styles = "", onClose}) {
             show={show}
             onHide={handleClose}
             backdrop="static"
-            keyboard={false}
-        >
-            <Modal.Header
-                closeButton
-                className={styles}
-            >
+            keyboard={false}>
+            <Modal.Header closeButton className={styles}>
                 <Modal.Title>{messageTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>{message}</Modal.Body>
             <Modal.Footer className={styles}>
-                <Button variant="primary" onClick={handleClose}>
-                    Close
-                </Button>
+                <Button variant="primary" onClick={handleClose}>Close</Button>
             </Modal.Footer>
         </Modal>
     );

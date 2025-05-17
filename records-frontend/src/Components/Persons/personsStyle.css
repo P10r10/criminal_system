@@ -35,7 +35,7 @@
     margin: 0 auto;
 }
 
-.persons .table-container thead th { /* header fica sempre visível*/
+.persons .table-container thead th { /* header fica sempre visível */
     position: sticky;
     top: 0;
     z-index: 1;

@@ -32,8 +32,3 @@ function App() {
 }
 
 export default App;
-
-
-// limpar código e fazer relatório
-
-//IMPORTANTE *** TODO *** Fazer logout antes de submeter trabalho

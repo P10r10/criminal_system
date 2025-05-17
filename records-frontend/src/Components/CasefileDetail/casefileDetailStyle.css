@@ -19,7 +19,7 @@ html, body {
     background: rgb(243, 237, 237);
 }
 
-.casefiles .list-group { /* scroll quando a pessoa tem muitos crimes */
+.casefiles .list-group { /* scroll quando o processo tem muitas pessoas */
     max-height: 225px;
     overflow-y: auto;
 }

@@ -113,8 +113,7 @@ function ModalCreateCasefile({show, handleClose}) {
                 </Button>
             </Modal.Footer>
         </Modal>
-    )
-        ;
+    );
 }
 
 export default ModalCreateCasefile;
