@@ -1,11 +1,11 @@
 import {useLocation, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {useData} from "../DataContext";
 import MyNavbar from "../MyNavbar/MyNavbar";
 import {format} from "date-fns";
 import "./personDetailStyle.css";
-import {Card, ListGroup} from "react-bootstrap";
+import {Card, Form, ListGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {useUserContext} from "../UserContext";
 import ModalCreateAssociationType from "./ModalCreateAssociationType";
@@ -55,6 +55,7 @@ function PersonDetail() {
                             format(new Date(person.date_of_birth), "dd/MM/yyyy") : "Desconhecida"}
                         </Card.Text>
                     </Card.Body>
+                    <Card.Header style={{fontWeight: "bold"}}>Processos:</Card.Header>
                     <ListGroup className="list-group-flush">
                         {matchingCaseFiles.length > 0 ?
                             (matchingCaseFiles.map(mcf =>

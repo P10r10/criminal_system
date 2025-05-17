@@ -1,5 +1,5 @@
 import {useLocation, useNavigate} from "react-router-dom";
-import {useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {useData} from "../DataContext";
 import MyNavbar from "../MyNavbar/MyNavbar";
@@ -55,6 +55,7 @@ function Casefile() {
                             ocorrência: </strong>{format(new Date(casefile.crime_date), "dd/MM/yyyy")}</Card.Text>
                         <Card.Text><strong>Descrição:</strong> {casefile.description}</Card.Text>
                     </Card.Body>
+                    <Card.Header style={{fontWeight: "bold"}}>Pessoas:</Card.Header>
                     <ListGroup className="list-group-flush">
                         {matchingPersons.length > 0 ?
                             (matchingPersons.map(mcp =>
