@@ -55,7 +55,7 @@ function ModalCreateCasefile({show, handleClose}) {
                 <Modal.Title>Criar processo</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form onSubmit={handleCreateCasefile}>
+                <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Crime</Form.Label>
                         <Select
@@ -108,7 +108,7 @@ function ModalCreateCasefile({show, handleClose}) {
                 <Button variant="secondary" onClick={onClose}>
                     Fechar
                 </Button>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" onClick={handleCreateCasefile}>
                     Criar processo
                 </Button>
             </Modal.Footer>

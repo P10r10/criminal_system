@@ -38,11 +38,11 @@ function ModalCreateAssociationType({show, handleClose, availableCaseFiles, pers
             backdrop="static"
             keyboard={false}
         >
-            <Modal.Header closeButton className="bg-warning text-white">
-                <Modal.Title>Associar processo à pessoa</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleAssociatePersonCasefile}>
+            <Form onSubmit={handleAssociatePersonCasefile}>
+                <Modal.Header closeButton className="bg-warning text-white">
+                    <Modal.Title>Associar processo à pessoa</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <Form.Group controlId="formName" className="mb-3">
                         <Form.Label>Processo a associar</Form.Label>
                         <Select
@@ -59,12 +59,12 @@ function ModalCreateAssociationType({show, handleClose, availableCaseFiles, pers
                             required
                         />
                     </Form.Group>
+                </Modal.Body>
+                <Modal.Footer className="bg-warning text-white">
+                    <Button variant="secondary" onClick={handleClose}>Fechar</Button>
                     <Button variant="success" type="submit">Associar</Button>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer className="bg-warning text-white">
-                <Button variant="secondary" onClick={handleClose}>Fechar</Button>
-            </Modal.Footer>
+                </Modal.Footer>
+            </Form>
         </Modal>
     );
 }

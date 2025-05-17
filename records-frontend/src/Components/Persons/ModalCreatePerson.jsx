@@ -8,7 +8,7 @@ function ModalCreatePerson({show, handleClose}) {
     const [inputs, setInputs] = useState({name: "", alias: "", date_of_birth: ""});
     const [image, setImage] = useState(null);
 
-    const handleSubmit = (e) => {
+    const handleClickCreatePerson = (e) => {
         e.preventDefault();
         axios
             .post(PERSONS_URL, {
@@ -47,13 +47,12 @@ function ModalCreatePerson({show, handleClose}) {
             show={show}
             onHide={handleClose}
             backdrop="static"
-            keyboard={false}
-        >
-            <Modal.Header closeButton className="bg-warning text-white">
-                <Modal.Title>Criar pessoa</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSubmit}>
+            keyboard={false}>
+            <Form onSubmit={handleClickCreatePerson}>
+                <Modal.Header closeButton className="bg-warning text-white">
+                    <Modal.Title>Criar pessoa</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <Form.Group controlId="formName" className="mb-3">
                         <Form.Label>Nome</Form.Label>
                         <Form.Control
@@ -88,14 +87,14 @@ function ModalCreatePerson({show, handleClose}) {
                         <Form.Label>Imagem</Form.Label>
                         <Form.Control type="file" onChange={handleImageChange} accept="image/*"/>
                     </Form.Group>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer className="bg-warning text-white">
-                <Button variant="secondary" onClick={handleClose}>Fechar</Button>
-                <Button variant="primary" type="submit">
-                    Criar pessoa
-                </Button>
-            </Modal.Footer>
+                </Modal.Body>
+                <Modal.Footer className="bg-warning text-white">
+                    <Button variant="secondary" onClick={handleClose}>Fechar</Button>
+                    <Button variant="primary" type="submit">
+                        Criar pessoa
+                    </Button>
+                </Modal.Footer>
+            </Form>
         </Modal>
     );
 }

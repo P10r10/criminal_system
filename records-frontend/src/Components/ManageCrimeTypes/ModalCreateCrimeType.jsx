@@ -14,7 +14,7 @@ function ModalCreateCrimeType({show, handleClose}) {
         }
     }, [show]);
 
-    const handleSubmit = (e) => {
+    const handleClickCreateCrimeType = (e) => {
         e.preventDefault();
         axios.post(CRIMETYPES_URL, {value: crimeType, label: crimeType}).then(() => {
             refreshCrimeTypes();
@@ -32,13 +32,12 @@ function ModalCreateCrimeType({show, handleClose}) {
             show={show}
             onHide={handleClose}
             backdrop="static"
-            keyboard={false}
-        >
-            <Modal.Header closeButton className="bg-warning text-white">
-                <Modal.Title>Criar tipo de crime</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSubmit}>
+            keyboard={false}>
+            <Form onSubmit={handleClickCreateCrimeType}>
+                <Modal.Header closeButton className="bg-warning text-white">
+                    <Modal.Title>Criar tipo de crime</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <Form.Group className="mb-3">
                         <Form.Label>Tipo de crime</Form.Label>
                         <Form.Control
@@ -51,16 +50,16 @@ function ModalCreateCrimeType({show, handleClose}) {
                             required
                         />
                     </Form.Group>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer className="bg-warning text-white">
-                <Button variant="secondary" onClick={handleClose}>
-                    Fechar
-                </Button>
-                <Button variant="success" type="submit">
-                    Criar tipo de crime
-                </Button>
-            </Modal.Footer>
+                </Modal.Body>
+                <Modal.Footer className="bg-warning text-white">
+                    <Button variant="secondary" onClick={handleClose}>
+                        Fechar
+                    </Button>
+                    <Button variant="success" type="submit">
+                        Criar tipo de crime
+                    </Button>
+                </Modal.Footer>
+            </Form>
         </Modal>
     );
 }

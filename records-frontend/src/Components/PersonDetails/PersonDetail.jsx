@@ -5,7 +5,7 @@ import {useData} from "../DataContext";
 import MyNavbar from "../MyNavbar/MyNavbar";
 import {format} from "date-fns";
 import "./personDetailStyle.css";
-import {Card, Form, ListGroup} from "react-bootstrap";
+import {Card, ListGroup} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {useUserContext} from "../UserContext";
 import ModalCreateAssociationType from "./ModalCreateAssociationType";

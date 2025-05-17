@@ -42,13 +42,12 @@ function ModalAssociatePerson({show, handleClose, availablePersons, casefile}) {
             show={show}
             onHide={handleClose}
             backdrop="static"
-            keyboard={false}
-        >
-            <Modal.Header closeButton className="bg-warning text-white">
-                <Modal.Title>Associar pessoa ao processo</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleAssociatePersonCasefile}>
+            keyboard={false}>
+            <Form onSubmit={handleAssociatePersonCasefile}>
+                <Modal.Header closeButton className="bg-warning text-white">
+                    <Modal.Title>Associar pessoa ao processo</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <Form.Group controlId="formName" className="mb-3">
                         <Form.Label>Pessoa a associar</Form.Label>
                         <Select
@@ -65,12 +64,12 @@ function ModalAssociatePerson({show, handleClose, availablePersons, casefile}) {
                             required
                         />
                     </Form.Group>
+                </Modal.Body>
+                <Modal.Footer className="bg-warning text-white">
+                    <Button variant="secondary" onClick={handleClose}>Fechar</Button>
                     <Button variant="success" type="submit">Associar</Button>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer className="bg-warning text-white">
-                <Button variant="secondary" onClick={handleClose}>Fechar</Button>
-            </Modal.Footer>
+                </Modal.Footer>
+            </Form>
         </Modal>
     );
 }
