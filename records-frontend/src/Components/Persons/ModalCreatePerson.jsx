@@ -88,14 +88,12 @@ function ModalCreatePerson({show, handleClose}) {
                         <Form.Label>Imagem</Form.Label>
                         <Form.Control type="file" onChange={handleImageChange} accept="image/*"/>
                     </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Criar pessoa
-                    </Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer className="bg-warning text-white">
-                <Button variant="secondary" onClick={handleClose}>
-                    Fechar
+                <Button variant="secondary" onClick={handleClose}>Fechar</Button>
+                <Button variant="primary" type="submit">
+                    Criar pessoa
                 </Button>
             </Modal.Footer>
         </Modal>

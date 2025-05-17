@@ -51,14 +51,14 @@ function ModalCreateCrimeType({show, handleClose}) {
                             required
                         />
                     </Form.Group>
-                    <Button variant="success" type="submit">
-                        Criar tipo de crime
-                    </Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer className="bg-warning text-white">
                 <Button variant="secondary" onClick={handleClose}>
                     Fechar
+                </Button>
+                <Button variant="success" type="submit">
+                    Criar tipo de crime
                 </Button>
             </Modal.Footer>
         </Modal>

@@ -102,14 +102,14 @@ function ModalCreateCasefile({show, handleClose}) {
                             {statusChoices.map(sc => <option key={sc.value} value={sc.value}>{sc.label}</option>)}
                         </Form.Select>
                     </Form.Group>
-                    <Button variant="primary" type="submit">
-                        Criar processo
-                    </Button>
                 </Form>
             </Modal.Body>
             <Modal.Footer className="bg-warning text-white">
                 <Button variant="secondary" onClick={onClose}>
                     Fechar
+                </Button>
+                <Button variant="primary" type="submit">
+                    Criar processo
                 </Button>
             </Modal.Footer>
         </Modal>
