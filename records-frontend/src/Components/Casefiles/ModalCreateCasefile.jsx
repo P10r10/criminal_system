@@ -51,11 +51,11 @@ function ModalCreateCasefile({show, handleClose}) {
             backdrop="static"
             keyboard={false}
         >
-            <Modal.Header closeButton className="bg-warning text-white">
-                <Modal.Title>Criar processo</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <Form>
+            <Form onSubmit={handleCreateCasefile}>
+                <Modal.Header closeButton className="bg-warning text-white">
+                    <Modal.Title>Criar processo</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                     <Form.Group className="mb-3">
                         <Form.Label>Crime</Form.Label>
                         <Select
@@ -102,16 +102,14 @@ function ModalCreateCasefile({show, handleClose}) {
                             {statusChoices.map(sc => <option key={sc.value} value={sc.value}>{sc.label}</option>)}
                         </Form.Select>
                     </Form.Group>
-                </Form>
-            </Modal.Body>
-            <Modal.Footer className="bg-warning text-white">
-                <Button variant="secondary" onClick={onClose}>
-                    Fechar
-                </Button>
-                <Button variant="primary" onClick={handleCreateCasefile}>
-                    Criar processo
-                </Button>
-            </Modal.Footer>
+                </Modal.Body>
+                <Modal.Footer className="bg-warning text-white">
+                    <Button variant="secondary" onClick={onClose}>
+                        Fechar
+                    </Button>
+                    <Button variant="primary" type="submit">Criar processo</Button>
+                </Modal.Footer>
+            </Form>
         </Modal>
     );
 }
