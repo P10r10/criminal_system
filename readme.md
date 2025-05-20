@@ -1,4 +1,4 @@
-# This project implements a small scale Criminal Information System
+# This project implements a small-scale Criminal Information System
 All faces, names, events or other info available in the database are fictitious, random or AI-generated. They are ment for testing purposes only.
 
 # Pré-requisitos:
